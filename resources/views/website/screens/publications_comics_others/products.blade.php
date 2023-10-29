@@ -15,10 +15,7 @@
     </section>
     <!-- header banner end -->
  <!-- search box -->
- <div class="search-box">
-    <input type="search" class="form-control ps-4" name="s" placeholder="Search...">
-    <i class="bi bi-search"></i>
-</div>
+@include('website.includes.search_input')
     <!-- blog section -->
     <section id="section-blog" class="blog-section">
         <div class="container">

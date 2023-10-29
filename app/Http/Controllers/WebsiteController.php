@@ -68,7 +68,7 @@ class WebsiteController extends Controller
             });
             return $segment;           
         });
-        return view('website.screens.publications_comics_others.segments',['segments'=>$list,'pageTitle'=>Category::find($req->category_id)->name,'category_id'=>$req->category_id]);
+        return view('website.screens.publications_comics_others.segments',['segments'=>$list,'pageTitle'=>Category::find($req->category_id)->name,'category_id'=>$req->category_id,'products'=>Product::where('category_id', $req->category_id)->where('is_active',true)->get()]);
     }catch (\Exception $e) {
        $this->errorThrow();
     }

@@ -311,7 +311,7 @@ ul.li-unstyled {
     position: relative;
 }
 
-.search-box input {
+.search-box input{
     border-radius: 0px;
     border: 0px;
     height: var(--bs-input-height);

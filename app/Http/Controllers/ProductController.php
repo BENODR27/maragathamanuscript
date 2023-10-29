@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Genre;
 use App\Models\Segment;
 use App\Models\Department;
+use App\Models\User;
+use App\Models\Rating;
 use Auth;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -91,13 +93,94 @@ class ProductController extends Controller
     }
     function edit(Request $req){
         $product=Product::find($req->product_id);
-        return view('admin.screens.product.edit',['product'=>$product]);
+        $departments=Department::all();
+        $category=Category::find($product->category_id);
+        $genres=Genre::where('category_id',$product->category_id)->get();
+        $segments=Segment::where('category_id',$product->category_id)->get();
+        return view('admin.screens.product.edit',['product'=>$product,'category'=>$category,'genres'=>$genres,'segments'=>$segments,'departments'=>$departments]);
     }
-    function update(Request $req){
-        $product=Product::find($req->product_id);
-        $product->name=$req->name;
+    function update(Request $request){
+        
+        // Handle file upload
+        if ($request->hasFile('poster_image')) {
+            $uploadedFile = $request->file('poster_image');
+    
+            // Generate a unique filename for the image
+            $fileName = uniqid() . '.' . $uploadedFile->getClientOriginalExtension();
+        
+            // Move the uploaded file to the desired directory within the public disk
+            $uploadedFile->storeAs('public/posterimages', $fileName);
+        
+            // Save the image path in the database
+            $imagePath = 'storage/posterimages/' . $fileName;  // You can specify a storage path here
+       
+                // Open the uploaded image using Intervention Image
+            $image = Image::make(public_path($imagePath));
+                    
+                // Resize the image to a square shape (e.g., 400 pixels)
+            $image->fit(400);
+            
+            // Save the resized image
+             $image->save(public_path($imagePath));
+        }
+
+        // Create a new Product instance and save it to the database
+        $product=Product::find($request->product_id);
+        if($request->segment!=null){
+            $product->segment_id = $request->segment;
+        }
+        if($request->hasFile('poster_image')){
+            $product->poster_image_name = $imagePath; // Store the image path in your database
+        }
+        if($request->genre!=null){
+            $product->genre_id = $request->genre;     
+        }
+        if($request->title!=null){
+            $product->title = $request->title;     
+        }
+        if($request->quantity!=null){
+            $product->quantity = $request->quantity;     
+        }
+        if($request->one_line_concept!=null){
+            $product->one_line_concept = $request->one_line_concept;     
+        }
+        if( $request->price!=null){
+            $product->price = $request->price;
+        }
+        if( $request->quantity!=null){
+            $product->quantity = $request->quantity;
+        }
+        
+        $product->product_type = $request->product_type;
+        if($product->product_type=="video"){
+            if( $request->audio_video_url!=null){
+            $product->audio_video_url = $request->audio_video_url;
+            }
+            if( $request->director!=null){
+            $product->director = $request->director;
+            }
+            if( $request->music!=null){
+            $product->music = $request->music;
+            }
+        }
+        if($product->product_type=="audiobook"){
+            if( $request->audio_video_url!=null){
+            $product->audio_video_url = $request->audio_video_url;
+            }
+            if( $request->author!=null){
+                $product->author = $request->author;
+            }
+        }
+        if($request->department!=null){
+            $product->department_id=$request->department;
+        }
+        if($request->language!=null){
+            $product->language=$request->language;      
+        }
         $product->update();
-        return redirect()->route('product.browse');
+
+        // Redirect back with a success message
+        return redirect()->route('category.products.view',['category_id'=>$request->category])->with('success', 'Product added successfully');
     }
     function delete(Request $req){
         $product=Product::find($req->product_id);
@@ -117,5 +200,18 @@ class ProductController extends Controller
         $product->is_active=($product->is_active)?false:true;
         $product->save();
         return redirect()->back();
+    }
+    function productSearch(Request $req){
+      $publicationProduct=Product::where('title',$req->product_title)->first();
+      if($publicationProduct!=null){
+        $publicationProduct->user=User::find($publicationProduct->user_id);
+        $publicationProduct->ratings=Rating::where('product_id',$req->product_id)->get()->map(function($rating){
+            $rating->user=User::find($rating->user_id);
+            return $rating;
+        });
+
+        return view('website.screens.publications_comics_others.product',['product'=>$publicationProduct,'pageTitle'=>$publicationProduct->title]);      }else{
+        return redirect()->back();
+      }    
     }
 }

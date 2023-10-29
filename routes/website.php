@@ -11,6 +11,7 @@ use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/userlogin', function () {
@@ -44,6 +45,7 @@ Route::get('/product', function () {
     return view('website.screens.product');
 })->name('category.others');
 
+Route::post('/product/search',[ProductController::class,'productSearch'])->name('product.search');
 
 
 Route::get('/genre/list',[GenreController::class,'genresList'])->name('genres.list');
