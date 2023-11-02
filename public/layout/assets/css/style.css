@@ -175,9 +175,7 @@ ul.li-unstyled {
     transition: all 0.3s ease;
 }
 
-.btn-primary {
-    background-image: var(--bs-btn-primary-gradient);
-}
+
 
 .btn-primary:hover,
 .btn-primary:focus {
@@ -350,9 +348,9 @@ ul.li-unstyled {
 
 /*--tag cloud--*/
 
-.list-group-item {
+/* .list-group-item {
     border: 0px;
-}
+} */
 
 .tag-cloud {
     float: left;
@@ -745,15 +743,15 @@ font-family: 'Poppins', sans-serif; */
     --heading-font-family: "Jost", sans-serif;
     --gradient-primary: linear-gradient(90deg, #000000 28.55%, #000000 82.34%);
     --gradient-primary-hover: linear-gradient(90deg, #75ba8d 28.55%, #81c197 82.34%);
-    --body-color: #212529;
-    --body-bg-color: #a8dea0;
+    --body-color: #000000;
+    --body-bg-color: #c6d8c6;
     --btn-border-color: rgba(0, 0, 0, .25);
     --btn-padding: 1rem 1.45rem;
     --form-control-padding: 1rem 1.875rem;
 }
 
 .dark-mode {
-    --body-color: #fff;
+    --body-color: #ffffff;
     --body-bg-color: rgb(50, 49, 64);
     --btn-border-color: rgba(255, 255, 255, .2);
 }
@@ -845,8 +843,8 @@ h3>span {
 }
 
 .btn-primary {
-    /* Blue Gradiant */
-    background-image: var(--gradient-primary);
+    color: #000000 !important;
+    background-color: #4a823c !important;
 }
 
 .btn-primary:hover,

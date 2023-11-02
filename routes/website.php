@@ -82,3 +82,4 @@ Route::group(['middleware' => 'webwatchman'], function (){
 });
 
 
+Route::get('list/subjects/filter/{isTamilSelected}/{isEnglishSelected}/{selectedDepartmentId}',[SubjectController::class,'subjectsFilter'])->name('subject.filter');

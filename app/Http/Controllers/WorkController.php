@@ -35,26 +35,54 @@ class WorkController extends Controller
         return view('website.screens.submission.list',['works'=>$works,'pageTitle'=>"MY SUBMISSIONS"]);
     }
     function add(){
-        $category_id=Category::where("name","OTHERS")->first();
-        $genres=Genre::where('category_id',$category_id)->get();
+        $category=Category::where("name","OTHERS")->first();
+        
+        $genres=Genre::where('category_id',$category->id)->get();
         return view('website.screens.submission.add',['genres'=>$genres,'pageTitle'=>"NEW SUBMISSION"]);
     }
 
     function save(Request $req){
-        $genre_id;
-        if($req->genrename!=null){
-            $genre=Genre::where('name',$req->genrename)->where('category_id',9)->first();
-            if($genre==null){
-                $genre=new Genre();
-                $genre->name=$req->genrename;
-                $genre->category_id=9;
-                $genre->isCustomGenre=true;
-                $genre->save();
-                $genre_id=$genre->id;
-            }else{
-                $genre_id=$genre->id;
-            }
-        }
+        $customAttributes = [
+            'product_type' => 'Book Type', 
+            'file'=>'Work ',
+            'author_name'=>'Author Name ',
+            'title'=>'Title',
+            'language'=>'Language',
+            'genrename'=>'Genre Name',
+            'poster_image'=>'Poster Image',
+            'terms'=>'Terms & Conditions',
+        ];
+        $customMessages = [
+            'required' => 'The :attribute field is required.',
+            'max' => 'The :attribute field cannot be more than :max characters.',
+            'in' => 'Invalid value selected for the :attribute field.',
+            'mimes' => 'The :attribute must be a file of type: :values.',
+            'accepted' => 'You must accept the :attribute.',
+        ];
+        $req->validate([
+            'author_name' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'product_type' => 'required|in:book,ebook',
+            'poster_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the allowed image types and size as needed.
+            'genrename' => 'required|string', // Assuming it's a string.
+            'language' => 'required|in:tamil,english', // Add other languages as needed.
+            'file' => 'required|mimes:pdf,epub', // Adjust the allowed file types as needed.
+            'terms' => 'required|accepted', // A checkbox that needs to be checked.
+        ],$customMessages,$customAttributes);
+        // $genre_id;
+        // if($req->genrename!=null){
+        //     $genre=Genre::where('name',$req->genrename)->where('category_id',9)->first();
+        //     if($genre==null){
+        //         $genre=new Genre();
+        //         $genre->name=$req->genrename;
+        //         $genre->category_id=9;
+        //         $genre->isCustomGenre=true;
+        //         $genre->save();
+        //         $genre_id=$genre->id;
+        //     }else{
+        //         $genre_id=$genre->id;
+        //     }
+        // }
 
         // Handle file upload
         if ($req->hasFile('poster_image')) {
@@ -82,8 +110,8 @@ class WorkController extends Controller
         $work=new Work();
         $work->author_name=$req->author_name;
         $work->title=$req->title;
-        $work->genre_id=$genre_id;
-        $work->user_id=Auth::user()->id;
+        $work->genre_id=$req->genre;
+        $work->user_id=Auth::user()->id;//LOGINNED USER
         $work->language=$req->language;
         $work->poster_image_name = $imagePath; // Store the image path in your database
         $work->product_type = $req->product_type;

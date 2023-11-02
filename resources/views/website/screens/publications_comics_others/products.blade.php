@@ -64,7 +64,7 @@
             
             </div>
 
-            <!-- pagination -->
+            {{-- <!-- pagination -->
             <div class="pagination-wrap my-7">
                 <ul class="d-flex justify-content-start align-items-center gap-3 ps-0">
                     <li><a href="#">1</a></li>
@@ -73,7 +73,7 @@
                     <li><a href="#">4</a></li>
                     <li><a href="#">5</a></li>
                 </ul>
-            </div>
+            </div> --}}
 
         </div>
     </section>
@@ -84,7 +84,7 @@
     <!-- End Scroll Back to Top -->
     <style>
         .blog-section{
-            min-height: 50vh;
+            min-height: 70vh;
         }
     </style>
 @endsection

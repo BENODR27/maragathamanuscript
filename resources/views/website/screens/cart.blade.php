@@ -259,12 +259,17 @@
 .checkout .proceed-btn{
     font-size:15px;
     font-weight: bold;
-    color:#fff;
-    background:#252525;
+    color:#000000;
+    background:#4a823c;
     text-transform: uppercase;
     padding:15px 25px 14px 25px;
     display: block;
     text-align: center;
+}
+
+.carttable{
+    color: #000000 !important;
+    background-color: #4a823c;
 }
   </style>
   <body>
@@ -275,12 +280,12 @@
             <div class="cart">
             <div class="table-responsive">
                 <table class="table">
-                    <thead class="thead-dark">
+                    <thead class="carttable">
                         <tr>
-                            <th scope="col"class="text-white">Product</th>
-                            <th scope="col"class="text-white">Price</th>
-                            <th scope="col"class="text-white">Quantity</th>
-                            <th scope="col"class="text-white">Action</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>

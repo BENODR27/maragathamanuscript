@@ -1,41 +1,24 @@
 @extends('layouts.website.layout1')
 @section('content')
-<h3 class="p-3" >DEPARTMENTS</h3>
 <div class="container-fluid sub-nav">
-   
     <div class="genre-nav">
         <ul>     
-          <li><div class="selectedDepartment text-white selectedDepartmentAll" data-id="0">All</div></li>
-
-            @foreach ($departments as $department)
-            <li><div class="selectedDepartment text-white " data-id="{{$department->id}}">{{$department->name}}</div></li>
-            @endforeach           
+            <li><a href="">Saves </a></li>
+            <li><a href="">Drafts </a></li>
+                  
                   
         </ul>
     </div>
 </div>
-<h3 class="p-3" >LANGUAGES</h3>
-<div class="container-fluid sub-nav">
-    <div class="genre-nav">
-        <ul>     
-            <li><div class=" text-white tamilbutton" >Tamil</div></li>
-            <li><div class=" text-white englishbutton">English</div></li>
-                  
-        </ul>
-    </div>
-</div>
-<div class="container-fluid subject-parent">
-    <div class="row" id="subject-parent">
-        
+<div class="container-fluid">
+    <div class="row" >
+       
      
     </div>
         
     </div>
 </div>
 <style>
-    .subject-parent{
-        min-height: 70vh;
-    }
     .card{
         color: #000000;
     }
@@ -84,7 +67,4 @@
  </style>
 
 
-@endsection
-@section('script')
-@include('website.scripts.subjects_ajax')
 @endsection

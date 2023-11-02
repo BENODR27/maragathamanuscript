@@ -39,7 +39,7 @@
                 </div>
             </div>
             </div>
-              <ul class="list-group list-group-flush ">
+              <ul class="list-group list-group-flush">
               <a href="{{route('order.list')}}" class="list-group-item list-group-item-action  d-flex align-items-center justify-content-between">
                 
                 <div>Orders</div>

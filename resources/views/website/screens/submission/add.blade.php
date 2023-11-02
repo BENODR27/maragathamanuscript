@@ -19,6 +19,15 @@
     <div class="container">
         <form class="row g-3" action="{{route('submission.save')}}" method="post" enctype="multipart/form-data">
           @csrf
+          @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
             <div class="col-md-12">
               <label for="inputAuthor4" class="form-label">AUTHOR NAME</label>
               <input type="text" class="form-control" name="author_name" id="inputAuthor4">
@@ -45,27 +54,26 @@
               <img id="uploaded_image" src="" alt="Uploaded Image" style="max-width: 100px;">
           </div>
             <div class="col-12">
-                <label for="inputState" class="form-label">SELECT THE GENRE</label>
-                {{-- <select name="genre"id="inputState" class="form-select">
-                  <option hidden  >Choose...</option>
+                <select name="genre"id="inputState" class="form-select">
+                  <option hidden  value="">Choose...</option>
                   @foreach ($genres as $genre)
                   <option value="{{$genre->id}}">{{$genre->name}}</option>
                   @endforeach
                  
                   
-                </select> --}}
-                <input class="form-control" name="genrename" type="text" list="genredl" >
+                </select>
+                {{-- <input class="form-control" name="genrename" type="text" list="genredl" >
                 <datalist id="genredl">
                     @foreach ($genres as $genre)
                     <option value="{{$genre->name}}">
                       @endforeach
-                </datalist>
+                </datalist> --}}
 
             </div>
             <div class="col-12">
                 <label for="inputState" class="form-label">LANGUAGE OF STORY</label>
                 <select name="language" id="inputState" class="form-select">
-                  <option hidden >Choose...</option>
+                  <option hidden value="" >Choose...</option>
                   <option value="tamil">TAMIL</option>
                   <option value="english">ENGLISH</option>
                   {{-- <option value="BOTH">BOTH</option> --}}
@@ -74,14 +82,14 @@
             <div class="col-12">
                 <div class="mb-3">
                     <label for="formFileMultiple" class="form-label">SUBMIT THE WORK (E-book)</label>
-                    <input class="form-control" name="file"type="file" id="formFileMultiple" >
+                    <input class="form-control @error('file') is-invalid @enderror" name="file" type="file" id="formFileMultiple" >
                   </div>
             </div>
          
             
             <div class="col-12">
               <div class="form-check">
-                <input class="form-check-input" required name="terms" type="checkbox" id="gridCheck">
+                <input class="form-check-input" required name="terms" type="checkbox" id="gridCheck" {{ old('terms') ? 'checked' : '' }}>
                 <label class="form-check-label" for="gridCheck">
                   Terms and Conditions
                 </label>
@@ -90,7 +98,7 @@
             <div class="col-12">
               <button type="submit" class="btn btn-primary">SUBMIT</button>
             </div>
-          </form>
+        </form>
     </div>
 </section>
 <script>
