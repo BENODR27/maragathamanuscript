@@ -52,7 +52,9 @@ Route::get('/genre/list',[GenreController::class,'genresList'])->name('genres.li
 Route::get('/genre/products/{genre_id}',[GenreController::class,'genresProductsList'])->name('genres.products.list');
 
 Route::group(['middleware' => 'webwatchman'], function (){
+
     Route::get('/mark-as-read', [NotificationController::class,'markAsRead'])->name('mark-as-read');
+    Route::get('/product/rating/self/delete', [RatingController::class,'deleteRatingSelf'])->name('rating.delete.self');
 
     Route::group(['prefix' => 'submission'], function () {
         Route::get('list', [WorkController::class,'list'])->name('submission.list');

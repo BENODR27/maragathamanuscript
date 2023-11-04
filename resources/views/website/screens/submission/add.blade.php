@@ -17,7 +17,7 @@
 
 <section class="submissions-add p-3">
     <div class="container">
-        <form class="row g-3" action="{{route('submission.save')}}" method="post" enctype="multipart/form-data">
+        <form class="row " action="{{route('submission.save')}}" method="post" enctype="multipart/form-data">
           @csrf
           @if ($errors->any())
           <div class="alert alert-danger">
@@ -28,17 +28,17 @@
               </ul>
           </div>
       @endif
-            <div class="col-md-12">
+            <div class="col-md-12 mb-3">
               <label for="inputAuthor4" class="form-label">AUTHOR NAME</label>
-              <input type="text" class="form-control" name="author_name" id="inputAuthor4">
+              <input type="text" required class="form-control" name="author_name" id="inputAuthor4" oninvalid="this.setCustomValidity('Please Enter Author Name')" oninput="this.setCustomValidity('')">
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 mb-3">
               <label for="inputTitle4" class="form-label">TITLE OF WORK</label>
-              <input type="text" class="form-control" name="title" id="inputTitle4">
+              <input type="text" required class="form-control" name="title" id="inputTitle4" oninvalid="this.setCustomValidity('Please Enter Title Of Work')" oninput="this.setCustomValidity('')">
             </div>
             <div class="mb-3">
               <label for="product_type" class="form-label">Book Type</label>
-              <select name="product_type" class="form-select form-control" id="product_type" aria-describedby="categoryIdHelp">
+              <select name="product_type" required class="form-select form-control" id="product_type" aria-describedby="categoryIdHelp" oninvalid="this.setCustomValidity('Please Select Valid Book Type')" oninput="this.setCustomValidity('')">
                   <option hidden value="">Select a type</option>
                      <option value="book">Book</option>
                       <option value="ebook">E-Book</option>
@@ -47,15 +47,16 @@
           </div>
             <div class="mb-3">
               <label for="poster_image" class="form-label">Poster Image / Thumbnail</label>
-              <input type="file" name="poster_image" class="form-control" id="poster_image" aria-describedby="posterImageHelp">
+              <input type="file" required name="poster_image" class="form-control" id="poster_image" aria-describedby="posterImageHelp" oninvalid="this.setCustomValidity('Please Upload Valid Poster')" oninput="this.setCustomValidity('')">
           </div>
           <div class="mb-3" id="uploaded_image_div" style="display: none;">
               <label>Uploaded Poster/ Thumbnail Image:</label>
-              <img id="uploaded_image" src="" alt="Uploaded Image" style="max-width: 100px;">
+              <img id="uploaded_image"  src="" alt="Uploaded Image" style="max-width: 100px;">
           </div>
-            <div class="col-12">
-                <select name="genre"id="inputState" class="form-select">
-                  <option hidden  value="">Choose...</option>
+            <div class="col-12 mb-3">
+              <label for="inputState" class="form-label">Genre</label>
+                <select name="genre" required id="inputState" class="form-select" oninvalid="this.setCustomValidity('Please Select Valid Genre')" oninput="this.setCustomValidity('')">
+                  <option hidden  value="">Select a genre</option>
                   @foreach ($genres as $genre)
                   <option value="{{$genre->id}}">{{$genre->name}}</option>
                   @endforeach
@@ -70,10 +71,10 @@
                 </datalist> --}}
 
             </div>
-            <div class="col-12">
+            <div class="col-12 mb-3">
                 <label for="inputState" class="form-label">LANGUAGE OF STORY</label>
-                <select name="language" id="inputState" class="form-select">
-                  <option hidden value="" >Choose...</option>
+                <select name="language" required id="inputState" class="form-select" oninvalid="this.setCustomValidity('Please Select Valid Language')" oninput="this.setCustomValidity('')">
+                  <option hidden value="" >Select a language</option>
                   <option value="tamil">TAMIL</option>
                   <option value="english">ENGLISH</option>
                   {{-- <option value="BOTH">BOTH</option> --}}
@@ -82,14 +83,14 @@
             <div class="col-12">
                 <div class="mb-3">
                     <label for="formFileMultiple" class="form-label">SUBMIT THE WORK (E-book)</label>
-                    <input class="form-control @error('file') is-invalid @enderror" name="file" type="file" id="formFileMultiple" >
+                    <input required class="form-control @error('file') is-invalid @enderror" name="file" type="file" id="formFileMultiple" oninvalid="this.setCustomValidity('Please Upload Valid E-Book')" oninput="this.setCustomValidity('')">
                   </div>
             </div>
          
             
-            <div class="col-12">
+            <div class="col-12 mb-3">
               <div class="form-check">
-                <input class="form-check-input" required name="terms" type="checkbox" id="gridCheck" {{ old('terms') ? 'checked' : '' }}>
+                <input class="form-check-input" required name="terms" type="checkbox" id="gridCheck" {{ old('terms') ? 'checked' : '' }} oninvalid="this.setCustomValidity('Please Accept Terms & Conditions To Continue')" oninput="this.setCustomValidity('')">
                 <label class="form-check-label" for="gridCheck">
                   Terms and Conditions
                 </label>

@@ -25,20 +25,22 @@
                                                 </div>
                                                 <div class="col" >
                                                     <div class = "product-content mt-4">
-                                                                <h5 >${product.title}</h5>
+                                                                <h5 class="btn btn-outline-success">${product.title}</h5>
                                                                 <div class="mt-2">
-                                                                    <small class="text-muted">
-                                                                        ${Array.from({ length: product.rating_average }, (_, i) => `
-                                                                            <i style="color:green" class="fa fa-star"></i>
-                                                                        `).join('')}
-                                                                        ${Array.from({ length: 5 - product.rating_average }, () => `
-                                                                            <i class="fa fa-star"></i>
-                                                                        `).join('')}
-                                                                    </small>
-                                                                    (${product.viewers})
+                                                                    ${product.rating_average !== 0 ? `
+                                                                        <small class="text-muted">
+                                                                            ${Array.from({ length: product.rating_average }, (_, i) => `
+                                                                                <i style="color:green" class="fa fa-star"></i>
+                                                                            `).join('')}
+                                                                            ${Array.from({ length: 5 - product.rating_average }, () => `
+                                                                                <i class="fa fa-star"></i>
+                                                                            `).join('')}
+                                                                        </small>(${product.viewers})
+                                                                    ` : 'No ratings yet!'}
+                                                                    
                                                                 </div>
-                                                                <p class="mt-2">Director :&nbsp ${product.director}</p>
-                                                                <p class="mt-2">Music &nbsp&nbsp&nbsp&nbsp:&nbsp ${product.music}</p>
+                                                               <div> <p class="mt-2 genrecolour">Director :&nbsp <span>${product.director}</span></p>
+                                                                <p class="mt-2 genrecolour">Music &nbsp&nbsp&nbsp&nbsp:&nbsp <span>${product.music}</span></p></div>
                                                                 
                                                     </div>  
                                                     </div>
@@ -54,19 +56,21 @@
                                                 </div>
                                                 <div class="col" >
                                                     <div class = "product-content mt-2">
-                                                                <h5 >${product.title}</h5>
+                                                                <h5 class="btn btn-outline-success">${product.title}</h5>
                                                                 <div class="mt-3">
-                                                                    <small class="text-muted">
-                                                                        ${Array.from({ length: product.rating_average }, (_, i) => `
-                                                                            <i style="color:green" class="fa fa-star"></i>
-                                                                        `).join('')}
-                                                                        ${Array.from({ length: 5 - product.rating_average }, () => `
-                                                                            <i class="fa fa-star"></i>
-                                                                        `).join('')}
-                                                                    </small>
-                                                                    (${product.viewers})
+                                                                    ${product.rating_average !== 0 ? `
+                                                                        <small class="text-muted">
+                                                                            ${Array.from({ length: product.rating_average }, (_, i) => `
+                                                                                <i style="color:green" class="fa fa-star"></i>
+                                                                            `).join('')}
+                                                                            ${Array.from({ length: 5 - product.rating_average }, () => `
+                                                                                <i class="fa fa-star"></i>
+                                                                            `).join('')}
+                                                                        </small>(${product.viewers})
+                                                                    ` : 'No ratings yet!'}
+                                                                    
                                                                 </div>
-                                                                <p class="mt-3"><b>Author</b> : ${product.author}</p>
+                                                                <p class="mt-1 genrecolour"><b>Author</b> : <span>${product.author} </span></p>
                                                     </div>  
                                                 </div>
                                                 <div class="col text-center d-flex align-items-center justify-content-center" >
@@ -90,19 +94,20 @@
                                     <div class="col">
                                         <div class="product-content mt-4">
                                             <h5>${product.title}</h5>
-                                            <div class="mt-2">
-                                                <small class="text-muted">
-                                                    ${Array.from({ length: product.rating_average }, (_, i) => `
-                                                        <i style="color:green" class="fa fa-star"></i>
-                                                    `).join('')}
-                                                    ${Array.from({ length: 5 - product.rating_average }, () => `
-                                                        <i class="fa fa-star"></i>
-                                                    `).join('')}
-                                                </small>
-                                                (${product.viewers})
+                                            <div class="mt-4">
+                                                ${product.rating_average !== 0 ? `
+                                                    <small class="text-muted">
+                                                        ${Array.from({ length: product.rating_average }, (_, i) => `
+                                                            <i style="color:green" class="fa fa-star"></i>
+                                                        `).join('')}
+                                                        ${Array.from({ length: 5 - product.rating_average }, () => `
+                                                            <i class="fa fa-star"></i>
+                                                        `).join('')}
+                                                    </small> (${product.viewers})
+                                                ` : 'No ratings yet!'}
+                                               
                                             </div>
-                                            <p class="mt-2"> Status</p>
-                                            <div class="btn btn-primary mt-3">₹${product.price}</div>
+                                            ${product.price !== 0 ? `<div class="btn btn-primary mt-4">₹${product.price}</div>` : '<div class="btn btn-primary mt-4">FREE</div>'}
                                         </div>
                                     </div>
                                 </div>
@@ -116,9 +121,9 @@
                     });
                     }else{
                         let noProductFound = `<div class="text-center p-5">
-                                                    <h3 class="p-5">
+                                                    <h1 class="p-5">
                                                         COMING SOON
-                                                    </h3>
+                                                    </h1>
                                                 </div>`;
                         productContainer.append(noProductFound);
 
@@ -141,3 +146,11 @@
         
     });
 </script>
+<style>
+    .genrecolour{
+        color: green;
+    }
+    .genrecolour span{
+        color: black;
+    }
+</style>

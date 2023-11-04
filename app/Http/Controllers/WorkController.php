@@ -48,7 +48,7 @@ class WorkController extends Controller
             'author_name'=>'Author Name ',
             'title'=>'Title',
             'language'=>'Language',
-            'genrename'=>'Genre Name',
+            'genre'=>'Genre Name',
             'poster_image'=>'Poster Image',
             'terms'=>'Terms & Conditions',
         ];
@@ -64,7 +64,7 @@ class WorkController extends Controller
             'title' => 'required|string|max:255',
             'product_type' => 'required|in:book,ebook',
             'poster_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the allowed image types and size as needed.
-            'genrename' => 'required|string', // Assuming it's a string.
+            'genre' => 'required|string', // Assuming it's a string.
             'language' => 'required|in:tamil,english', // Add other languages as needed.
             'file' => 'required|mimes:pdf,epub', // Adjust the allowed file types as needed.
             'terms' => 'required|accepted', // A checkbox that needs to be checked.
@@ -142,7 +142,7 @@ class WorkController extends Controller
     }
     function browse(){
         $works=Work::all()->reverse()->map(function($work){
-            $work->genreName=Genre::find($work->genre_id)->name;
+             $work->genreName=Genre::find($work->genre_id)->name;
             return $work;
         });
         return view('admin.screens.submission.browse',['works'=>$works]);

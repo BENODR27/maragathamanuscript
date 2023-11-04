@@ -20,6 +20,11 @@
     </li>
    @endif
    <li class="nav-item">
+    <a class="nav-link" href="{{route('user.browse')}}">
+        <i class="fas fa-fw fa-solid fa-user"></i>
+        <span>Users</span></a>
+   </li>
+   <li class="nav-item">
     <a class="nav-link" href="{{route('order.browse')}}">
         <i class="fas fa-fw fa-solid fa-building"></i>
         <span>Orders</span></a>

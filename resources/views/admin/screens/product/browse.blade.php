@@ -37,6 +37,7 @@
                             <a class="btn btn-warning"href="{{route('product.view',['product_id'=>$product->id])}}">VIEW</a>
                             <a class="btn btn-success"href="{{route('product.edit',['product_id'=>$product->id])}}">EDIT</a>
                             <a class="btn btn-danger"href="{{route('product.delete',['product_id'=>$product->id])}}">DELETE</a>
+                            <a class="btn btn-secondary"href="{{route('product.review.view',['product_id'=>$product->id])}}">VIEW RATINGS</a>
                         </td>
                       
                     </tr>

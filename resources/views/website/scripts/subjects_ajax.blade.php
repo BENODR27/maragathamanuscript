@@ -81,7 +81,7 @@ $(document).ready(function () {
                         }else{
                             let noProductFound = `<div class="text-center p-5">
                                                         <h3 class="p-5">
-                                                          Selected Subject Not Available
+                                                           Currently Not Available
                                                         </h3>
                                                     </div>`;
                             productContainer.append(noProductFound);

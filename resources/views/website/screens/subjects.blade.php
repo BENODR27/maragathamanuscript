@@ -1,6 +1,5 @@
 @extends('layouts.website.layout1')
 @section('content')
-<h3 class="p-3" >DEPARTMENTS</h3>
 <div class="container-fluid sub-nav">
    
     <div class="genre-nav">
@@ -8,13 +7,17 @@
           <li><div class="selectedDepartment text-white selectedDepartmentAll" data-id="0">All</div></li>
 
             @foreach ($departments as $department)
+            @if($department->name!="OTHERS")
             <li><div class="selectedDepartment text-white " data-id="{{$department->id}}">{{$department->name}}</div></li>
+            @endif
+            @if($department->name=="OTHERS")
+            <li style="padding-right:40px;"><div class="selectedDepartment text-white" data-id="{{$department->id}}">{{$department->name}}</div></li>
+            @endif
             @endforeach           
                   
         </ul>
     </div>
 </div>
-<h3 class="p-3" >LANGUAGES</h3>
 <div class="container-fluid sub-nav">
     <div class="genre-nav">
         <ul>     

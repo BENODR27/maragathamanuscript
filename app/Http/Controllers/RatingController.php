@@ -25,4 +25,12 @@ class RatingController extends Controller
         $product->save();
        return redirect()->back();
     }
+    function deleteRatingSelf(Request $req){
+        Rating::find($req->rating_id)->delete();
+        return redirect()->back();
+    }
+    function productRatingView(Request $req){
+        $ratings=Rating::where("product_id",$req->product_id)->get();
+        return view('admin.screens.rating.browse',["ratings"=>$ratings]);
+    }
 }

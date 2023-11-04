@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Segment;
 use App\Models\Category;
+use App\Models\Product;
 class SegmentController extends Controller
 {
     function browse(Request $req){
@@ -30,11 +31,16 @@ class SegmentController extends Controller
         $segment=Segment::find($req->segment_id);
         $segment->name=$req->name;
         $segment->update();
-        return redirect()->route('segment.browse');
+        return redirect()->route('segment.browse',['category_id'=>$segment->category_id]);
     }
     function delete(Request $req){
         $segment=Segment::find($req->segment_id);
         $segment->delete();
         return redirect()->back();
     }
+    function viewProductsBySegment(Request $req){
+        $products=Product::where('segment_id',$req->segment_id)->get()->reverse();
+         // $products=Product::all();
+         return view('admin.screens.product.browse',['products'=>$products,'category_id'=>$req->category_id]);
+     }
 }

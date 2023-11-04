@@ -45,7 +45,7 @@
                   </div>
                  <div class="row mt-3">
                   <div class="col">
-                      <div ><img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" @if($product->user->profile_image_name==null) src="{{asset('img/undraw_profile.svg')}}" @else src="{{asset($product->user->profile_image_name)}}" @endif /> &nbsp {{$product->user->name}}</div>
+                      <div class="btn btn-outline-success"><img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" @if($product->user->profile_image_name==null) src="{{asset('img/undraw_profile.svg')}}" @else src="{{asset($product->user->profile_image_name)}}" @endif /> &nbsp {{$product->user->name}}</div>
                   </div>
                  </div>
 
@@ -101,7 +101,9 @@
 
 
 <style>
-  
+  .btn-outline-success{
+    color: black;
+  }
     #more {display: none;}
     .rate {
     float: left;

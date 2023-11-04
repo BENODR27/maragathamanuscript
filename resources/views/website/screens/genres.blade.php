@@ -60,6 +60,7 @@
   color:green;
 }
     </style>
+    @if(count($genres)>0)
 <div class="container-fluid sub-nav">
     <div class="genre-nav">
         <ul>
@@ -71,9 +72,16 @@
         </ul>
     </div>
 </div>
+@endif
 <div class="container-fluid" id="genre-products-list">
     <div class="row " id="genre-products">
-        
+        @if(count($genres)==0)
+        <div class="text-center p-5">
+            <h1 class="p-5">
+                COMING SOON
+            </h1>
+        </div>
+        @endif
     </div>
         
     </div>

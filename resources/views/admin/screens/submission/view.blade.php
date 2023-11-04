@@ -60,10 +60,16 @@
             <div class="mb-3">
                 <label for="genre_id" class="form-label">Genre</label>
                 <select required name="genre" class="form-select form-control" id="genre" aria-describedby="genreIdHelp">
-                    <option  hidden value="">Select a genre</option>
+                    
                     @foreach ($genres as $genre)
+                    @if($work->genre_id==$genre->id)
                         <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                        @endif
                     @endforeach
+                  
+                    {{-- @foreach ($genres as $genre)
+                        <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                    @endforeach --}}
                 </select>
             </div>
          

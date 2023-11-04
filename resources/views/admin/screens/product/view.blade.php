@@ -12,7 +12,7 @@
           <div>
             (Click Here To Change Status)
             <a class="btn btn-primary"href="{{route('product.toggleStatus',["product_id"=>$product->id])}}">{{$product->is_active?"Active":"Inactive"}}</a>
-            <a class="btn btn-primary"href="{{route('product.toggleStatus',["product_id"=>$product->id])}}">Edit</a>
+            <a class="btn btn-primary"href="{{route('product.edit',['product_id'=>$product->id])}}">Edit</a>
 
           </div>
      </div>

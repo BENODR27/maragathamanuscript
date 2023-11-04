@@ -17,6 +17,7 @@
                      <tr>
                          <th>Id</th>
                          <th>Name</th>
+                         <th>Linked Products</th>
                          <th>Action</th>
                       
                      </tr>
@@ -27,6 +28,10 @@
                     <tr>
                         <td>{{$segment->id}}</td>
                         <td>{{$segment->name}}</td>
+                        <td>
+                            <a class="btn btn-warning"href="{{route('segment.products.view',['segment_id'=>$segment->id,'category_id'=>$segment->category_id])}}">VIEW</a>
+
+                        </td>
                         <td>
                             <a class="btn btn-success"href="{{route('segment.edit',['segment_id'=>$segment->id])}}">EDIT</a>
                             <a class="btn btn-danger"href="{{route('segment.delete',['segment_id'=>$segment->id])}}">DELETE</a>

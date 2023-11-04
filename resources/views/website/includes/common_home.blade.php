@@ -1,5 +1,8 @@
 
 <style>
+    .home-website{
+        min-height: 70vh;
+    }
     .product-title{
         font-size: 15px;
     }
@@ -38,6 +41,7 @@
 
 <div class="home-website pt-3">
 
+@if(count($segments)>0)
 @foreach ($segments as $segment)
 @if(count($segment->products)>0)
 <div class="container-fluid pb-5">
@@ -95,10 +99,18 @@
 @endif
 @endforeach
 
+@else
+<h1 class="text-center p-5">
+    COMING SOON
+</h1>
 
+@endif
+
+@if(count($segments)>0)
 <div class="container-fluid pb-5">
     <div class="d-grid gap-2 col-12 p-5">
         <a href="{{route('subject.home')}}" class="btn btn-primary ">{{ GoogleTranslate::trans('SUBJECTS', app()->getLocale()) }}</a>
     </div>
 </div>
+@endif
 </div>

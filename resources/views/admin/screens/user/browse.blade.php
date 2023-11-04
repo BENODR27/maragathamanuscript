@@ -7,8 +7,7 @@
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
      <div class="card-header py-3 d-flex justify-content-between">
-         <h6 class="font-weight-bold text-primary">GENRES</h6> 
-         <a class="btn btn-primary"href="{{route('genre.add',['category_id'=>$category_id])}}">ADD</a>
+         <h6 class="font-weight-bold text-primary">DEPARTMENTS</h6> 
      </div>
      <div class="card-body">
          <div class="table-responsive">
@@ -17,32 +16,32 @@
                      <tr>
                          <th>Id</th>
                          <th>Name</th>
-                         <th>Linked Products</th>
+                         <th>Email</th>
+                         <th>Status</th>
                          <th>Action</th>
                       
                      </tr>
                  </thead>
                  <tbody>
-                    @if(count($genres)>0)
-                    @foreach ($genres as $genre)
+                    @if(count($users)>0)
+                    @foreach ($users as $user)
                     <tr>
-                        <td>{{$genre->id}}</td>
-                        <td>{{$genre->name}}</td>
+                        <td>{{$user->id}}</td>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{($user->account_status==1)?"ACTIVE":"INACTIVE"}}</td>
                         <td>
-                            <a class="btn btn-warning"href="{{route('genre.products.view',['genre_id'=>$genre->id,'category_id'=>$genre->category_id])}}">VIEW</a>
-
-                        </td>
-                        <td>
-                            <a class="btn btn-success"href="{{route('genre.edit',['genre_id'=>$genre->id])}}">EDIT</a>
-                            <a class="btn btn-danger"href="{{route('genre.delete',['genre_id'=>$genre->id])}}">DELETE</a>
+                            <a class="btn btn-success"href="{{route('user.edit',['user_id'=>$user->id])}}">EDIT</a>
+                            <a class="btn btn-warning"href="{{route('user.view',['user_id'=>$user->id])}}">VIEW</a>
+                            <a class="btn btn-danger"href="{{route('user.delete',['user_id'=>$user->id])}}">DELETE</a>
                         </td>
                       
                     </tr>
                     @endforeach
                     @else
                     <tr>
-                        <td colspan="4" class="text-center">
-                            NO GENRES FOUND
+                        <td colspan="3" class="text-center">
+                            NO DEPARTMENTS FOUND
                         </td>
                         
                     </tr>

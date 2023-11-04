@@ -93,8 +93,13 @@
     <section id="product-category" class="help-section-2 py-120">
         <div class="container">
             <div class="text-center pb-5">
+                @if(count($categories)==0)
+                <h2 class="display-4 fw-bold text-white">{{ GoogleTranslate::trans('COMING SOON', app()->getLocale()) }}</h2>
+                @else 
                 <h3 class="hr-lines-white">{{ GoogleTranslate::trans('select your category', app()->getLocale()) }}</h3>
+
                 <h2 class="display-4 fw-bold text-white">{{ GoogleTranslate::trans('OUR RELEASES', app()->getLocale()) }}</h2>
+                @endif
             </div>
 
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -111,7 +116,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="row g-4 py-5">
-                            
+                          
                             @foreach ($categories as $category)
                             @if($category->name!="OTHERS")
                             <div class="col-md-4">

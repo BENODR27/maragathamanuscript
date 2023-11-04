@@ -31,18 +31,18 @@ class GenreController extends Controller
         $genre=Genre::find($req->genre_id);
         $genre->name=$req->name;
         $genre->update();
-        return redirect()->route('genre.browse');
+        return redirect()->route('genre.browse',['category_id'=>$genre->category_id]);
     }
     function delete(Request $req){
         $genre=Genre::find($req->genre_id);
         $genre->delete();
         return redirect()->back();
     }
-    function viewProducts(Request $req){
-       $products=Product::where('genre_id',$req->genre_id)->get();
-        // $products=Product::all();
-        return view('admin.screens.product.browse',['products'=>$products]);
-    }
+    function viewProductsByGenre(Request $req){
+        $products=Product::where('genre_id',$req->genre_id)->get()->reverse();
+         // $products=Product::all();
+         return view('admin.screens.product.browse',['products'=>$products,'category_id'=>$req->category_id]);
+     }
     function genresList(Request $req,$pageTitle="GENRES")  //removed from page
     {
         $genres=Genre::where('category_id',session('category_id'))->get();  //session('category_id',"priya") 

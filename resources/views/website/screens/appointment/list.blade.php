@@ -15,10 +15,10 @@
 </section>
 <!-- header banner end -->
 <!-- search box -->
-<div class="search-box">
+{{-- <div class="search-box">
 <input type="search" class="form-control ps-4" name="s" placeholder="Search...">
 <i class="bi bi-search"></i>
-</div>
+</div> --}}
 <section class="mysubmissions p-5">
     <div class="container text-center">
        
@@ -32,7 +32,7 @@
         </div> --}}
       <div class="row">
         @foreach ($appointments as $appointment)
-        <div class="col-md-6">
+        {{-- <div class="col-md-6">
             <div class="card text-center mt-3">
                 <div class="card-header">
                 {{$appointment->author_name}}
@@ -48,7 +48,31 @@
                     </div>
             </div>
             
+        </div> --}}
+       <div class="col-md-12">
+        <div class="card text-center mt-2">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                   
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link titlenav" data-bs-toggle="tab">ID: {{$appointment->id}}</a>
+                    </li>
+                   
+                    
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="home">
+                        <h5 class="card-title">ON : <span>{{$appointment->dateandtime}}</span> </h5>
+                        <p class="card-text"> <b>FOR</b> : <span> {{$appointment->for}}</span></p>
+                        <a href="#" class="btn btn-primary m-2">MODE : {{$appointment->mode=="online"?"ONLINE":"OFFLINE"}}</a>
+                    </div>
+                   
+                </div>
+            </div>
         </div>
+       </div>
         @endforeach
        
        
@@ -60,8 +84,28 @@
    
 </section>
 <style>
+    .card-title,.card-text{
+        color: green;
+    }
+    .card-title span,.card-text span{
+        color:black ;
+    }
+    .card-header-tabs{
+        background-color: black;
+    }
+    .nav-link{
+        color: green;
+    }
     .mysubmissions{
         min-height: 50vh;
+    }
+    .titlenav {
+        color: green !important;
+    }
+    .tab-pane{
+        background-color: #c6d8c6;
+        border-radius: 5px;
+        padding: 5px;
     }
 </style>
 @endsection

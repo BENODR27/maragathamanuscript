@@ -24,7 +24,7 @@
            		   </div>
            		   <div class="div">
            		   		<h5>Name</h5>
-           		   		<input type="text" name="name" class="input">
+           		   		<input required type="text" name="name" class="input">
            		   </div>
            		</div>
            		<div class="input-div one">
@@ -33,7 +33,7 @@
            		   </div>
            		   <div class="div">
            		   		<h5>Email</h5>
-           		   		<input type="text" name="email"  class="input">
+           		   		<input required type="text" name="email"  class="input">
            		   </div>
            		</div>
            		<div class="input-div pass">
@@ -42,7 +42,7 @@
            		   </div>
            		   <div class="div">
            		    	<h5>Password</h5>
-           		    	<input type="password" name="password" class="input">
+           		    	<input required type="password" name="password" class="input">
             	   </div>
             	</div>
            		<div class="input-div pass">
@@ -51,7 +51,7 @@
            		   </div>
            		   <div class="div">
            		    	<h5>Confirm Password</h5>
-           		    	<input type="confirmpassword" name="confirmpassword" class="input">
+           		    	<input required type="confirmpassword" name="confirmpassword" class="input">
             	   </div>
             	</div>
                 <a href="{{route('website.auth.login')}}">Already Registered Login Here -></a>

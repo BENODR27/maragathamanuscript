@@ -20,16 +20,16 @@
           @csrf
             <div class="col-md-12">
               <label for="inputAuthor4" class="form-label">AUTHOR NAME</label>
-              <input type="text" name="author_name" class="form-control" id="inputAuthor4">
+              <input required type="text" name="author_name" class="form-control" id="inputAuthor4" oninvalid="this.setCustomValidity('Enter Valid Author Name ')" oninput="this.setCustomValidity('')">
             </div>
             <div class="col-md-12">
               <label for="inputTitle4" class="form-label">APPOINTMENT FOR</label>
-              <input type="text" name="for" class="form-control" id="inputTitle4">
+              <textarea required maxlength="20" minlength="10"  name="for" placeholder="" class="form-control" oninvalid="this.setCustomValidity('Enter Valid Reason For Appointment')" oninput="this.setCustomValidity('')"></textarea>
             </div>
             <div class="col-12">
                 <label for="inputState" class="form-label">MODE</label>
-                <select id="inputState"name="mode" class="form-select">
-                  <option hidden>Choose...</option>
+                <select required id="inputState"name="mode" class="form-select" oninvalid="this.setCustomValidity('Select Mode Of Appointment')" oninput="this.setCustomValidity('')">
+                  <option hidden value="">Select a mode</option>
                   <option value="online">online</option>
                   <option value="offline">offline</option>
                  
@@ -37,11 +37,11 @@
             </div>
             <div class="col-md-12">
               <label for="inputTitle4" class="form-label">CHOOSE DATE & TIME</label>
-              <input type="datetime-local" name="dateandtime" class="form-control" id="inputTitle4">
+              <input required type="datetime-local" name="dateandtime" class="form-control" id="inputTitle4" oninvalid="this.setCustomValidity('Select Valid Date & Time')" oninput="this.setCustomValidity('')">
             </div>
             <div class="col-12">
               <div class="form-check">
-                <input class="form-check-input" name="terms"type="checkbox" id="gridCheck">
+                <input required class="form-check-input" name="terms"type="checkbox" id="gridCheck" oninvalid="this.setCustomValidity('Please Accept Terms & Conditions To Continue')" oninput="this.setCustomValidity('')">
                 <label class="form-check-label" for="gridCheck">
                   Terms and Conditions
                 </label>

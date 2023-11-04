@@ -46,7 +46,7 @@
                     @endforeach
                     @else
                     <tr>
-                        <td colspan="3" class="text-center">
+                        <td colspan="5" class="text-center">
                             NO SUBMISSION FOUND
                         </td>
                         

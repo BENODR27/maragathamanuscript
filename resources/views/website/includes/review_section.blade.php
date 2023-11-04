@@ -1,6 +1,6 @@
 @if(Auth::user())
 <div class="row m-2">
-    <h4>REVIEWS</h4>
+    <h4 class="p-3">REVIEWS</h4>
 </div>
 @endif
 <div class="row m-2">
@@ -14,7 +14,7 @@
                 </div>
                 <div>
                     @if(Auth::user() && Auth::user()->id==$rating->user->id)
-                    <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    <a href="{{route('rating.delete.self',["rating_id"=>$rating->id])}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     @endif
                 </div>
                 </h5>
@@ -92,3 +92,17 @@
    </form>
    @endif
 </div>
+<style>
+    .card-body{
+        background-color: #84c384;
+    }
+    .card{
+        background-color: black;
+    }
+    textarea.form-control{
+        background-color: #c6d8c6;
+    }
+    textarea.form-control:focus{
+        background-color: #a2afa2;
+    }
+</style>

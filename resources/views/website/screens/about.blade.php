@@ -15,14 +15,18 @@
 </section>
 <!-- header banner end -->
 <div class="user-about">
-    <div class="container-fluid">
+    <div class="container-fluid mt-3 mb-3">
         <div class="card">
             <div class="card-header d-flex align-items-center justify-content-between">
               <div>
-                PROFILE
+                <h3>
+                  PROFILE
+                </h3>
+
               </div>
               <div>
-                <i class="fa fa-share-alt" aria-hidden="true"></i>
+                <a id="link_id" hidden  href="www.google.com"></a>
+                  <i class="fa fa-share-alt" onclick="copyFunction()" aria-hidden="true"></i>
               </div>
             </div>
             <div class="card-body subheader">
@@ -32,7 +36,7 @@
                 </div>
                 <div class="col" >
                     <div class = "product-content mt-4">
-                                <h5 >{{$user->name}}</h5>
+                                <h5 >{{$user->name}}&nbsp <a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i></a></h5>
                                 <p >{{$user->email}}</p>
                                 <p >4.6(56)</p>
                     </div>
@@ -100,12 +104,39 @@
     
 </div>
 <style>
-  
+  *{
+    padding: 2px;
+  }
+  a .list-group-item,.list-group-item{
+    background-color:#c6d8c6;
+  }
+ .card-header{
+  background-color: #4a823c;
+ }
+  .card-body{
+    background-color:#c6d8c6;
+  }
    a{
     padding: 20px;
    }
    .list-group-flush>.list-group-item {
-    border-width: 24px 0 var(--bs-list-group-border-width) !important;
+    margin-top: 5px;
 }  
 </style>
+<script>
+  function copyFunction() {
+  var copyText = document.getElementById("link_id").getAttribute("href");
+  function copyStringToClipboard(str) {
+    var element = document.createElement('textarea');
+    element.value = str;
+    element.setAttribute('readonly','');
+    element.style = {position:'absolute',left:'-9999px'};
+    document.body.appendChild(element);
+    element.select();
+    document.execCommand('copy');
+    document.body.removeChild(element);
+  } 
+  copyStringToClipboard(copyText);
+  alert("URL copied to clipboard");}
+</script>
 @endsection

@@ -977,13 +977,13 @@ h3>span {
 
 /* Form */
 
-.form-control {
+/* .form-control {
     padding: var(--form-control-padding);
     line-height: 1;
     background-color: var(--body-bg-color);
     color: white;
     border-color: var(--btn-border-color);
-}
+} */
 
 .form-check-input {
     background-color: var(--body-bg-color);

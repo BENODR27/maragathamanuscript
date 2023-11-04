@@ -2,7 +2,8 @@
 <html>
 <head>
 	<title>Login</title>
-	
+	<link rel="stylesheet" href="{{asset("layout/assets/css/bootstrap.min.css")}}">
+
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +25,7 @@
            		   </div>
            		   <div class="div">
            		   		<h5>Username</h5>
-           		   		<input type="text" name="email" class="input">
+           		   		<input type="text" required name="email" class="input" oninvalid="this.setCustomValidity('Please Enter UserName')" oninput="this.setCustomValidity('')">
            		   </div>
            		</div>
            		<div class="input-div pass">
@@ -33,9 +34,20 @@
            		   </div>
            		   <div class="div">
            		    	<h5>Password</h5>
-           		    	<input type="password" name="password" class="input">
+           		    	<input type="password" required name="password" class="input" oninvalid="this.setCustomValidity('Please Enter Password')" oninput="this.setCustomValidity('')">
             	   </div>
             	</div>
+				@if ($errors->any())
+				<div class="mt-3 p-3">
+					<div class="alert alert-danger">
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				</div>
+			@endif
             	{{-- <a href="{{route('website.auth.register')}}">New User Register Here -></a> --}}
             	<input type="submit" class="btn" value="Login">
             </form>
