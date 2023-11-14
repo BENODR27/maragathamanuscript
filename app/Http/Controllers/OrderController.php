@@ -10,8 +10,17 @@ use App\Models\Product;
 use Auth;
 class OrderController extends Controller
 {
-    function browse(){
-        $orders=Order::all()->reverse();
+    function browse(Request $req){
+        
+        if($req->filter=="new"){
+            $orders=Order::where('delivered',false)->get()->reverse();
+        }
+        if($req->filter=="completed"){
+            $orders=Order::where('delivered',true)->get()->reverse();
+        }
+        if($req->filter=="all"){
+            $orders=Order::all()->reverse();
+        }
         return view('admin.screens.order.browse',['orders'=>$orders]);
     }
     function confirmorder(Request $request){

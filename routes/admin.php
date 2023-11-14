@@ -11,6 +11,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\NotificationController;
 
 Route::get('/dashboard', function () {
     return view('admin.screens.dashboard');
@@ -27,6 +28,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('view', [UserController::class,'view'])->name('user.view');
     Route::put('update', [UserController::class,'update'])->name('user.update');
     Route::get('delete', [UserController::class,'delete'])->name('user.delete');
+    Route::get('status/toggle', [UserController::class,'useStatusToggle'])->name('user.status.toggle');
 
 });
 Route::group(['prefix' => 'order'], function () {
@@ -102,3 +104,5 @@ Route::group(['prefix' => 'appointment'], function () {
     Route::get('toggleStatus', [AppointmentController::class,'toggleStatus'])->name('appointment.toggleStatus');
 });
 Route::get('/product/rating/view', [RatingController::class,'productRatingView'])->name('product.review.view');
+Route::get('/view/custom/notification', [NotificationController::class,'viewNotificationMessagePage'])->name('view.custom.notification');
+Route::post('/send/custom/notification', [NotificationController::class,'sendNotificationMessage'])->name('send.custom.notidication');

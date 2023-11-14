@@ -89,7 +89,7 @@
                   Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
                 </div>
               </div>
-              <a href="{{route('website.logout')}}" class="list-group-item list-group-item-action  d-flex align-items-center justify-content-between">
+              <a onclick="return confirm('Are you sure you want to logout?');" href="{{route('website.logout')}}" class="list-group-item list-group-item-action  d-flex align-items-center justify-content-between">
               <div>
                 Logout
               </div>

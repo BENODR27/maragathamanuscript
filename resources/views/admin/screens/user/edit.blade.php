@@ -23,6 +23,24 @@
               <input type="email" value="{{$user->email}}" name="email" class="form-control" id="exampleInputName1" aria-describedby="nameHelp">
             </div>
             <div class="mb-3">
+              <label for="exampleInputName1" class="form-label">LANGUAGE</label>
+              <select name="language" class="form-control">
+                @if($user->language=="english")
+                <option value="english">English</option>
+                <option value="tamil">Tamil</option>
+
+                @else
+                <option value="tamil">Tamil</option>
+                <option value="english">English</option>
+
+                @endif
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputName1" class="form-label">MOBILE NUMBER</label>
+              <input type="text" value="{{$user->mobile_number}}" name="mobile_number" placeholder="Eg:22/7" class="form-control" id="exampleInputName1" aria-describedby="nameHelp">
+            </div>
+            <div class="mb-3">
               <label for="exampleInputName1" class="form-label">Door No</label>
               <input type="text" value="{{$address->door_no}}" name="door_no" placeholder="Eg:22/7" class="form-control" id="exampleInputName1" aria-describedby="nameHelp">
             </div>

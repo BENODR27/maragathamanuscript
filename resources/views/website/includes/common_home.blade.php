@@ -75,7 +75,7 @@
                               @endfor
                               <span>({{$product->viewers}})</span>
                             @else
-                              <p><span><small>No ratings yet!</small></span></p>
+                              <p><span><small>{{ GoogleTranslate::trans("No ratings yet!", app()->getLocale()) }}</small></span></p>
                             @endif
                               
                             </div>

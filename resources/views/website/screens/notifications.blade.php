@@ -22,9 +22,9 @@
       <a class="btn btn-primary" href="{{route('mark-as-read')}}">Mark All As Read</a>
     </h5>
       @foreach (auth()->user()->unreadNotifications as $notification)
-    
       @if ($notification->data['messagetone']=="success")
-      <div class="alert alert-success">{{$notification->data['message']}}</div>
+      <div class="alert alert-success">{{$notification->data['message']}}  
+      </div>
       @elseif($notification->data['messagetone']=="error")
      <div class="alert alert-error">{{$notification->data['message']}}</div>
       @elseif($notification->data['messagetone']=="warn")

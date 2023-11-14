@@ -78,8 +78,12 @@
             
 
             <div class="mb-3">
-                <label for="one_line_concept" class="form-label">One Line Concept</label>
-                <textarea name="one_line_concept" class="form-control" id="one_line_concept" oninvalid="this.setCustomValidity('Please Enter Valid One Line Concept')" oninput="this.setCustomValidity('')"></textarea>
+                <label for="one_line_concept" class="form-label">One Line Concept (minimum 150 characters)</label>
+                <textarea {{$category->category_type=="book_ebook"?'required':""}} {{$category->category_type=="book_ebook"?'maxlength=300 minlength=150':""}} name="one_line_concept" class="form-control" id="one_line_concept" oninvalid="this.setCustomValidity('Please Enter Valid One Line Concept')" oninput="this.setCustomValidity('')"></textarea>
+                <div id="the-count">
+                    <span id="current">150</span>
+                    <span id="maximum">/ 300</span>
+                  </div>
             </div>
             {{-- <div class="mb-3">
                 <label for="preview" class="form-label">Preview</label>
@@ -216,5 +220,43 @@
             }
         });
     });
+    $('textarea').keyup(function() {
+    
+    var characterCount = $(this).val().length,
+        current = $('#current'),
+        maximum = $('#maximum'),
+        theCount = $('#the-count');
+      
+    current.text(characterCount);
+   
+    
+    /*This isn't entirely necessary, just playin around*/
+    if (characterCount < 70) {
+      current.css('color', '#666');
+    }
+    if (characterCount > 70 && characterCount < 90) {
+      current.css('color', '#6d5555');
+    }
+    if (characterCount > 90 && characterCount < 100) {
+      current.css('color', '#793535');
+    }
+    if (characterCount > 100 && characterCount < 120) {
+      current.css('color', '#841c1c');
+    }
+    if (characterCount > 120 && characterCount < 139) {
+      current.css('color', '#8f0001');
+    }
+    
+    if (characterCount >= 140) {
+      maximum.css('color', '#8f0001');
+      current.css('color', '#8f0001');
+      theCount.css('font-weight','bold');
+    } else {
+      maximum.css('color','#666');
+      theCount.css('font-weight','normal');
+    }
+    
+        
+  });
     </script>
 @endsection

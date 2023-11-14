@@ -26,8 +26,20 @@
                                                 <div class="col" >
                                                     <div class = "product-content mt-4">
                                                                 <h5 class="btn btn-outline-success">${product.title}</h5>
-                                                               
-                                                               <div class="mt-4"> <p class="mt-2 genrecolour">Director :&nbsp <span>${product.director}</span></p>
+                                                                <div class="mt-2">
+                                                                    ${product.rating_average !== 0 ? `
+                                                                        <small class="text-muted">
+                                                                            ${Array.from({ length: product.rating_average }, (_, i) => `
+                                                                                <i style="color:green" class="fa fa-star"></i>
+                                                                            `).join('')}
+                                                                            ${Array.from({ length: 5 - product.rating_average }, () => `
+                                                                                <i class="fa fa-star"></i>
+                                                                            `).join('')}
+                                                                        </small>(${product.viewers})
+                                                                    ` : 'No ratings yet!'}
+                                                                    
+                                                                </div>
+                                                               <div> <p class="mt-2 genrecolour">Director :&nbsp <span>${product.director}</span></p>
                                                                 <p class="mt-2 genrecolour">Music &nbsp&nbsp&nbsp&nbsp:&nbsp <span>${product.music}</span></p></div>
                                                                 
                                                     </div>  
@@ -45,8 +57,20 @@
                                                 <div class="col" >
                                                     <div class = "product-content mt-2">
                                                                 <h5 class="btn btn-outline-success">${product.title}</h5>
-                                                               
-                                                                <p class="mt-3 genrecolour"><b>Author</b> : <span>${product.author} </span></p>
+                                                                <div class="mt-3">
+                                                                    ${product.rating_average !== 0 ? `
+                                                                        <small class="text-muted">
+                                                                            ${Array.from({ length: product.rating_average }, (_, i) => `
+                                                                                <i style="color:green" class="fa fa-star"></i>
+                                                                            `).join('')}
+                                                                            ${Array.from({ length: 5 - product.rating_average }, () => `
+                                                                                <i class="fa fa-star"></i>
+                                                                            `).join('')}
+                                                                        </small>(${product.viewers})
+                                                                    ` : 'No ratings yet!'}
+                                                                    
+                                                                </div>
+                                                                <p class="mt-1 genrecolour"><b>Author</b> : <span>${product.author} </span></p>
                                                     </div>  
                                                 </div>
                                                 <div class="col text-center d-flex align-items-center justify-content-center" >

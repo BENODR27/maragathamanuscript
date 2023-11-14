@@ -2,7 +2,7 @@
     <form id="searchProductForm" action="{{route('product.search')}}" method="post">
         @csrf
        
-                <input required type="text" list="products" class="form-control" name="product_title" placeholder="Search Books Here">
+                <input required type="text" list="products" class="form-control" name="product_title" placeholder="{{ GoogleTranslate::trans("Search Books Here", app()->getLocale()) }}">
            
         <i class="bi bi-search" onclick="searchProduct()"></i>
         <datalist id="products">

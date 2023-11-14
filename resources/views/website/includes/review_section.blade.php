@@ -1,6 +1,6 @@
-@if(Auth::user())
+@if(count($product->ratings)>0)
 <div class="row m-2">
-    <h4 class="p-3">REVIEWS</h4>
+    <h4 class="p-3"> {{ GoogleTranslate::trans("REVIEWS", app()->getLocale()) }}</h4>
 </div>
 @endif
 <div class="row m-2">
@@ -10,7 +10,7 @@
             <div class="card-body">
               <h5 class="card-title d-flex justify-content-between">
                 <div>
-                    <img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" @if($rating->user->profile_image_name==null) src="{{asset('img/undraw_profile.svg')}}" @else src="{{asset($rating->user->profile_image_name)}}" @endif /> &nbsp {{$rating->user->name}}
+                    <img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" @if($rating->user->profile_image_name==null) src="{{asset('img/undraw_profile.svg')}}" @else src="{{asset($rating->user->profile_image_name)}}" @endif /> &nbsp {{ GoogleTranslate::trans($rating->user->name, app()->getLocale()) }}
                 </div>
                 <div>
                     @if(Auth::user() && Auth::user()->id==$rating->user->id)
@@ -27,7 +27,7 @@
                         <i class = "fa fa-star"></i>
                         @endfor
                     </small></p>
-              <p class="card-text">{{$rating->comment}}.</p>
+              <p class="card-text">{{ GoogleTranslate::trans($rating->comment, app()->getLocale()) }}</p>
             </div>
           </div>
     </div>
@@ -38,10 +38,10 @@
     <div class="col-md-12 col-sm-12 mb-3" >
         <div class="card mb-3" >
             <div class="card-body">
-              <h5 class="card-title"><img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" @if(Auth::user()->profile_image_name==null) src="{{asset('img/undraw_profile.svg')}}" @else src="{{asset(Auth::user()->profile_image_name)}}" @endif /> &nbsp {{Auth::user()->name}}</h5>
+              <h5 class="card-title"><img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" @if(Auth::user()->profile_image_name==null) src="{{asset('img/undraw_profile.svg')}}" @else src="{{asset(Auth::user()->profile_image_name)}}" @endif /> &nbsp {{ GoogleTranslate::trans(Auth::user()->name, app()->getLocale()) }}</h5>
                 <div class="row">
                     <div class="col">
-                        <textarea  name="comment" placeholder="Add Comments" class="form-control" ></textarea>
+                        <textarea oninvalid="this.setCustomValidity('{{ GoogleTranslate::trans('Please Enter Comments', app()->getLocale()) }}')" oninput="this.setCustomValidity('')" required  name="comment" placeholder="Add Comments" class="form-control" ></textarea>
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-between ">
@@ -54,7 +54,7 @@
                             <i class = "fa fa-star"></i>
                         </small> --}}
                     </p>
-                  <a href="" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#ratingStarModel">ADD COMMENT</a>
+                  <a href="" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#ratingStarModel">{{ GoogleTranslate::trans('ADD COMMENT', app()->getLocale()) }}</a>
                 </div>
             </div>
           </div>
@@ -64,8 +64,8 @@
         <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">RATE OUT OF 5</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="exampleModalLabel"> {{ GoogleTranslate::trans('RATE OUT OF', app()->getLocale()) }} 5</h5>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">{{ GoogleTranslate::trans('Edit Comment', app()->getLocale()) }}</button>
             </div>
             <div class="modal-body">
             <div class="rate">
@@ -83,7 +83,7 @@
             </div>
             <div class="modal-footer">
             {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-            <button type="submit" id="review-proceed" class="btn btn-primary">Proceed</button>
+            <button type="submit" id="review-proceed" class="btn btn-primary"> {{ GoogleTranslate::trans('Proceed', app()->getLocale()) }}</button>
             </div>
         </div>
         </div>

@@ -7,7 +7,7 @@
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
      <div class="card-header py-3 d-flex justify-content-between">
-         <h6 class="font-weight-bold text-primary">DEPARTMENTS</h6> 
+         <h6 class="font-weight-bold text-primary">USERS</h6> 
      </div>
      <div class="card-body">
          <div class="table-responsive">
@@ -29,19 +29,19 @@
                         <td>{{$user->id}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
-                        <td>{{($user->account_status==1)?"ACTIVE":"INACTIVE"}}</td>
+                        <td><a onclick="return confirm('Are you sure you want to change status?');" class="btn btn-{{($user->account_status==1)?"success":"danger"}}"href="{{route('user.status.toggle',['user_id'=>$user->id])}}">{{($user->account_status==1)?"ACTIVE":"INACTIVE"}}</a></td>
                         <td>
                             <a class="btn btn-success"href="{{route('user.edit',['user_id'=>$user->id])}}">EDIT</a>
                             <a class="btn btn-warning"href="{{route('user.view',['user_id'=>$user->id])}}">VIEW</a>
-                            <a class="btn btn-danger"href="{{route('user.delete',['user_id'=>$user->id])}}">DELETE</a>
+                            <a onclick="return confirm('Are you sure you want to delete this user?');" class="btn btn-danger"href="{{route('user.delete',['user_id'=>$user->id])}}">DELETE</a>
                         </td>
                       
                     </tr>
                     @endforeach
                     @else
                     <tr>
-                        <td colspan="3" class="text-center">
-                            NO DEPARTMENTS FOUND
+                        <td colspan="5" class="text-center">
+                            NO USERS FOUND
                         </td>
                         
                     </tr>

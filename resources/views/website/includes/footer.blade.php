@@ -3,29 +3,35 @@
     <div class="container">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 gx-5 gy-4">
             <div class="col">
-                <h4 class="mb-4 footerheader">Contact</h4>
+                <h4 class="mb-4 footerheader">{{ GoogleTranslate::trans("Contact", app()->getLocale()) }}</h4>
                 <ul class="li-unstyled ps-0 footer-content footer-contact">
-                    <li class="mb-3"><a href="#"><i class="fa-solid fa-location-dot"></i>&nbsp Maragathaa Manuscripts
-                        </a></li>
-                    <li class="mb-3"><a href="#"><i class="fa-solid"></i> 13/91 A2 J.A.S Illam,</a></li>
-                    <li class="mb-3"><a href="#"><i class="fa-solid "></i> Pattatharavilai, Changai,</a></li>
-                    <li class="mb-3"><a href="#"><i class="fa-solid "></i> Kanjiracode Post.
+                    <li class="mb-3"><a href="#"><i class="fa-solid fa-location-dot"></i>&nbsp 
+                        {{ GoogleTranslate::trans("Maragathaa Manuscripts", app()->getLocale()) }}</a></li>
+                    <li class="mb-3"><a href="#"><i class="fa-solid"></i> 13/91 A2 ,{{ GoogleTranslate::trans("J.A.S Illam", app()->getLocale()) }}</a></li>
+                    <li class="mb-3"><a href="#"><i class="fa-solid "></i> {{ GoogleTranslate::trans("Pattatharavilai, Changai,", app()->getLocale()) }}</a></li>
+                    <li class="mb-3"><a href="#"><i class="fa-solid "></i> {{ GoogleTranslate::trans("Kanjiracode Post.", app()->getLocale()) }}
                         </a>
                     </li>
                     <li class="mb-3"><a href="#"><i class="fa-solid "></i>
-                        Kanyakumari District.</a>
+                        {{ GoogleTranslate::trans("Kanyakumari District.", app()->getLocale()) }}</a>
                     </li>
-                    <li class="mb-3"><a href="#"><i class="fa-solid "></i> PIN: 629155</a></li>
+                    <li class="mb-3"><a href="#"><i class="fa-solid "></i>  {{ GoogleTranslate::trans("PIN:", app()->getLocale()) }}629155</a></li>
                 </ul>
             </div>
             <div class="col">
                 <div class="footer-links">
-                    <h4 class="mb-4 footerheader">Navigation</h4>
+                    <h4 class="mb-4 footerheader">{{ GoogleTranslate::trans("Navigation", app()->getLocale()) }}</h4>
                     <ul class="li-unstyled ps-0 footer-content hyphen-icon">
-                        <li class="mb-3"><a href="/"><span class="ms-1">Home</span></a></li>
-                        <li class="mb-3"><a href="#product-category"><span class="ms-1">Shop</span></a></li>
-                        <li class="mb-3"><a href="#author-id"><span class="ms-1">About us</span></a></li>
-                        <li class="mb-3"><a href="#footer"><span class="ms-1">Contact</span></a></li>
+                        <li class="mb-3"><a href="/"><span class="ms-1">
+                            @if(app()->getLocale()=="en")
+                            HOME
+                            @else
+                            முகப்பு
+                            @endif
+                        </span></a></li>
+                        <li class="mb-3"><a href="#product-category"><span class="ms-1">{{ GoogleTranslate::trans("Shop", app()->getLocale()) }}</span></a></li>
+                        <li class="mb-3"><a href="#author-id"><span class="ms-1">{{ GoogleTranslate::trans("About us", app()->getLocale()) }}</span></a></li>
+                        <li class="mb-3"><a href="#footer"><span class="ms-1">{{ GoogleTranslate::trans("Contact", app()->getLocale()) }}</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -33,9 +39,9 @@
             
             <div class="col">
                 <div class="footer-links">
-                    <h4 class="mb-4 footerheader">Others</h4>
+                    <h4 class="mb-4 footerheader">{{ GoogleTranslate::trans("Others", app()->getLocale()) }}</h4>
                     <ul class="li-unstyled ps-0 footer-content hyphen-icon">
-                        <li class="mb-3"><a href="/"><span class="ms-1">Terms & Conditions</span></a></li>
+                        <li class="mb-3"><a href="/"><span class="ms-1">{{ GoogleTranslate::trans("Terms & Conditions", app()->getLocale()) }}</span></a></li>
                         {{-- <li class="mb-3"><a href="#product-category"><span class="ms-1">Shop</span></a></li>
                         <li class="mb-3"><a href="#author-id"><span class="ms-1">About us</span></a></li>
                         <li class="mb-3"><a href="#footer"><span class="ms-1">Contact</span></a></li> --}}
@@ -45,8 +51,8 @@
             <div class="col ">
                 {{-- <a href="#"><img src="assets/images/index2/logo-main-2.png" alt="Footer logo"
                         class="img-fluid mb-3"></a> --}}
-                <p>
-                    “Books are mirrors: you only see in them what you already have inside you.” “The whole world opened to me when I learned to read.” “A reader lives a thousand lives before he dies, said Jojen. The man who never reads lives only one.”
+                <p>{{ GoogleTranslate::trans("“Books are mirrors: you only see in them what you already have inside you.” “The whole world opened to me when I learned to read.” “A reader lives a thousand lives before he dies, said Jojen. The man who never reads lives only one.”", app()->getLocale()) }}
+                    
                 </p>
                 <ul class="d-flex gap-3 ps-0 pt-5 social-icons">
                     <li><a href="#" target="_blank" class="blue-bg"><i class="fa-brands fa-facebook-f"></i></a></li>

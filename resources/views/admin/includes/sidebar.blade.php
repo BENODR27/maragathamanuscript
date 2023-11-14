@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">JAS<sup></sup></div>
+        <div class="sidebar-brand-text mx-3">MM<sup></sup></div>
     </a>
 
     <!-- Divider -->
@@ -24,8 +24,9 @@
         <i class="fas fa-fw fa-solid fa-user"></i>
         <span>Users</span></a>
    </li>
+
    <li class="nav-item">
-    <a class="nav-link" href="{{route('order.browse')}}">
+    <a class="nav-link" href="{{route('order.browse',['filter'=>'new'])}}">
         <i class="fas fa-fw fa-solid fa-building"></i>
         <span>Orders</span></a>
    </li>
@@ -68,6 +69,11 @@
             <i class="fas fa-fw fa-solid fa-paste"></i>
             <span>Appointments</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('view.custom.notification')}}">
+            <i class="fas fa-fw fa-solid fa-bell"></i>
+            <span>Send Notification</span></a>
+       </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
 @if(Auth::user()->role=="developer")

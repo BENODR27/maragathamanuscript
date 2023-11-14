@@ -19,6 +19,7 @@ class LanguageManager
             App::setLocale(session()->get('locale'));
         }
           
+        
         return $next($request);
     }
 }

@@ -3,7 +3,13 @@
     <input type="checkbox" id="nav-toggle">
     <div class="logo p-5">{{ config('app.name', 'MM') }}</div>
    <ul class="links">
-       <li><a href="/">{{ GoogleTranslate::trans('HOME', app()->getLocale()) }}</a></li>
+       <li><a href="/">
+        @if(app()->getLocale()=="en")
+        HOME
+        @else
+        முகப்பு
+        @endif
+    </a></li>
        <li><a href="{{route('genres.list')}}">{{ GoogleTranslate::trans('GENRES', app()->getLocale()) }}</a></li>
        <li><a href="{{route('submission.list')}}">{{ GoogleTranslate::trans('SUBMISSIONS', app()->getLocale()) }}</a></li>
        <li><a href="{{route('appointment.list')}}">{{ GoogleTranslate::trans('APPOINTMENTS', app()->getLocale()) }}</a></li>

@@ -11,7 +11,7 @@ class RatingController extends Controller
     function add(Request $req){
        $rating=new Rating();
        $rating->comment=$req->comment;
-       $rating->star_count=$req->rate;
+       $rating->star_count=$req->rate==null?0:$req->rate;
        $rating->product_id=$req->product_id;
        $rating->user_id=Auth::user()->id;
        $rating->save();

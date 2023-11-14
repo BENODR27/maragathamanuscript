@@ -8,7 +8,11 @@
  <div class="card shadow mb-4">
      <div class="card-header py-3 d-flex justify-content-between">
          <h6 class="font-weight-bold text-primary">ORDERS</h6> 
-         {{-- <a class="btn btn-primary"href="{{route('order.add',['category_id'=>$category_id])}}">ADD</a> --}}
+         <div>
+            <a class="btn btn-success" href="{{route('order.browse',['filter'=>'new'])}}">NEW</a>
+            <a class="btn btn-primary" href="{{route('order.browse',['filter'=>'completed'])}}">COMPLETED</a>
+         <a class="btn btn-warning" href="{{route('order.browse',['filter'=>'all'])}}">ALL</a>
+         </div>
      </div>
      <div class="card-body">
          <div class="table-responsive">
@@ -17,9 +21,9 @@
                      <tr>
                          <th>Id</th>
                          <th>PAYMENT</th>
-                         {{-- <th>STATUS</th> --}}
+                         <th>STATUS</th>
                          <th>VIEW ORDER</th>
-                         <th>Action</th>
+                         {{-- <th>Action</th> --}}
                       
                      </tr>
                  </thead>
@@ -29,14 +33,14 @@
                     <tr>
                         <td>{{$order->id}}</td>
                         <td>{{$order->payment_status}}</td>
-                        {{-- <td>NOT DELIVERED</td> --}}
+                        <td>{{$order->delivered?"COMPLETED":"PENDING"}}</td>
                         <td>
                             <a class="btn btn-warning" href="{{route('order.view',['order_id'=>$order->id])}}">VIEW</a>
                         </td>
-                        <td>
+                        {{-- <td>
                             <a class="btn btn-success"href="{{route('order.edit',['order_id'=>$order->id])}}">EDIT</a>
                             <a class="btn btn-danger"href="{{route('order.delete',['order_id'=>$order->id])}}">DELETE</a>
-                        </td>
+                        </td> --}}
                       
                     </tr>
                     @endforeach
