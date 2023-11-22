@@ -8,8 +8,12 @@
  <div class="card shadow mb-4">
      <div class="card-header py-3 d-flex justify-content-between">
          <h6 class="font-weight-bold text-primary">SUBMISSIONS</h6> 
-         {{-- <a class="btn btn-primary"href="{{route('work.add')}}">ADD</a> --}}
-     </div>
+        <div>
+            <a class="btn btn-success" href="{{route('submission.browse',['filter'=>'pending'])}}">PENDING</a>
+            <a class="btn btn-primary" href="{{route('submission.browse',['filter'=>'published'])}}">PUBLISHED</a>
+         <a class="btn btn-warning" href="{{route('submission.browse',['filter'=>'all'])}}">ALL</a>
+        </div>
+        </div>
      <div class="card-body">
          <div class="table-responsive">
              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

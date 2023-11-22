@@ -41,7 +41,7 @@
               <h5 class="card-title"><img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" @if(Auth::user()->profile_image_name==null) src="{{asset('img/undraw_profile.svg')}}" @else src="{{asset(Auth::user()->profile_image_name)}}" @endif /> &nbsp {{ GoogleTranslate::trans(Auth::user()->name, app()->getLocale()) }}</h5>
                 <div class="row">
                     <div class="col">
-                        <textarea oninvalid="this.setCustomValidity('{{ GoogleTranslate::trans('Please Enter Comments', app()->getLocale()) }}')" oninput="this.setCustomValidity('')" required  name="comment" placeholder="Add Comments" class="form-control" ></textarea>
+                        <textarea oninvalid="this.setCustomValidity('{{ GoogleTranslate::trans('Please Enter Comments', app()->getLocale()) }}')" oninput="this.setCustomValidity('')" required  name="comment" placeholder=" {{ GoogleTranslate::trans('Add Comments here', app()->getLocale()) }}" class="form-control" ></textarea>
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-between ">

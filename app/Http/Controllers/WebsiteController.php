@@ -31,8 +31,12 @@ class WebsiteController extends Controller
 
         if (Auth::attempt(['email' => $req->email, 'password' => $req->password])){
             $lastRoute=session('last_route_name');
-
+           if($lastRoute!=null){
             return redirect()->route($lastRoute);
+           }else{
+            return redirect()->route('category.segments',['category_id'=>session('category_id')]);
+           }
+            
         } else {
             return redirect()->route('website.auth.login');
         }

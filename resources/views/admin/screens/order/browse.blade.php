@@ -20,6 +20,7 @@
                  <thead>
                      <tr>
                          <th>Id</th>
+                         <th>ORDER BY</th>
                          <th>PAYMENT</th>
                          <th>STATUS</th>
                          <th>VIEW ORDER</th>
@@ -32,6 +33,8 @@
                     @foreach ($orders as $order)
                     <tr>
                         <td>{{$order->id}}</td>
+                        <td><a class="btn btn-warning"href="{{route('user.view',['user_id'=>$order->user_id])}}">VIEW</a>
+                        </td>
                         <td>{{$order->payment_status}}</td>
                         <td>{{$order->delivered?"COMPLETED":"PENDING"}}</td>
                         <td>

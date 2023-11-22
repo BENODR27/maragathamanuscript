@@ -45,7 +45,8 @@
             @foreach ($products as $product)
             <li class="list-group-item d-flex justify-content-between align-items-center">
               {{$product->title}}
-              <a href="" class="btn btn-sm btn-primary">VIEW</a>
+              <a class="btn btn-warning"href="{{route('product.view',['product_id'=>$product->id])}}">VIEW</a>
+
                <span class="badge badge-primary badge-pill p-2"> &#8377; {{$product->orderedprice}}</span>
              </li>
             @endforeach

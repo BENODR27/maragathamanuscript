@@ -101,6 +101,7 @@ Route::group(['prefix' => 'submission'], function () {
 });
 Route::group(['prefix' => 'appointment'], function () {
     Route::get('browse', [AppointmentController::class,'browse'])->name('appointment.browse');
+    Route::get('view', [AppointmentController::class,'view'])->name('appointment.view');
     Route::get('toggleStatus', [AppointmentController::class,'toggleStatus'])->name('appointment.toggleStatus');
 });
 Route::get('/product/rating/view', [RatingController::class,'productRatingView'])->name('product.review.view');

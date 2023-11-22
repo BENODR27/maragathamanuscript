@@ -140,8 +140,17 @@ class WorkController extends Controller
 
         return redirect()->route('submission.list')->with(['msg'=>"successfully added"]);
     }
-    function browse(){
-        $works=Work::all()->reverse()->map(function($work){
+    function browse(Request $req){
+        if($req->filter=="pending"){
+            $works=Work::where('published',false)->get()->reverse();
+        }
+        if($req->filter=="published"){
+            $works=Work::where('published',true)->get()->reverse();
+        }
+        if($req->filter=="all"){
+            $works=Work::all()->reverse();
+        }
+        $works->map(function($work){
              $work->genreName=Genre::find($work->genre_id)->name;
             return $work;
         });

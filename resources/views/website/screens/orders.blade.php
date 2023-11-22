@@ -116,7 +116,9 @@
     </div>
 </div>
 <style>
-   
+   .orders-section{
+    min-height: 70vh;
+   }
     .accordion-button:not(.collapsed) {
     background-color: transparent;
     }

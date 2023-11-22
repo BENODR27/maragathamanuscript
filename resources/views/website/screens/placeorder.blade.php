@@ -100,7 +100,7 @@
                                 <div class="row justify-content-center">
                                     <div class="col-7 text-center">
                                         <h5 class="purple-text text-center">Click Here To Place Order</h5>
-                                        <button type="submit"class="btn">PLACE ORDER</button>
+                                        <button type="submit"class="btn btn-primary mt-3">CONFIRM ORDER</button>
                                     </div>
                                 </div>
                             </div>

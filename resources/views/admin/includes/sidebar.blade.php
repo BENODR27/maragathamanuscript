@@ -60,12 +60,12 @@
             <span>All Products</span></a>
     </li> --}}
     <li class="nav-item">
-        <a class="nav-link" href="{{route('submission.browse')}}">
+        <a class="nav-link" href="{{route('submission.browse',['filter'=>'pending'])}}">
             <i class="fas fa-fw fa-regular fa-address-card"></i>
             <span>Submissions</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{route('appointment.browse')}}">
+        <a class="nav-link" href="{{route('appointment.browse',['filter'=>'pending'])}}">
             <i class="fas fa-fw fa-solid fa-paste"></i>
             <span>Appointments</span></a>
     </li>

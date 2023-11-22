@@ -6,10 +6,14 @@
 
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
-     <div class="card-header py-3 d-flex justify-content-between">
-         <h6 class="font-weight-bold text-primary">APPOINTMENTS</h6> 
-         {{-- <a class="btn btn-primary"href="{{route('appointment.add')}}">ADD</a> --}}
-     </div>
+    <div class="card-header py-3 d-flex justify-content-between">
+        <h6 class="font-weight-bold text-primary">APPOINTMENTS</h6> 
+        <div>
+           <a class="btn btn-success" href="{{route('appointment.browse',['filter'=>'pending'])}}">PENDING</a>
+           <a class="btn btn-primary" href="{{route('appointment.browse',['filter'=>'accepted'])}}">ACCEPTED</a>
+        <a class="btn btn-warning" href="{{route('appointment.browse',['filter'=>'all'])}}">ALL</a>
+        </div>
+    </div>
      <div class="card-body">
          <div class="table-responsive">
              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -36,15 +40,15 @@
                             <a class="btn btn-warning"href="{{route('appointment.toggleStatus',['appointment_id'=>$appointment->id])}}">{{$appointment->status?"ACCEPTED":"PENDING"}}</a>
                         </td>
                         <td>
-                            <a class="btn btn-success"href="{{-- {{route('appointment.edit',['appointment_id'=>$appointment->id])}} --}}">VIEW</a>
+                            <a class="btn btn-success"href="{{route('appointment.view',['appointment_id'=>$appointment->id])}}">VIEW</a>
                         </td>
                       
                     </tr>
                     @endforeach
                     @else
                     <tr>
-                        <td colspan="3" class="text-center">
-                            NO SUBMISSION FOUND
+                        <td colspan="6" class="text-center">
+                            NO APPOINTMENTS FOUND
                         </td>
                         
                     </tr>

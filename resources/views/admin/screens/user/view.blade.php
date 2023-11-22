@@ -8,7 +8,12 @@
  <div class="card shadow mb-4">
      <div class="card-header py-3 d-flex justify-content-between">
          <h6 class="font-weight-bold text-primary">VIEW USER</h6> 
-         <a class="btn btn-primary"href="{{route('user.browse')}}">Back</a>
+         <div>
+          <a class="btn btn-success" href="mailto:{{$user->email}}">COMPOSE EMAIL</a>
+          <a onclick="return confirm('Are you sure you want to change status?');" class="btn btn-{{($user->account_status==1)?"success":"danger"}}"href="{{route('user.status.toggle',['user_id'=>$user->id])}}">{{($user->account_status==1)?"ACTIVE":"INACTIVE"}}</a>
+          <a class="btn btn-primary" href="{{route('user.browse')}}">Back</a>
+         </div>
+         
      </div>
      <div class="card-body">
         <form action="" method="post">
@@ -19,7 +24,8 @@
               <input readonly type="text" value="{{$user->name}}" name="name" class="form-control" id="exampleinput readonlyName1" aria-describedby="nameHelp">
             </div>
             <div class="mb-3">
-              <label for="exampleinput readonlyName1" class="form-label">EMAIL</label>
+                <label for="exampleinput readonlyName1" class="form-label">EMAIL</label>
+
               <input readonly type="email" value="{{$user->email}}" name="email" class="form-control" id="exampleinput readonlyName1" aria-describedby="nameHelp">
             </div>
             <div class="mb-3">

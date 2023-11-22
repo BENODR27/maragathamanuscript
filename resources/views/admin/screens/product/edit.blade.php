@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="card shadow mb-4">
       <div class="card-header py-3 d-flex justify-content-between">
-          <h6 class="font-weight-bold text-primary">ADD NEW PRODUCT</h6>
+          <h6 class="font-weight-bold text-primary">EDIT PRODUCT</h6>
           <a class="btn btn-primary" href="{{ route('product.browse') }}">Back</a>
       </div>
       <div class="card-body">
@@ -12,9 +12,8 @@
               @method('put')
               <div class="mb-3">
                 <label for="language" class="form-label">Language</label>
-                <select required  name="language" class="form-select form-control" id="language" aria-describedby="language">
+                <select  name="language" class="form-select form-control" id="language" aria-describedby="language">
                         <option value="{{$product->language}}">{{$product->language=="english"?"English":"Tamil"}}</option>
-                     
                 </select>
                </div>
              <div class="mb-3">
@@ -32,12 +31,18 @@
                   @endforeach
                 </select>
              </div>
-           
+          
               <div class="mb-3">
                 <label for="product_type" class="form-label">Product Type</label>
-                <select required name="product_type" class="form-select form-control" id="product_type" aria-describedby="categoryIdHelp">
+                <select name="product_type" class="form-select form-control" id="product_type" aria-describedby="categoryIdHelp">
                     @if($category->category_type=="book_ebook")
-                        <option value="{{$product->product_type}}">{{$product->product_type=="book"?"Book":"E-Book"}}</option>
+                    <option value="{{$product->product_type}}">{{$product->product_type=="book"?"Book":"E-Book"}}</option>
+
+                    {{-- @if($product->product_type="book")
+                    <option value="ebook">E-book</option>
+                    @else
+                    <option value="book">Book</option>
+                    @endif --}}
                     @else
                     <option value="{{$product->product_type}}">{{$product->product_type=="audiobook"?"AudioBook":"Video"}}</option>
                     @endif    
@@ -86,7 +91,7 @@
               </div>
             
 
-            <div class="mb-3">
+            <div class="mb-3 olc_section">
                 <label for="one_line_concept" class="form-label">One Line Concept</label>
                 <textarea name="one_line_concept" class="form-control" value="{{$product->one_line_concept}}" id="one_line_concept">{{$product->one_line_concept}}</textarea>
             </div>
@@ -112,12 +117,10 @@
         </div>
          @if($category->category_type=="audio_video")
           <div class="video-section">
-            <h6 class="font-weight-bold text-primary p-4">PRODUCTION AUDIO & VIDEO</h6>
             <div class="mb-3">
                 <label for="audio_video_url" class="form-label">Audio / Video URL</label>
                 <input type="text" value="{{$product->audio_video_url}}" name="audio_video_url" class="form-control" id="audio_video_url" aria-describedby="nameHelp">
             </div>
-            <h6 class="font-weight-bold text-primary p-4">PRODUCTION VIDEO SECTION</h6>
           
             <div class="mb-3">
                 <label for="director" class="form-label">Director</label>
@@ -129,7 +132,6 @@
             </div>
           </div>
           <div class="audio-section">
-            <h6 class="font-weight-bold text-primary p-4">PRODUCTION AUDIO SECTION</h6>
    
              <div class="mb-3">
                  <label for="author" class="form-label">Author</label>
@@ -141,7 +143,7 @@
             </div> --}}
           </div>
           @endif
-          <div class="mb-3">
+          <div class="mb-3 department_section">
             <label for="department_id" class="form-label">Department (For subject segment only)</label>
             <select name="department" class="form-select form-control" id="department" aria-describedby="departmentIdHelp">
               @if($product->department_id==null)
@@ -198,39 +200,69 @@
         // Initially hide the Quantity div
         $("#quantityDiv").hide();
         $("#ebookDiv").hide();
-        $("#priceDiv").hide();
+        $("#priceDiv, .department_section,.olc_section,.audio-section,.video-section").hide();
         $("#quantity").removeAttr("required");
         $("#e_book_file").removeAttr("required");
+        let subject = 'SUBJECTS'; // Replace 'YourSubject' with the desired value
 
+        $('#segment_id').on('change', function() {
+        let selectedSegmentName = $(this).find(':selected').text();
+
+        $(".department_section").toggle(selectedSegmentName === subject);
+        $("#department").prop("required", selectedSegmentName === subject);
+    });
+   
+        let selectedSegmentName1 = $('#segment_id').find(':selected').text();
+
+        $(".department_section").toggle(selectedSegmentName1 === subject);
+        $("#department").prop("required", selectedSegmentName1 === subject);
         // When the select element changes
-            var selectedValue = $("#product_type").val();
-    
-            if (selectedValue =="book") {
-                $("#quantityDiv").show();
-                $("#ebookDiv").hide();
-                $("#e_book_file").removeAttr("required");
-                $("#quantity").attr("required", "required");
-                $("#priceDiv").show();
+            let selectedValue = $("#product_type").val();
 
+            if (selectedValue == "book") {
+            $("#quantityDiv").show();
+            $(".olc_section").show();
+            $("#ebookDiv").hide();
+            $("#e_book_file").prop("required", false);
+            $("#quantity").prop("required", true);
+            $("#priceDiv").show();
+            $('#quantity').val(1);
+            $('#quantity').attr('min', 1);
+        } else if (selectedValue == "ebook") {
+          $(".olc_section").show();
+            $("#ebookDiv").show();
+            $("#quantityDiv").hide();
+            $("#quantity").prop("required", false);
+            $("#e_book_file").prop("required", true);
+            $("#priceDiv").hide();
+            $('#quantity').val(0);
+            $('#quantity').attr('min', 0);
+        } 
+        else if(selectedValue =="video"){
+          $("#quantityDiv, #ebookDiv, #priceDiv,.olc_section").hide();
+            $("#quantity, #e_book_file").prop("required", false);
+            $('#quantity').val(0);
+            $('#quantity').attr('min', 0);
+            $(".audio-section").hide();
+            $(".video-section").show();
+            $("#director").prop("required", true);
+            $("#music").prop("required", true);
+            $("#author").prop("required", false);
 
-            } 
-            else if(selectedValue =="ebook"){
-                $("#ebookDiv").show();
-                $("#quantityDiv").hide();
-                $("#quantity").removeAttr("required");
-                $("#e_book_file").attr("required", "required");
-                $("#priceDiv").hide();
+        }
+        else if(selectedValue =="audiobook"){
+          $("#quantityDiv, #ebookDiv, #priceDiv,.olc_section").hide();
+            $("#quantity, #e_book_file").prop("required", false);
+            $('#quantity').val(0);
+            $('#quantity').attr('min', 0);
+          $(".audio-section").show();
+          $(".video-section").hide();
+          $("#author").prop("required", true);
+          $("#director").prop("required", false);
+            $("#music").prop("required", false);
 
-
-            }
-            else {
-                $("#quantityDiv").hide();
-                $("#ebookDiv").hide();
-                $("#priceDiv").hide();
-                $("#quantity").removeAttr("required");
-                $("#e_book_file").removeAttr("required");
-
-            }
+        }
+        
         });
     
     </script>

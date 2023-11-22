@@ -18,6 +18,13 @@
     <link rel="stylesheet" href="{{asset("layout/assets/css/style.css")}}">
     <title>MM</title>
 </head>
+<script>
+  window.addEventListener('load', function() {
+    document.getElementById('preloader').style.display = 'none';
+});
+
+
+</script>
 
 <body data-bs-spy="scroll" data-bs-target="#navbarSupportedContent">
   <!-- header -->
@@ -31,6 +38,37 @@
 }
 </style>
 <!-- header end -->
+<div id="preloader">
+  <div class="spinner"></div>
+</div>
+<style>
+  #preloader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid #3498db;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+</style>
 @yield('content')
 @include('website.includes.footer')
 
@@ -43,6 +81,7 @@
     <script src="{{asset("layout/assets/js/scripts.js")}}"></script>
     
     @yield('script')
+
 </body>
 
 </html>

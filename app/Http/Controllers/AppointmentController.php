@@ -34,9 +34,21 @@ class AppointmentController extends Controller
 		Notification::send($user,new UserNotification($message,$messagetone,$custommessage));
         return redirect()->route('appointment.list')->with(['msg'=>"successfully added"]);
     }
-    function browse(){
-        $appointments=Appointment::all()->reverse();
+    function browse(Request $req){
+        if($req->filter=="pending"){
+            $appointments=Appointment::where('status',false)->get()->reverse();
+        }
+        if($req->filter=="accepted"){
+            $appointments=Appointment::where('status',true)->get()->reverse();
+        }
+        if($req->filter=="all"){
+            $appointments=Appointment::all()->reverse();
+        }
         return view('admin.screens.appointment.browse',['appointments'=>$appointments]);
+    }
+    function view(Request $req){
+        $appointment=Appointment::find($req->appointment_id);
+        return view('admin.screens.appointment.view',['appointment'=>$appointment]);
     }
     function toggleStatus(Request $req){
         $appointment=Appointment::find($req->appointment_id);

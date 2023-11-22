@@ -13,7 +13,20 @@ class UserController extends Controller
     }
     function edit(Request $req){
         $user=User::find($req->user_id);
-        $user->address=json_decode($user->address);
+        if($user->address==null){
+            $user->address = json_decode(json_encode([
+                'door_no' => "",
+                'street_name' => "",
+                'locality_landmark' => "",
+                'district' => "",
+                'state' => "",
+                'country' => "",
+                'pincode' => "",
+            ]));
+        }else{
+            $user->address=json_decode($user->address);
+        }
+       
         return view('admin.screens.user.edit',['user'=>$user,'address'=>$user->address]);
     }
     function update(Request $req){
@@ -36,7 +49,19 @@ class UserController extends Controller
     }
     function view(Request $req){
         $user=User::find($req->user_id);
-        $user->address=json_decode($user->address);
+        if($user->address==null){
+            $user->address = json_decode(json_encode([
+                'door_no' => "",
+                'street_name' => "",
+                'locality_landmark' => "",
+                'district' => "",
+                'state' => "",
+                'country' => "",
+                'pincode' => "",
+            ]));
+        }else{
+            $user->address=json_decode($user->address);
+        }
         return view('admin.screens.user.view',['user'=>$user,'address'=>$user->address]);
     }
     function delete(Request $req){

@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="card shadow mb-4">
       <div class="card-header py-3 d-flex justify-content-between">
-          <h6 class="font-weight-bold text-primary">ADD NEW PRODUCT</h6>
+          <h6 class="font-weight-bold text-primary">ADD NEW PRODUCT TO OTHERS</h6>
           <a class="btn btn-primary" href="{{ route('product.browse') }}">Back</a>
       </div>
       <div class="card-body">
@@ -24,8 +24,11 @@
 
                 <select name="product_type" class="form-select form-control"  aria-describedby="categoryIdHelp">
                     <option id="product_type" value="{{$work->product_type}}">{{$work->product_type=="ebook"?"E-Book":"Book"}}</option>
-                       {{-- <option value="book">Book</option>
-                        <option value="ebook">E-Book</option> --}}
+                      @if($work->product_type=="ebook")
+                    <option value="book">Book</option>
+                    @else
+                    <option value="ebook">E-Book</option>
+                    @endif
                     
                 </select>
             </div>
@@ -47,12 +50,15 @@
               <label>Uploaded Poster/ Thumbnail Image:</label>
               <img id="uploaded_image" src="{{asset($work->poster_image_name)}}" alt="Uploaded Image" style="max-width: 100px;">
           </div>
-          <h6 class="font-weight-bold text-primary p-4">E-BOOK SECTION</h6>
+          <div  id="ebookDiv">
+            <h6 class="font-weight-bold text-primary p-4">E-BOOK SECTION</h6>
 
-          <div class="mb-3" id="ebookDiv">
-            <label for="e_book_file" class="form-label">Uploaded E-Book </label>
-            <a class="btn btn-primary" href="{{asset("storage/work/".$work->file_name)}}" download>DOWNLOAD</a>
-        </div>
+            <div class="mb-3">
+              <label for="e_book_file" class="form-label">Uploaded E-Book </label>
+              <a class="btn btn-primary" href="{{asset("storage/work/".$work->file_name)}}" download>DOWNLOAD</a>
+          </div>
+          </div>
+
         {{-- <div class="mb-3">
             <label for="e_book_file" class="form-label">Re-Upload book if needed</label>
             <input type="file" name="e_book_file" class="form-control" id="e_book_file" aria-describedby="posterImageHelp">
@@ -67,9 +73,11 @@
                         @endif
                     @endforeach
                   
-                    {{-- @foreach ($genres as $genre)
+                    @foreach ($genres as $genre)
+                    @if($work->genre_id!=$genre->id)
                         <option value="{{ $genre->id }}">{{ $genre->name }}</option>
-                    @endforeach --}}
+                        @endif
+                    @endforeach
                 </select>
             </div>
          
@@ -88,9 +96,13 @@
                         <option value="english">ENGLISH</option> --}}
                 </select>
                </div>
-            <div class="mb-3">
-                <label for="one_line_concept" class="form-label">One Line Concept</label>
-                <textarea required name="one_line_concept" class="form-control" id="one_line_concept"></textarea>
+               <div class="mb-3 olc_section">
+                <label for="one_line_concept" class="form-label">One Line Concept (minimum 150 characters)</label>
+                <textarea {{$category->category_type=="book_ebook"?'required':""}} {{$category->category_type=="book_ebook"?'maxlength=300 minlength=150':""}} name="one_line_concept" class="form-control" id="one_line_concept" oninvalid="this.setCustomValidity('Please Enter Valid One Line Concept')" oninput="this.setCustomValidity('')"></textarea>
+                <div id="the-count">
+                    <span id="current">150</span>
+                    <span id="maximum">/ 300</span>
+                  </div>
             </div>
             {{-- <div class="mb-3">
                 <label for="preview" class="form-label">Preview</label>
@@ -107,16 +119,18 @@
             </div>
          
        
-          <h6 class="font-weight-bold text-primary p-4">SUBJECTS SEGMENT</h6>
-          <div class="mb-3">
-            <label for="department_id" class="form-label">Department</label>
-            <select name="department" class="form-select form-control" id="department" aria-describedby="departmentIdHelp">
-                <option hidden value="">Select a department</option>
-                @foreach ($departments as $department)
-                    <option value="{{ $department->id }}">{{ $department->name }}</option>
-                @endforeach
-            </select>
-           </div>
+            <div class="department_section">
+                <h6 class="font-weight-bold text-primary p-4 ">SUBJECTS SEGMENT</h6>
+                <div class="mb-3">
+                <label for="department_id" class="form-label">Department</label>
+                <select name="department" class="form-select form-control" id="department" aria-describedby="departmentIdHelp">
+                    <option hidden value="">Select a department</option>
+                    @foreach ($departments as $department)
+                        <option value="{{ $department->id }}">{{ $department->name }}</option>
+                    @endforeach
+                </select>
+                </div>
+            </div>
           
        
           <button type="submit" class="btn btn-primary">Submit</button>
@@ -149,43 +163,86 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
+        $('textarea').keyup(function() {
+    
+    var characterCount = $(this).val().length,
+        current = $('#current'),
+        maximum = $('#maximum'),
+        theCount = $('#the-count');
+      
+    current.text(characterCount);
+   
+    
+    /*This isn't entirely necessary, just playin around*/
+    if (characterCount < 70) {
+      current.css('color', '#666');
+    }
+    if (characterCount > 70 && characterCount < 90) {
+      current.css('color', '#6d5555');
+    }
+    if (characterCount > 90 && characterCount < 100) {
+      current.css('color', '#793535');
+    }
+    if (characterCount > 100 && characterCount < 120) {
+      current.css('color', '#841c1c');
+    }
+    if (characterCount > 120 && characterCount < 139) {
+      current.css('color', '#8f0001');
+    }
+    
+    if (characterCount >= 140) {
+      maximum.css('color', '#8f0001');
+      current.css('color', '#8f0001');
+      theCount.css('font-weight','bold');
+    } else {
+      maximum.css('color','#666');
+      theCount.css('font-weight','normal');
+    } 
+  });
         // Initially hide the Quantity div
         $("#quantityDiv").hide();
-        $("#ebookDiv").hide();
-        $("#priceDiv").hide();
+        // $("#ebookDiv").hide();
+        $("#priceDiv, .department_section").hide();
         $("#quantity").removeAttr("required");
         $("#e_book_file").removeAttr("required");
+        let subject = 'SUBJECTS'; // Replace 'YourSubject' with the desired value
 
-        // When the select element changes
-            var selectedValue = $('#product_type').val();
-    
-            if (selectedValue =="book") {
-                $("#quantityDiv").show();
-                $("#ebookDiv").hide();
-                $("#e_book_file").removeAttr("required");
-                $("#quantity").attr("required", "required");
-                $("#priceDiv").show();
+        $('#segment_id').on('change', function() {
+        let selectedSegmentName = $(this).find(':selected').text();
 
-
-            } 
-            else if(selectedValue =="ebook"){
-                $("#ebookDiv").show();
-                $("#quantityDiv").hide();
-                $("#quantity").removeAttr("required");
-                $("#e_book_file").attr("required", "required");
-                $("#priceDiv").hide();
-
-
-            }
-            else {
-                $("#quantityDiv").hide();
-                $("#ebookDiv").hide();
-                $("#priceDiv").hide();
-                $("#quantity").removeAttr("required");
-                $("#e_book_file").removeAttr("required");
-
-            }
-       
+        $(".department_section").toggle(selectedSegmentName === subject);
+        $("#department").prop("required", selectedSegmentName === subject);
     });
+   
+        let selectedSegmentName1 = $('#segment_id').find(':selected').text();
+
+        $(".department_section").toggle(selectedSegmentName1 === subject);
+        $("#department").prop("required", selectedSegmentName1 === subject);
+        // When the select element changes
+            let selectedValue = $("#product_type").val();
+
+            if (selectedValue == "book") {
+            $("#quantityDiv").show();
+            // $("#ebookDiv").hide();
+            $("#e_book_file").prop("required", false);
+            $("#quantity").prop("required", true);
+            $("#priceDiv").show();
+            $('#quantity').val(1);
+            $('#quantity').attr('min', 1);
+        } else if (selectedValue == "ebook") {
+            // $("#ebookDiv").show();
+            $("#quantityDiv").hide();
+            $("#quantity").prop("required", false);
+            $("#e_book_file").prop("required", true);
+            $("#priceDiv").hide();
+            $('#quantity').val(0);
+            $('#quantity').attr('min', 0);
+        } 
+
+
+
+        
+        });
+    
     </script>
 @endsection
