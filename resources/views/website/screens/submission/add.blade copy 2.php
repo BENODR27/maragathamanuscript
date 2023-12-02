@@ -1,8 +1,13 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.4/cropper.min.css">
-<link rel="stylesheet" href="{{asset("layout/assets/css/bootstrap.min.css")}}">
-<link rel="stylesheet" href="{{asset("layout/assets/css/bootstrap-icons.min.css")}}">
-<script src="{{asset("layout/assets/js/bootstrap.bundle.min.js")}}"></script>
+
 <style>
 
 .page {
@@ -27,7 +32,7 @@
 
 .options label,
 .options input{
-	width:6em;
+	width:4em;
 	padding:0.5em 1em;
 }
 .btn{
@@ -50,57 +55,46 @@ img {
 }
 
 </style>
+<body>
+<!-- Blade view -->
 
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-	Upload poster / thumbnail image
-  </button>
-  <!-- Modal -->
-<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">IMAGE UPLOADER</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body container">
-           
-              <div class="">
-				<input type="file" id="file-input"/>
+<form method="POST" action="" enctype="multipart/form-data">
 
-			<div class="row">
-			
-				<div class="col-md-6">
-					<div class="result"></div>
-				</div>
-			</div>
-           
-            <div class="box hide">
-              <div class="options hide">
-                <label> Width</label>
-                <input type="number" readonly class="img-w form-control" value="400" min="400" max="400" />
-                <label> Height</label>
-                <input type="number" readonly class="img-w form-control" value="400" min="400" max="400" />
-              </div>
-              
-              <a href="" class="btn download hide">Download</a>
-            </div>
-			  </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn save hide " >crop</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save & close</button>
-        </div>
-      </div>
+  @csrf
+  
+  <main class="page">
+    <h2>Upload ,Crop and save.</h2>
+    <!-- input file -->
+    <div class="box">
+      <input type="file" id="file-input"/>
     </div>
-  </div>
-  <div class="mb-3">
-	<label>Uploaded Poster/ Thumbnail Image:</label>
+    <!-- leftbox -->
+    <div class="box-2">
+      <div class="result"></div>
+    </div>
+    <!--rightbox-->
+    <div class="box-2 img-result hide">
+      <!-- result of crop -->
+      <img class="cropped" src="" alt="">
+    </div>
+    <!-- input file -->
+    <div class="box">
+      <div class="options hide">
+        <label> Width</label>
+        <input type="number" readonly class="img-w" value="400" min="400" max="400" />
+        <label> Height</label>
+        <input type="number" readonly class="img-w" value="400" min="400" max="400" />
+      </div>
+      <!-- save btn -->
+      <button class="btn save hide">Save</button>
+      <!-- download btn -->
+      <a href="" class="btn download hide">Download</a>
+    </div>
+  </main>
+  
+  <button type="submit">Submit</button>
 
-	<img class="cropped img-fluid" src="" alt="">
-	<input type="text" name="poster_image" class="form-control hide" id="poster_image" aria-describedby="posterImageHelp">
-
-</div>
+</form>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/0.8.1/cropper.min.js"></script>
 <script>
@@ -114,7 +108,6 @@ save = document.querySelector('.save'),
 cropped = document.querySelector('.cropped'),
 dwn = document.querySelector('.download'),
 upload = document.querySelector('#file-input'),
-poster_image = document.querySelector('#poster_image'),
 cropper = '';
 
 // on change show image with crop options
@@ -147,7 +140,7 @@ cropper.setCropBoxData({
   width: 400,
   height: 400
 });
-// cropper.setDragMode('move');
+cropper.setDragMode('move');
 
 // Enforce crop box dimensions restrictions
 cropper.setMinCropBoxSize({
@@ -159,7 +152,6 @@ cropper.setMaxCropBoxSize({
   width: 400,
   height: 400  
 });
-
       }
     };
     reader.readAsDataURL(e.target.files[0]);
@@ -169,17 +161,15 @@ cropper.setMaxCropBoxSize({
 // save on click
 save.addEventListener('click',(e)=>{
   e.preventDefault();
-  
   // get result to data uri
   let imgSrc = cropper.getCroppedCanvas({
 		width: img_w.value // input value
 	}).toDataURL();
   // remove hide class of img
   cropped.classList.remove('hide');
-	// img_result.classList.remove('hide');
+	img_result.classList.remove('hide');
 	// show image cropped
   cropped.src = imgSrc;
-  poster_image.value=imgSrc;
   dwn.classList.remove('hide');
   dwn.download = 'imagename.png';
   dwn.setAttribute('href',imgSrc);
@@ -187,3 +177,5 @@ save.addEventListener('click',(e)=>{
 
 
 </script>
+</body>
+</html>

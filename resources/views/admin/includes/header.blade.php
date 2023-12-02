@@ -63,15 +63,15 @@
                 </h6>
                 @if(count(auth()->user()->unreadNotifications)>0)
                 @foreach (auth()->user()->unreadNotifications as $notification)
-                    <a class="dropdown-item d-flex align-items-center" href="#">
+                    <a class="dropdown-item d-flex align-items-center" href="{{$notification->data['custommessage']}}">
                         <div class="mr-3">
                             <div class="icon-circle bg-primary">
                                 <i class="fas fa-file-alt text-white"></i>
                             </div>
                         </div>
                         <div>
-                            <div class="small text-gray-500"></div>
-                            <span class="font-weight-bold">{{$notification->data['message']}}  </span>
+                            <div class="small text-gray-500"> </div>
+                            <span class="font-weight-bold">{{$notification->data['message']}}</span>
                         </div>
                     </a>
                 @endforeach

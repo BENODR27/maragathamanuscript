@@ -102,7 +102,7 @@
              
               <li class="list-group-item d-flex justify-content-between align-items-center">
                     <label>Uploaded Poster/ Thumbnail Image:</label>
-                    <img id="uploaded_image" src="{{asset($product->poster_image_name)}}" alt="Uploaded Image" style="max-width: 100px;">
+                    <img id="uploaded_image" src="{{asset('storage/thumbnail/posterimages/'.$product->poster_image_name)}}" alt="Uploaded Image" style="max-width: 100px;">
                
               </li>
              

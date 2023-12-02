@@ -85,3 +85,5 @@ Route::group(['middleware' => 'webwatchman'], function (){
 
 
 Route::get('list/subjects/filter/{isTamilSelected}/{isEnglishSelected}/{selectedDepartmentId}',[SubjectController::class,'subjectsFilter'])->name('subject.filter');
+Route::get('/genre/product/reviews/{product_id}', [RatingController::class,'reviewsList'])->name('review.list');
+Route::get('/cart/updateQuantity/{cart_id}/{quantity}', [CartController::class,'updateQuantity'])->name('cart.updateQuantity');

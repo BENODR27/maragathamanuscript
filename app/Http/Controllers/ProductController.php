@@ -11,6 +11,8 @@ use App\Models\Department;
 use App\Models\User;
 use App\Models\Rating;
 use Auth;
+use Storage;
+use App\Helpers\ImageHelper;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductController extends Controller
@@ -28,35 +30,13 @@ class ProductController extends Controller
     }
     function save(Request $request)
     {
-
-        // Handle file upload
-        if ($request->hasFile('poster_image')) {
-            $uploadedFile = $request->file('poster_image');
-    
-            // Generate a unique filename for the image
-            $fileName = uniqid() . '.' . $uploadedFile->getClientOriginalExtension();
-        
-            // Move the uploaded file to the desired directory within the public disk
-            $uploadedFile->storeAs('public/posterimages', $fileName);
-        
-            // Save the image path in the database
-            $imagePath = 'storage/posterimages/' . $fileName;  // You can specify a storage path here
-       
-                // Open the uploaded image using Intervention Image
-            $image = Image::make(public_path($imagePath));
-                    
-                // Resize the image to a square shape (e.g., 400 pixels)
-            $image->fit(400);
-            
-            // Save the resized image
-             $image->save(public_path($imagePath));
-        }
+        $imageName = ImageHelper::storeImage($request->poster_image); 
 
         // Create a new Product instance and save it to the database
         $product = new Product();
         $product->category_id = $request->category;
         $product->segment_id = $request->segment;
-        $product->poster_image_name = $imagePath; // Store the image path in your database
+        $product->poster_image_name = $imageName; // Store the image path in your database
         $product->genre_id = $request->genre;
         $product->user_id=Auth::user()->id;
         $product->title = $request->title;
@@ -69,7 +49,10 @@ class ProductController extends Controller
         if( $request->quantity!=null){
             $product->quantity = $request->quantity;
         }
-        
+        if ($request->hasFile('e_book_file')) {
+            $pdfName=ImageHelper::storePdf($request->file('e_book_file'));
+            $product->e_book_file_name=$pdfName;
+           }
         $product->product_type = $request->product_type;
         if($product->product_type=="video"){
             $product->audio_video_url = $request->audio_video_url;
@@ -100,37 +83,18 @@ class ProductController extends Controller
         return view('admin.screens.product.edit',['product'=>$product,'category'=>$category,'genres'=>$genres,'segments'=>$segments,'departments'=>$departments]);
     }
     function update(Request $request){
-        
-        // Handle file upload
-        if ($request->hasFile('poster_image')) {
-            $uploadedFile = $request->file('poster_image');
-    
-            // Generate a unique filename for the image
-            $fileName = uniqid() . '.' . $uploadedFile->getClientOriginalExtension();
-        
-            // Move the uploaded file to the desired directory within the public disk
-            $uploadedFile->storeAs('public/posterimages', $fileName);
-        
-            // Save the image path in the database
-            $imagePath = 'storage/posterimages/' . $fileName;  // You can specify a storage path here
-       
-                // Open the uploaded image using Intervention Image
-            $image = Image::make(public_path($imagePath));
-                    
-                // Resize the image to a square shape (e.g., 400 pixels)
-            $image->fit(400);
-            
-            // Save the resized image
-             $image->save(public_path($imagePath));
-        }
 
         // Create a new Product instance and save it to the database
         $product=Product::find($request->product_id);
         if($request->segment!=null){
             $product->segment_id = $request->segment;
         }
-        if($request->hasFile('poster_image')){
-            $product->poster_image_name = $imagePath; // Store the image path in your database
+        if($request->poster_image!=null){
+
+            ImageHelper::deleteImage($product->poster_image_name,"posterimages/",true);
+
+            $imageName = ImageHelper::storeImage($req->poster_image); 
+            $product->poster_image_name = $imageName; // Store the image path in your database
         }
         if($request->genre!=null){
             $product->genre_id = $request->genre;     
@@ -149,6 +113,11 @@ class ProductController extends Controller
         }
         if( $request->quantity!=null){
             $product->quantity = $request->quantity;
+        }
+        if ($request->hasFile('e_book_file')) {
+            ImageHelper::deletePDF($product->e_book_file_name,"work/");
+            $pdfName=ImageHelper::storePdf($request->file('e_book_file'));
+            $product->e_book_file_name=$pdfName;
         }
         
         $product->product_type = $request->product_type;
@@ -184,6 +153,10 @@ class ProductController extends Controller
     }
     function delete(Request $req){
         $product=Product::find($req->product_id);
+        ImageHelper::deleteImage($product->poster_image_name,"posterimages/",true);
+        if ($product->e_book_file_name!=null) {
+            ImageHelper::deletePDF($product->e_book_file_name,"work/");
+        }
         $product->delete();
         return redirect()->back();
     }
@@ -211,7 +184,7 @@ class ProductController extends Controller
         });
 
         return view('website.screens.publications_comics_others.product',['product'=>$publicationProduct,'pageTitle'=>$publicationProduct->title]);      }else{
-        return redirect()->back();
+        // return redirect()->back();
       }    
     }
 }

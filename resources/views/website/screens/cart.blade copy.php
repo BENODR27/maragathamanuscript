@@ -1,10 +1,27 @@
-@extends('layouts.website.layout1')
-@section('content')
+<!doctype html>
+<html lang="en">
+  <head>
+    <title> Cart</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"href="main.css">
+    <link rel="stylesheet"href="cart.css">
+    <script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
   
   <style>
-.cart-products{
-    min-height: 70vh;
-}
+       .cart-products{
+            margin-top: 120px;
+            
+        }
+        body{
+            background-color: #cedece;
+        }
+
     .cover{
     position: relative;
     z-index: 0;
@@ -256,22 +273,9 @@
 }
   </style>
   <body>
-    {{-- @include('website.includes.subheader') --}}
-    <!-- header banner -->
-<section class="header-banner bookpress-parallax p-5" id="header-banner-id">
-    <div class="container d-flex justify-content-between align-items-center text-white">
-        <div class="overlay-out">
-            <h1 class="banner-title">{{$pageTitle}}</h1>
-            <p class="text-white"><a href="/" class="text-decoration-none text-white">Home</a> /
-                {{-- <span  onclick="history.back()" class="text-decoration-none text-white">Appointments</span> --}}
-            </p>
-        </div>
-        <img src="{{asset("layout/assets/images/banner-image.png")}}" class="img-fluid" alt="Books">
-        <div class="parallax start-0 top-0 w-100 h-100"></div>
-    </div>
-  </section>
+    @include('website.includes.subheader')
     <!--Cart Section-->
-    <div class="cart-products mt-3">
+    <div class="cart-products">
         <div class="container">
             <div class="cart">
             <div class="table-responsive">
@@ -290,31 +294,30 @@
                         <tr>
                             <td>
                                 <div class="main">
-                                  
+                                    <div class="d-flex">
+                                    </div>
+                                    <div class="des">
                                         <p>{{$cart->product->title}}</p>
-                                    
+                                    </div>
                                 </div>
                             </td>
                             <td>
                                 <h6> &#8377; {{$cart->product->price}}</h6>
                             </td>
                             <td>
-                                <div >
-                                   
+                                <div class="counter text-center">
                                    @if($cart->quantity>0)
-                                   
-                                   <input disabled type="text" data-cart-id="{{ $cart->id }}" class="text-center quantity-input" value="{{$cart->quantity}}"  />
+                                   {{$cart->quantity}}
+                                    {{-- <input readonly class="input-number"type="text"
+                                    value="{{$cart->quantity}}"min="0"max="{{$cart->product->quantity}}"> --}}
                                     @else
                                     <a href="#" class="btn">OUT OF STOCK</a>
                                     @endif
-                                    
+                                  
                                 </div>
                             </td>
                             <td>
-                               
-                                    <a href="{{route('cart.product.delete',['cart_id'=>$cart->id])}}" class=""><i class="fa text-danger fa-trash" aria-hidden="true"></i></a>
-
-                             
+                                <a href="{{route('cart.product.delete',['cart_id'=>$cart->id])}}" class="btn"><i class="fa fa-trash" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -332,50 +335,27 @@
             </div>
             </div>
         </div>
-        @if(count($carts)>0)
-        <div class="col-lg-4 offset-lg-4">
-            <div class="checkout">
-                <ul>
-                    {{-- <li class="subtotal">subtotal
-                        <span>$60.00</span>
-                    </li> --}}
-                    <li class="cart-total">Total
-                    <span> &#8377; {{$totalPrice}}</span></li>
-                </ul>
-                
-                <a href="{{route('products.placeorder',["placesingleorder"=>false])}}"class="proceed-btn">Proceed to Checkout</a>
-               
-            </div>
-        </div>
-        @endif
     </div>
- 
-
-  </body>
-@endsection
-@section('script')
-{{-- <script>
-    $(document).ready(function () {
-        $('.quantity-input').on('change', function () {
-            var newQuantity = $(this).val();
-            var cartId = $(this).data('cart-id');
-
-            // Send AJAX request to update quantity
-            $.ajax({
-                url: "/cart/updateQuantity/"+cartId+"/"+newQuantity+"",
-                method: 'GET',
+    @if(count($carts)>0)
+    <div class="col-lg-4 offset-lg-4">
+        <div class="checkout">
+            <ul>
+                {{-- <li class="subtotal">subtotal
+                    <span>$60.00</span>
+                </li> --}}
+                <li class="cart-total">Total
+                <span> &#8377; {{$totalPrice}}</span></li>
+            </ul>
             
-                success: function (response) {
-                    // Handle success, e.g., update UI or show a success message
-                    console.log(response);
-                },
-                error: function (xhr, status, error) {
-                    // Handle errors, e.g., show an error message
-                    console.error(xhr.responseText);
-                }
-            });
-        });
-    });
-</script> --}}
-
-@endsection
+            <a href="{{route('products.placeorder',["placesingleorder"=>false])}}"class="proceed-btn">Proceed to Checkout</a>
+           
+        </div>
+    </div>
+    @endif
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

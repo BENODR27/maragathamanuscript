@@ -60,7 +60,7 @@
                <div class="scrollable-row">
                 <div class="card  bg-white" style="width: 12rem;">
                     <a href="{{route('category.publications_comics_others.product',['product_id'=>$product->id])}}" >
-                        <img src={{asset($product->poster_image_name)}} class="card-img-top p-2" alt="Card Image"></a>
+                        <img src={{asset('storage/thumbnail/posterimages/'.$product->poster_image_name)}} class="card-img-top p-2" alt="Card Image"></a>
                     <div class="card-body">
                        <div class="row">
                         <h6 class="card-text product-title">{{ GoogleTranslate::trans($product->title, app()->getLocale()) }}</h6>

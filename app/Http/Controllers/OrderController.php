@@ -8,8 +8,17 @@ use App\Models\User;
 use App\Models\Cart;
 use App\Models\Product;
 use Auth;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\UserNotification;
 class OrderController extends Controller
 {
+    function sendStockNotification($product_id):void{
+        $user=User::where('role','admin')->get();		
+        $message="product ". $product_id." is out of stock";
+        $messagetone="warn";
+        $custommessage=route('product.view',['product_id'=>$product_id]);
+		Notification::send($user,new UserNotification($message,$messagetone,$custommessage));
+    }
     function browse(Request $req){
         
         if($req->filter=="new"){
@@ -54,8 +63,16 @@ class OrderController extends Controller
         ]);
         $user->update();
         if(!session('placesingleorder')){
-            $carts=Cart::where('user_id',Auth::user()->id)->get()->map(function($cart){
-                $cart->price=Product::find($cart->product_id)->price;
+            
+            $carts=Cart::where('user_id',Auth::user()->id)->where('quantity','!=',0)->get()->map(function($cart){
+                $product=Product::find($cart->product_id);
+
+                    $product->quantity=($product->quantity)-($cart->quantity);
+                    $product->save();
+                if($product->quantity==0){
+                    $this->sendStockNotification($product->id);
+                }
+                $cart->price=$product->price;
                 return $cart;
             });
              
@@ -70,9 +87,17 @@ class OrderController extends Controller
             $cart=new Cart();
             $cart->product_id=session('product_id');
             $cart->user_id=Auth::user()->id;
-            $cart->save();
+            $cart->quantity=1;
+            // $cart->save();
             }else{
                 $cart=Cart::where('product_id',session('product_id'))->first();
+            }
+            $productData=Product::find($cart->product_id);
+
+            $productData->quantity=($productData->quantity)-($cart->quantity);
+            $productData->save();
+            if($productData->quantity==0){
+                $this->sendStockNotification($productData->id);
             }
             $totalPrice=Product::find(session('product_id'))->price;
         }
@@ -84,21 +109,26 @@ class OrderController extends Controller
         $order->user_id=Auth::user()->id;
         if(!session('placesingleorder')){
         $order->products_data=json_encode($carts->pluck('price','product_id'));
+        if(count($carts)<=0){
+            return redirect()->route('product.cart.list')->with('message', 'Order failed');
+        }else{
+
+            $order->save(); 
+        }
         }else{
             $cart->price=Product::find(session('product_id'))->price;
 
             $order->products_data = json_encode([
                 $cart['product_id'] => $cart['price']
-            ]);       
+            ]);     
+            $order->save();  
          }
-        $order->save();
-
+       
+       
        if(!session('placesingleorder')){
-        Cart::truncate();
-       }else{
-        $cart->delete();
+        Cart::where('user_id',Auth::user()->id)->where('quantity','!=',0)->delete();
        }
-        return redirect()->route('order.list')->with('success', 'Order placed successfully');
+        return redirect()->route('order.list')->with('message', 'Order placed successfully');
     }
     function view(Request $req){
         $products=[];

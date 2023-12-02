@@ -23,6 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return redirect()->route('submission.browse');
+        return redirect()->route('order.browse',["filter"=>"new"]);
     }
 }

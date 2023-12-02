@@ -45,9 +45,14 @@
                   
               </select>
           </div>
-
-@include('includes.imagecrop')
-
+            <div class="mb-3">
+              <label for="poster_image" class="form-label">Poster Image / Thumbnail</label>
+              <input type="file" required name="poster_image" class="form-control" id="poster_image" aria-describedby="posterImageHelp" oninvalid="this.setCustomValidity('Please Upload Valid Poster')" oninput="this.setCustomValidity('')">
+          </div>
+          <div class="mb-3" id="uploaded_image_div" style="display: none;">
+              <label>Uploaded Poster/ Thumbnail Image:</label>
+              <img id="uploaded_image"  src="" alt="Uploaded Image" style="max-width: 100px;">
+          </div>
             <div class="col-12 mb-3">
               <label for="inputState" class="form-label">Genre</label>
                 <select name="genre" required id="inputState" class="form-select" oninvalid="this.setCustomValidity('Please Select Valid Genre')" oninput="this.setCustomValidity('')">
@@ -97,5 +102,25 @@
         </form>
     </div>
 </section>
+<script>
+  // JavaScript to display the uploaded image
+  const posterImageInput = document.getElementById('poster_image');
+  const uploadedImageDiv = document.getElementById('uploaded_image_div');
+  const uploadedImage = document.getElementById('uploaded_image');
 
+  posterImageInput.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+              uploadedImage.src = e.target.result;
+              uploadedImageDiv.style.display = 'block'; // Show the image
+          };
+          reader.readAsDataURL(file);
+      } else {
+          uploadedImage.src = '';
+          uploadedImageDiv.style.display = 'none'; // Hide the image
+      }
+  });
+</script>
 @endsection

@@ -11,7 +11,17 @@ class CartController extends Controller
     //add product to cart
     function cartList(){
         $carts=Cart::where('user_id',Auth::user()->id)->get()->reverse()->map(function($cart){
-            $cart->product=Product::find($cart->product_id);
+            $product=Product::find($cart->product_id);
+            
+            if($product->quantity<$cart->quantity){
+                $cart->quantity=$product->quantity;
+                $cart->save();
+            }
+            if(($product->quantity>0) &&($cart->quantity==0)){
+                $cart->quantity=1;
+                $cart->save();
+            }
+            $cart->product=$product;
             return $cart;
         });
         $totalPrice = $carts->sum(function ($cart) {
@@ -28,6 +38,7 @@ class CartController extends Controller
       $cart=new Cart();
       $cart->product_id=$req->product_id;
       $cart->user_id=Auth::user()->id;
+      $cart->quantity=1;
       $cart->save();
       }
 
@@ -39,6 +50,7 @@ class CartController extends Controller
    Cart::find($req->cart_id)->delete();
    return redirect()->back();
   }
+
 
 
     function proceedCheckout(Request $req){
@@ -65,5 +77,15 @@ class CartController extends Controller
         
         return view('website.screens.placeorder',['pageTitle'=>"PROCEED CHECKOUT",'address'=>$address]);
     }
+    public function updateQuantity($cart_id,$quantity)
+    {
+        
+        $product=Product::find(Cart::find($cart_id)->product_id);
+        if($product->quantity < $quantity){
+            $quantity=$product->quantity;
+        }
+        return response()->json(['qty'=>$quantity]);
+    }
+    
 
 }

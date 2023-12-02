@@ -10,6 +10,8 @@ use App\Models\Department;
 use App\Models\Work;
 use App\Models\Product;
 use Auth;
+use Storage;
+use App\Helpers\ImageHelper;
 use Illuminate\Support\Facades\Notification;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -42,6 +44,7 @@ class WorkController extends Controller
     }
 
     function save(Request $req){
+        // dd($req->all());
         $customAttributes = [
             'product_type' => 'Book Type', 
             'file'=>'Work ',
@@ -49,7 +52,6 @@ class WorkController extends Controller
             'title'=>'Title',
             'language'=>'Language',
             'genre'=>'Genre Name',
-            'poster_image'=>'Poster Image',
             'terms'=>'Terms & Conditions',
         ];
         $customMessages = [
@@ -63,49 +65,13 @@ class WorkController extends Controller
             'author_name' => 'required|string|max:255',
             'title' => 'required|string|max:255',
             'product_type' => 'required|in:book,ebook',
-            'poster_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the allowed image types and size as needed.
             'genre' => 'required|string', // Assuming it's a string.
             'language' => 'required|in:tamil,english', // Add other languages as needed.
             'file' => 'required|mimes:pdf,epub', // Adjust the allowed file types as needed.
             'terms' => 'required|accepted', // A checkbox that needs to be checked.
         ],$customMessages,$customAttributes);
-        // $genre_id;
-        // if($req->genrename!=null){
-        //     $genre=Genre::where('name',$req->genrename)->where('category_id',9)->first();
-        //     if($genre==null){
-        //         $genre=new Genre();
-        //         $genre->name=$req->genrename;
-        //         $genre->category_id=9;
-        //         $genre->isCustomGenre=true;
-        //         $genre->save();
-        //         $genre_id=$genre->id;
-        //     }else{
-        //         $genre_id=$genre->id;
-        //     }
-        // }
 
-        // Handle file upload
-        if ($req->hasFile('poster_image')) {
-            $uploadedFile = $req->file('poster_image');
-    
-            // Generate a unique filename for the image
-            $fileName = uniqid() . '.' . $uploadedFile->getClientOriginalExtension();
-        
-            // Move the uploaded file to the desired directory within the public disk
-            $uploadedFile->storeAs('public/posterimages', $fileName);
-        
-            // Save the image path in the database
-            $imagePath = 'storage/posterimages/' . $fileName;  // You can specify a storage path here
-       
-                // Open the uploaded image using Intervention Image
-            $image = Image::make(public_path($imagePath));
-                    
-                // Resize the image to a square shape (e.g., 400 pixels)
-            $image->fit(400);
-            
-            // Save the resized image
-             $image->save(public_path($imagePath));
-        }
+        $imageName = ImageHelper::storeImage($req->poster_image); 
 
         $work=new Work();
         $work->author_name=$req->author_name;
@@ -113,21 +79,14 @@ class WorkController extends Controller
         $work->genre_id=$req->genre;
         $work->user_id=Auth::user()->id;//LOGINNED USER
         $work->language=$req->language;
-        $work->poster_image_name = $imagePath; // Store the image path in your database
+        $work->poster_image_name = $imageName; // Store the image path in your database
         $work->product_type = $req->product_type;
+
        // Handle file upload
        if ($req->hasFile('file')) {
-        $uploadedFile = $req->file('file');
-
-        // Generate a unique filename for the image
-        $fileName = uniqid() . '.' . $uploadedFile->getClientOriginalExtension();
-    
-        // Move the uploaded file to the desired directory within the public disk
-        $uploadedFile->storeAs('public/work', $fileName);
-    
-        $imagePath =$fileName;  // You can specify a storage path here
+        $pdfName=ImageHelper::storePdf($req->file('file'));
+        $work->file_name=$pdfName;
        }
-        $work->file_name=$imagePath;
         $work->terms=true;
         $work->save();
 

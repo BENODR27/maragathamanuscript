@@ -1,5 +1,5 @@
 @if(count($product->ratings)>0)
-<div class="row m-2 px-md-5">
+<div class="row m-3 px-md-5">
     <h4 class=""> {{ GoogleTranslate::trans("REVIEWS", app()->getLocale()) }}</h4>
 </div>
 @endif

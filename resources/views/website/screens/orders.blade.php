@@ -1,6 +1,19 @@
 @extends('layouts.website.layout1')
 @section('content')
-
+<!-- header banner -->
+<section class="header-banner bookpress-parallax p-5" id="header-banner-id">
+  <div class="container d-flex justify-content-between align-items-center text-white">
+      <div class="overlay-out">
+          <h1 class="banner-title">{{$pageTitle}}</h1>
+          <p class="text-white"><a href="/" class="text-decoration-none text-white">Home</a> /
+              {{-- <span  onclick="history.back()" class="text-decoration-none text-white">Appointments</span> --}}
+          </p>
+      </div>
+      <img src="{{asset("layout/assets/images/banner-image.png")}}" class="img-fluid" alt="Books">
+      <div class="parallax start-0 top-0 w-100 h-100"></div>
+  </div>
+</section>
+<!-- header banner end -->
 <div class="orders-section pt-5 ">
     <div class="container">
         <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -57,7 +70,7 @@
                                 <div class="card-body">
                                   <div class="row">
                                     <div class="col-md-2">
-                                      <img src="{{asset($product->poster_image_name)}}"
+                                      <img src="{{asset('storage/thumbnail/posterimages/'.$product->poster_image_name)}}"
                                         class="img-fluid" alt="Phone">
                                     </div>
                                     <div class="col-md-2 text-center d-flex justify-content-center align-items-center">

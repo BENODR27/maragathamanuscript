@@ -52,14 +52,7 @@
                 </select>
             </div>
             
-            <div class="mb-3">
-              <label for="poster_image" class="form-label">Poster Image / Thumbnail (400*400)</label>
-              <input required type="file" name="poster_image" class="form-control" id="poster_image" aria-describedby="posterImageHelp" oninvalid="this.setCustomValidity('Please Upload Valid Poster Image')" oninput="this.setCustomValidity('')">
-          </div>
-          <div class="mb-3" id="uploaded_image_div" style="display: none;">
-              <label>Uploaded Poster/ Thumbnail Image:</label>
-              <img id="uploaded_image" src="" alt="Uploaded Image" style="max-width: 100px;">
-          </div>
+          @include('includes.imagecrop')
          
             <div class="mb-3">
                 <label for="genre_id" class="form-label">Genre</label>
