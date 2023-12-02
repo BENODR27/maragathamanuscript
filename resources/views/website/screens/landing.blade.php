@@ -32,20 +32,20 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#product-category">{{ GoogleTranslate::trans('Shop', app()->getLocale()) }}</a>
+                            <a class="nav-link" href="#product-category">Shop</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#author-id">{{ GoogleTranslate::trans('About Us', app()->getLocale()) }}</a>
+                            <a class="nav-link" aria-current="page" href="#author-id">About Us</a>
                         </li>
                        
                         <li class="nav-item">
-                            <a class="nav-link" href="#footer">{{ GoogleTranslate::trans('Contact', app()->getLocale()) }}</a>
+                            <a class="nav-link" href="#footer">Contact</a>
                         </li>
                         
                     </ul>
                     <select class="p-1 changeLang complementary-background rounded-pill text-white">
-                        <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>{{ GoogleTranslate::trans('English', app()->getLocale()) }}</option>
-                        <option value="ta" {{ session()->get('locale') == 'ta' ? 'selected' : '' }}>{{ GoogleTranslate::trans('Tamil', app()->getLocale()) }}</option>
+                        <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>English</option>
+                        <option value="ta" {{ session()->get('locale') == 'ta' ? 'selected' : '' }}>Tamil</option>
                         
                     </select>
                 </div>
@@ -64,17 +64,17 @@
             <div class="row gx-5 d-flex justify-content-center align-items-center">
                 <div class="col-md-6">
                     <p class="fs-5 fw-normal text-white"></p>
-                    <h2 class="my-3 book-verse"><span class="complementary-color ps-0">{{ GoogleTranslate::trans('MARAGATHA MANUSCRIPT', app()->getLocale()) }}</span>{{ GoogleTranslate::trans('BOOK VERSE', app()->getLocale()) }}</h2>
-                    <p class="fs-6 fw-normal book-quote">{{ GoogleTranslate::trans('The more that you learn, the more places you\'ll go.” “Books are a uniquely portable magic.” “I kept always two books in my pocket, one to read, one to write in.” “The person who deserves most pity is a lonesome one on a rainy day who doesn\'t know how to read.”', app()->getLocale()) }}
+                    <h2 class="my-3 book-verse"><span class="complementary-color ps-0">MARAGATHA MANUSCRIPT</span>BOOK VERSE</h2>
+                    <p class="fs-6 fw-normal book-quote">'The more that you learn, the more places you\'ll go.” “Books are a uniquely portable magic.” “I kept always two books in my pocket, one to read, one to write in.” “The person who deserves most pity is a lonesome one on a rainy day who doesn\'t know how to read.”
                         </p>
                     <div class="d-flex align-items-center gap-4 mt-5">
-                        <a href="#author-id" class="btn btn-light rounded-pill"> {{ GoogleTranslate::trans('More', app()->getLocale()) }}</a>
+                        <a href="#author-id" class="btn btn-light rounded-pill"> More</a>
                         <a href="http://www.youtube.com/watch?v=0O2aH4XLbto" class="text-decoration-none play-2 video-play ">
                             <div class="d-flex gap-2 align-items-center">
                                 <i class="bi bi-play-fill fs-4"></i>
                                 <div class="ms-1">
-                                    <p class="play-text-md text-decoration-none">{{ GoogleTranslate::trans('Watch Video', app()->getLocale()) }}</p>
-                                    <p class=" play-text-sm text-decoration-underline">{{ GoogleTranslate::trans('Duration 3:00 min', app()->getLocale()) }}</p>
+                                    <p class="play-text-md text-decoration-none">Watch Video</p>
+                                    <p class=" play-text-sm text-decoration-underline">Duration 3:00 min</p>
                                 </div>
                             </div>
                         </a>
@@ -100,11 +100,11 @@
         <div class="container">
             <div class="text-center pb-5">
                 @if(count($categories)==0)
-                <h2 class="display-4 fw-bold text-white">{{ GoogleTranslate::trans('COMING SOON', app()->getLocale()) }}</h2>
+                <h2 class="display-4 fw-bold text-white">COMING SOON</h2>
                 @else 
-                <h3 class="hr-lines-white">{{ GoogleTranslate::trans('select your category', app()->getLocale()) }}</h3>
+                <h3 class="hr-lines-white">select your category</h3>
 
-                <h2 class="display-4 fw-bold text-white">{{ GoogleTranslate::trans('OUR RELEASES', app()->getLocale()) }}</h2>
+                <h2 class="display-4 fw-bold text-white">OUR RELEASES</h2>
                 @endif
             </div>
 
@@ -113,7 +113,7 @@
                     @foreach ($categories as $category)
                     @if($category->name=="OTHERS")
                     <div class="d-grid gap-2 col-10 mx-auto">
-                        <a href="{{route('category.segments',['category_id'=>$category->id])}}" class="btn btn-primary ">{{ GoogleTranslate::trans('OTHERS', app()->getLocale()) }}</a>
+                        <a href="{{route('category.segments',['category_id'=>$category->id])}}" class="btn btn-primary ">OTHERS</a>
                     </div>
                     @endif
                     @endforeach
@@ -127,9 +127,9 @@
                             @if($category->name!="OTHERS")
                             <div class="col-md-4">
                                 <div class="help-content bg-white rounded-2 px-4 py-5">
-                                    <h3 class="help-content-title pb-3 pt-4">{{ GoogleTranslate::trans($category->name, app()->getLocale()) }}</h3>
-                                    <p>{{ GoogleTranslate::trans($category->description, app()->getLocale()) }}</p>
-                                    <h5 class="help-content-link pt-3 pb-3"><a href="{{route('category.segments',['category_id'=>$category->id])}}" class="text-decoration-none btn btn-primary">{{ GoogleTranslate::trans('Explore Here', app()->getLocale()) }}</a><i class="bi bi-arrow-right ms-2"></i></h5>
+                                    <h3 class="help-content-title pb-3 pt-4">{{ $category->name}}</h3>
+                                    <p>{{ $category->description }}</p>
+                                    <h5 class="help-content-link pt-3 pb-3"><a href="{{route('category.segments',['category_id'=>$category->id])}}" class="text-decoration-none btn btn-primary">Explore Here</a><i class="bi bi-arrow-right ms-2"></i></h5>
                                     <img src="{{asset($category->category_image_name)}}" alt="Help Icon" class="img-fluid">
                                     
                                 </div>

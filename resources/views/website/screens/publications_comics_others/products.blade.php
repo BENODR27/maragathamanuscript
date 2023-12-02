@@ -4,9 +4,9 @@
     <section class="header-banner bookpress-parallax" id="header-banner-id">
         <div class="container d-flex justify-content-between align-items-center text-white">
             <div class="overlay-out">
-                <h1 class="banner-title">{{ GoogleTranslate::trans($pageTitle, app()->getLocale()) }}</h1>
-                <p class="text-white"><a href="/" class="text-decoration-none text-white">{{ GoogleTranslate::trans('Home', app()->getLocale()) }}</a> /
-                    <span  onclick="history.back()" class="text-decoration-none text-white">{{ GoogleTranslate::trans('Segments', app()->getLocale()) }}</span>
+                <h1 class="banner-title">{{ $pageTitle }}</h1>
+                <p class="text-white"><a href="/" class="text-decoration-none text-white">Home</a> /
+                    <span  onclick="history.back()" class="text-decoration-none text-white">Segments</span>
                 </p>
             </div>
             <img src="{{asset("layout/assets/images/banner-image.png")}}" class="img-fluid" alt="Books">
@@ -30,7 +30,7 @@
                                 <a href="{{route('category.publications_comics_others.product',['product_id'=>$product->id])}}" >
                                 <img src={{asset('storage/posterimages/'.$product->poster_image_name)}} alt="Product Image" class="img-fluid">
                                 
-                                    <h5 class="mt-2">{{ GoogleTranslate::trans($product->title, app()->getLocale()) }}</h5>
+                                    <h5 class="mt-2">{{ $product->title }}</h5>
                                     <div class = "product-rating">
                                         @if($product->rating_average!=0)
                                           @for ($i = 1; $i <= $product->rating_average; $i++)
@@ -45,7 +45,7 @@
                                         @endif
                                           
                                         </div>
-                                <p class="genre-text">{{ GoogleTranslate::trans($product->genreName, app()->getLocale()) }}</p>
+                                <p class="genre-text">{{ $product->genreName }}</p>
 
                                 {{-- <div class="d-flex justify-content-between pt-3">
                                     <h4 class="text-primary">{{$product->price}}  &#8377;</h4>

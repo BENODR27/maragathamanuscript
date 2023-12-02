@@ -66,7 +66,7 @@
         <ul>
             @foreach ($genres as $genre)
             <li>
-                <div class="selected-genre"  data-id="{{$genre['id']}}">{{ GoogleTranslate::trans($genre['name'], app()->getLocale()) }}</div>
+                <div class="selected-genre"  data-id="{{$genre['id']}}">{{ $genre['name'] }}</div>
             </li>
             @endforeach           
         </ul>

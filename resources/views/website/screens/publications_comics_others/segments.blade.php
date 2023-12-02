@@ -4,8 +4,8 @@
     <section class="header-banner bookpress-parallax" id="header-banner-id">
         <div class="container d-flex justify-content-between align-items-center text-white">
             <div class="overlay-out">
-                <h1 class="banner-title">{{ GoogleTranslate::trans($pageTitle, app()->getLocale()) }}</h1>
-                <p class="text-white"><a href="/" class="text-decoration-none text-white">{{ GoogleTranslate::trans('Home', app()->getLocale()) }}</a> /
+                <h1 class="banner-title">{{ $pageTitle }}</h1>
+                <p class="text-white"><a href="/" class="text-decoration-none text-white">Home</a> /
                     {{-- <span  onclick="history.back()" class="text-decoration-none text-white">Segments</span> --}}
                 </p>
             </div>

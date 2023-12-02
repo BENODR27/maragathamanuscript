@@ -4,20 +4,17 @@
     <div class="logo p-5">{{ config('app.name', 'MM') }}</div>
    <ul class="links">
        <li><a href="/">
-        @if(app()->getLocale()=="en")
         HOME
-        @else
-        முகப்பு
-        @endif
+       
     </a></li>
-       <li><a href="{{route('genres.list')}}">{{ GoogleTranslate::trans('GENRES', app()->getLocale()) }}</a></li>
-       <li><a href="{{route('submission.list')}}">{{ GoogleTranslate::trans('SUBMISSIONS', app()->getLocale()) }}</a></li>
-       <li><a href="{{route('appointment.list')}}">{{ GoogleTranslate::trans('APPOINTMENTS', app()->getLocale()) }}</a></li>
-       <li><a href="{{route('website.user.notifications')}}">{{ GoogleTranslate::trans('NOTIFICATIONS', app()->getLocale()) }}</a></li>
-       <li><a href="{{route('website.user.about')}}">{{ GoogleTranslate::trans('ABOUT', app()->getLocale()) }}</a></li>
+       <li><a href="{{route('genres.list')}}">GENRES</a></li>
+       <li><a href="{{route('submission.list')}}">SUBMISSIONS</a></li>
+       <li><a href="{{route('appointment.list')}}">APPOINTMENTS</a></li>
+       <li><a href="{{route('website.user.notifications')}}">NOTIFICATIONS</a></li>
+       <li><a href="{{route('website.user.about')}}">ABOUT</a></li>
        @if(!Auth::user())
 
-       <li><a href="{{route('website.auth.login')}}">{{ GoogleTranslate::trans('LOGIN', app()->getLocale()) }}</a></li>
+       <li><a href="{{route('website.auth.login')}}">LOGIN</a></li>
 
        @endif
    </ul>

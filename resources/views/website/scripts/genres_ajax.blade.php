@@ -69,7 +69,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="product-content mt-4">
-                                            <h5>{{ GoogleTranslate::trans(' ${product.title}', app()->getLocale()) }}</h5>
+                                            <h5> ${product.title}</h5>
                                             <div class="mt-4">
                                                 ${product.rating_average !== 0 ? `
                                                     <small class="text-muted">
@@ -80,10 +80,10 @@
                                                             <i class="fa fa-star"></i>
                                                         `).join('')}
                                                     </small> (${product.viewers})
-                                                ` : '{{ GoogleTranslate::trans("No ratings yet!", app()->getLocale()) }}'}
+                                                ` : "No ratings yet!"}
                                                
                                             </div>
-                                            ${product.price !== 0 ? `<div class="btn btn-primary mt-4">₹${product.price}</div>` : '<div class="btn btn-primary mt-4">{{ GoogleTranslate::trans("FREE", app()->getLocale()) }}</div>'}
+                                            ${product.price !== 0 ? `<div class="btn btn-primary mt-4">₹${product.price}</div>` : '<div class="btn btn-primary mt-4">FREE</div>'}
                                         </div>
                                     </div>
                                 </div>

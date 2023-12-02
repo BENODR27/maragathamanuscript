@@ -35,7 +35,7 @@
                                                         `).join('')}
                                                     </small>
                                         </p>
-                                    <p class="card-text">{{ GoogleTranslate::trans('${rating.comment}', app()->getLocale()) }}</p>
+                                    <p class="card-text">${rating.comment}</p>
                                     </div>
                                 </div>
                             </div>

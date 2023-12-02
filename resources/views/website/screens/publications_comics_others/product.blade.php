@@ -4,9 +4,9 @@
 <section class="header-banner bookpress-parallax p-5" id="header-banner-id">
   <div class="container d-flex justify-content-between align-items-center text-white">
       <div class="overlay-out">
-          <h1 class="banner-title">{{ GoogleTranslate::trans($pageTitle, app()->getLocale()) }}</h1>
-          <p class="text-white"><a href="/" class="text-decoration-none text-white">{{ GoogleTranslate::trans("Home", app()->getLocale()) }}</a> /
-              <span  onclick="history.back()" class="text-decoration-none text-white">{{ GoogleTranslate::trans("Products", app()->getLocale()) }}</span>
+          <h1 class="banner-title">{{ $pageTitle }}</h1>
+          <p class="text-white"><a href="/" class="text-decoration-none text-white">Home</a> /
+              <span  onclick="history.back()" class="text-decoration-none text-white">Products</span>
           </p>
       </div>
       <img src="{{asset("layout/assets/images/banner-image.png")}}" class="img-fluid" alt="Books">
@@ -24,7 +24,7 @@
               <div class = "product-content mt-5">
                   <div class="row">
                       <div class="col">
-                          <h2 class = "product-title">{{ GoogleTranslate::trans($product->title, app()->getLocale()) }}</h2>
+                          <h2 class = "product-title">{{$product->title}}</h2>
                       </div>
                       <div class="col">
                           <div class = "product-rating">
@@ -38,14 +38,14 @@
                               <span>({{$product->viewers}})</span>
 
                             @else
-                            <p><span><small>{{ GoogleTranslate::trans("No ratings yet!", app()->getLocale()) }}</small></span></p>
+                            <p><span><small>No ratings yet!</small></span></p>
                             @endif
                             </div>
                       </div>
                   </div>
                  <div class="row mt-2 mt-md-4">
                   <div class="col">
-                      <div class="btn btn-outline-success"><img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" @if($product->user->profile_image_name==null) src="{{asset('img/undraw_profile.svg')}}" @else src="{{asset($product->user->profile_image_name)}}" @endif /> &nbsp {{ GoogleTranslate::trans($product->user->name, app()->getLocale()) }}</div>
+                      <div class="btn btn-outline-success"><img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" @if($product->user->profile_image_name==null) src="{{asset('img/undraw_profile.svg')}}" @else src="{{asset($product->user->profile_image_name)}}" @endif /> &nbsp {{ $product->user->name }}</div>
                   </div>
                  </div>
 
@@ -56,8 +56,8 @@
                       $sentences = preg_split('/((?:\S+\s+){1,20})/', $inputSentence, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
 
                       ?>
-                      <p>{{ GoogleTranslate::trans(trim($sentences[0]), app()->getLocale()) }}<span id="dots">...</span><span id="more">&nbsp{{ GoogleTranslate::trans(trim($sentences[1]), app()->getLocale()) }}</span></p>
-                      <button class="btn btn-primary mt-2 mt-md-4" onclick="viewMoreOneLine()" id="myBtn">{{ GoogleTranslate::trans("Read more", app()->getLocale()) }}</button>
+                      <p>{{ trim($sentences[0]) }}<span id="dots">...</span><span id="more">&nbsp{{ trim($sentences[1])}}</span></p>
+                      <button class="btn btn-primary mt-2 mt-md-4" onclick="viewMoreOneLine()" id="myBtn">Read more</button>
 
                   </div>
                   @if($product->product_type=="ebook")
@@ -66,7 +66,7 @@
                       DOWNLOAD E-BOOK <i class="fa fa-download" aria-hidden="true"></i>
 
                    </a> --}}
-                   <a class="btn btn-primary" href="{{asset("storage/work/".$product->e_book_file_name)}}" download="{{$product->title}}.pdf"> {{ GoogleTranslate::trans("DOWNLOAD E-BOOK", app()->getLocale()) }}</a>
+                   <a class="btn btn-primary" href="{{asset("storage/work/".$product->e_book_file_name)}}" download="{{$product->title}}.pdf">DOWNLOAD E-BOOK</a>
 
                   </div>
                   @elseif($product->product_type=="audiobook")
@@ -75,7 +75,7 @@
                   </div>
                   <div class = "purchase-info mt-sm-2 mt-md-5">
                     <a href="{{route('product.cart.add',['product_id'=>$product->id])}}" class = "form-control btn btn-primary mb-2">
-                       {{ GoogleTranslate::trans("GET AUDIO BOOK", app()->getLocale()) }}<i class="fa fa-download" aria-hidden="true"></i>
+                       GET AUDIO BOOK<i class="fa fa-download" aria-hidden="true"></i>
 
                    </a>
                   </div>
@@ -83,11 +83,11 @@
                   <div class = "purchase-info mt-2 mt-md-5">
                     @if($product->quantity>0)
                     <a href="{{route('product.cart.add',['product_id'=>$product->id])}}" class = "form-control btn btn-primary mb-2">
-                       {{ GoogleTranslate::trans("ADD TO CART", app()->getLocale()) }}<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                       ADD TO CART<i class="fa fa-shopping-cart" aria-hidden="true"></i>
                     </a>
-                    <a href="{{route('products.placeorder',["placesingleorder"=>true])}}" class ="form-control btn btn-primary">{{ GoogleTranslate::trans("BUY NOW", app()->getLocale()) }}</a>
+                    <a href="{{route('products.placeorder',["placesingleorder"=>true])}}" class ="form-control btn btn-primary">BUY NOW</a>
                     @else
-                    <a href="#" class ="form-control btn btn-primary">{{ GoogleTranslate::trans("OUT OF STOCK", app()->getLocale()) }}</a>
+                    <a href="#" class ="form-control btn btn-primary">OUT OF STOCK</a>
 
                     @endif
                     {{-- <a href="{{route('products.placeorder')}}" class ="form-control btn btn-primary">DOWNLOAD E-BOOK</a> --}}
@@ -101,7 +101,7 @@
 
   </div>
   <div class="row m-2 px-md-5">
-    <h4 class=""> {{ GoogleTranslate::trans("REVIEWS", app()->getLocale()) }}</h4>
+    <h4 class=""> REVIEWS</h4>
 </div>
   <div class="row m-2 p-md-5" >
     <div id="product_reviews_ajax">
@@ -113,16 +113,16 @@
      <div class="col-md-12 col-sm-12 mb-3" >
          <div class="card mb-3" >
              <div class="card-body">
-               <h5 class="card-title"><img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" @if(Auth::user()->profile_image_name==null) src="{{asset('img/undraw_profile.svg')}}" @else src="{{asset(Auth::user()->profile_image_name)}}" @endif /> &nbsp {{ GoogleTranslate::trans(Auth::user()->name, app()->getLocale()) }}</h5>
+               <h5 class="card-title"><img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" @if(Auth::user()->profile_image_name==null) src="{{asset('img/undraw_profile.svg')}}" @else src="{{asset(Auth::user()->profile_image_name)}}" @endif /> &nbsp {{ Auth::user()->name }}</h5>
                  <div class="row">
                      <div class="col">
-                         <textarea oninvalid="this.setCustomValidity('{{ GoogleTranslate::trans('Please Enter Comments', app()->getLocale()) }}')" oninput="this.setCustomValidity('')" required  name="comment" placeholder=" {{ GoogleTranslate::trans('Add Comments here', app()->getLocale()) }}" class="form-control" ></textarea>
+                         <textarea oninvalid="this.setCustomValidity('Please Enter Comments')" oninput="this.setCustomValidity('')" required  name="comment" placeholder="Add Comments here" class="form-control" ></textarea>
                      </div>
                  </div>
                  <div class="d-flex align-items-center justify-content-between ">
                    <p class="card-text">
                      </p>
-                   <a href="" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#ratingStarModel">{{ GoogleTranslate::trans('ADD COMMENT', app()->getLocale()) }}</a>
+                   <a href="" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#ratingStarModel">ADD COMMENT</a>
                  </div>
              </div>
            </div>
@@ -132,8 +132,8 @@
          <div class="modal-dialog modal-dialog-centered">
          <div class="modal-content">
              <div class="modal-header">
-             <h5 class="modal-title" id="exampleModalLabel"> {{ GoogleTranslate::trans('RATE OUT OF', app()->getLocale()) }} 5</h5>
-             <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">{{ GoogleTranslate::trans('Edit Comment', app()->getLocale()) }}</button>
+             <h5 class="modal-title" id="exampleModalLabel"> RATE OUT OF 5</h5>
+             <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Edit Comment</button>
              </div>
              <div class="modal-body">
              <div class="rate">
@@ -151,7 +151,7 @@
              </div>
              <div class="modal-footer">
              {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-             <button type="submit" id="review-proceed" class="btn btn-primary"> {{ GoogleTranslate::trans('Proceed', app()->getLocale()) }}</button>
+             <button type="submit" id="review-proceed" class="btn btn-primary"> Proceed</button>
              </div>
          </div>
          </div>
@@ -212,11 +212,11 @@
     
       if (dots.style.display === "none") {
         dots.style.display = "inline";
-        btnText.innerHTML = "{{ GoogleTranslate::trans('Read more', app()->getLocale()) }}"; 
+        btnText.innerHTML = "Read more"; 
         moreText.style.display = "none";
       } else {
         dots.style.display = "none";
-        btnText.innerHTML = "{{ GoogleTranslate::trans('Read less', app()->getLocale()) }}"; 
+        btnText.innerHTML = "Read less"; 
         moreText.style.display = "inline";
       }
     }

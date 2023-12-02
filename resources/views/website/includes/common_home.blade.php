@@ -49,7 +49,7 @@
     
     <div class="mt-2">
         <div class=" d-flex justify-content-between">
-                <h3 class="mb-3 ">{{ GoogleTranslate::trans($segment->name, app()->getLocale()) }}</h3>
+                <h3 class="mb-3 ">{{ $segment->name}}</h3>
                 <a href="{{route('category.publications_comics_others.products',['segment_id'=>$segment->id])}}" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"/></svg>
                 </a>
@@ -63,7 +63,7 @@
                         <img src={{asset('storage/thumbnail/posterimages/'.$product->poster_image_name)}} class="card-img-top p-2" alt="Card Image"></a>
                     <div class="card-body">
                        <div class="row">
-                        <h6 class="card-text product-title">{{ GoogleTranslate::trans($product->title, app()->getLocale()) }}</h6>
+                        <h6 class="card-text product-title">{{$product->title }}</h6>
                        </div>
                        <div class="row">
                         <div class = "product-rating">
@@ -76,7 +76,7 @@
                               @endfor
                               <span>({{$product->viewers}})</span>
                             @else
-                              <p><span><small>{{ GoogleTranslate::trans("No ratings yet!", app()->getLocale()) }}</small></span></p>
+                              <p><span><small>No ratings yet!</small></span></p>
                             @endif
                               
                             </div>
@@ -84,7 +84,7 @@
                       
                        <div class="row">
                         <div class="col product-genre">
-                           {{ GoogleTranslate::trans($product->genreName, app()->getLocale()) }}
+                           {{$product->genreName }}
                         </div>
                        </div>
                      
@@ -113,7 +113,7 @@
 @if($segment->name=="SUBJECTS")
 <div class="container-fluid pb-5">
     <div class="d-grid gap-2 col-12 p-5">
-        <a href="{{route('subject.home')}}" class="btn btn-primary ">{{ GoogleTranslate::trans('SUBJECTS', app()->getLocale()) }}</a>
+        <a href="{{route('subject.home')}}" class="btn btn-primary ">SUBJECTS</a>
     </div>
 </div>
 @endif

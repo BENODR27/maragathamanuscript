@@ -59,7 +59,7 @@
                                       <a href="{{route('category.publications_comics_others.product',['product_id'=>$product->id])}}" >
                                       <img src={{asset($product->poster_image_name)}} alt="Product Image" class="img-fluid">
                                       
-                                          <h5 class="mt-2">{{ GoogleTranslate::trans($product->title, app()->getLocale()) }}</h5>
+                                          <h5 class="mt-2">{{ $product->title }}</h5>
                                           <div class = "product-rating">
                                               @if($product->rating_average!=0)
                                                 @for ($i = 1; $i <= $product->rating_average; $i++)
