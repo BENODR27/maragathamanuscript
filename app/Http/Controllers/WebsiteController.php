@@ -15,6 +15,8 @@ use App\Models\Appointment;
 
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use Share;
+
 class WebsiteController extends Controller
 {
     function userRegisterSave(Request $req){
@@ -88,6 +90,15 @@ class WebsiteController extends Controller
         $user=Auth::user();
         return view('website.screens.about',['user'=>$user,'pageTitle'=>"ABOUT"]);
     }
+    function share(Request $req){
+        
+        $user=User::find($req->shared_id);
+        if($user->public){
+            return view('website.screens.profile.share',['user'=>$user]);
+        }else{
+            return redirect('/')->with(["msg"=>"Not permitted please contact Author"]);
+        }
+    }
     function notifications(){
 
         $user=Auth::user();
@@ -98,6 +109,14 @@ class WebsiteController extends Controller
       $user=User::find($req->user_id);
       $user->public=$user->public?false:true;
       $user->save();
-      return redirect()->back();
+      return redirect()->back()->with(["msg"=>"Your Profile Mode Changed"]);;
+    }
+    function userProducts(Request $req){ 
+        try {
+            $segmentProducts=Product::where('user_id',$req->user_id)->where('is_active',true)->get();
+            return view('website.screens.publications_comics_others.products',['products'=>$segmentProducts,'pageTitle'=>User::find($req->user_id)->name]);
+        }catch (\Exception $e) {
+            $this->errorThrow();
+        }
     }
 }

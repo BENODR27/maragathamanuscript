@@ -56,6 +56,7 @@
 <!-- header end -->
 @yield('content')
 
+
 @include('website.includes.footer')
 
     <!-- load scripts -->
@@ -75,7 +76,14 @@
   });
   
 </script>
+@include('includes.msg')
 <script>
+    $(document).ready(function () {
+        @if (session('msg'))
+            $('#msgModal').modal('show');
+        @endif
+    });
+
     window.addEventListener('load', function() {
     document.getElementById('preloader').style.display = 'none';
 });

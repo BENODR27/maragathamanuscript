@@ -55,6 +55,10 @@ Route::post('/product/search',[ProductController::class,'productSearch'])->name(
 Route::get('/genre/list',[GenreController::class,'genresList'])->name('genres.list');
 Route::get('/genre/products/{genre_id}',[GenreController::class,'genresProductsList'])->name('genres.products.list');
 
+Route::get('user/share', [WebsiteController::class,'share'])->name('website.user.share');
+Route::get('user/share/products', [WebsiteController::class,'userProducts'])->name('website.user.products');
+
+
 Route::group(['middleware' => 'webwatchman'], function (){
 
     Route::get('/mark-as-read', [NotificationController::class,'markAsRead'])->name('mark-as-read');

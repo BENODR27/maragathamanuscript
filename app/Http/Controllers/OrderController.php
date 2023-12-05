@@ -128,7 +128,7 @@ class OrderController extends Controller
        if(!session('placesingleorder')){
         Cart::where('user_id',Auth::user()->id)->where('quantity','!=',0)->delete();
        }
-        return redirect()->route('order.list')->with('message', 'Order placed successfully');
+        return redirect()->route('order.list')->with('msg', 'Order placed successfully');
     }
     function view(Request $req){
         $products=[];

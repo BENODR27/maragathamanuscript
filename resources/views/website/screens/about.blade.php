@@ -25,7 +25,7 @@
 
               </div>
               <div>
-                <a id="link_id" hidden  href="www.google.com"></a>
+                <a id="link_id" hidden  href="{{route('website.user.share',["shared_id"=>$user->id])}}"></a>
                   <i class="fa fa-share-alt" onclick="copyFunction()" aria-hidden="true"></i>
               </div>
             </div>
@@ -35,10 +35,10 @@
                   <div class="avatar-upload">
                     <div class="avatar-edit">
                         <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
-                        <label for="imageUpload"></label>
+                        {{-- <label for="imageUpload"></label> --}}
                     </div>
                     <div class="avatar-preview">
-                        <div id="imagePreview" style="background-image: url('http://i.pravatar.cc/500?img=7');">
+                        <div id="imagePreview" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUQHvRu2YQwSej0i9xzdubvVi7i8FGCrEYye688jOh42InYdYk4cByUTJn81a4hm_EAB8&usqp=CAU');">
                         </div>
                     </div>
                 </div>
@@ -54,24 +54,46 @@
             </div>
             </div>
               <ul class="list-group list-group-flush">
-                <div class="list-group-item list-group-item-action  d-flex align-items-center justify-content-between">
+
+
+                <a class="list-group-item list-group-item-action  d-flex align-items-center justify-content-between" data-bs-toggle="collapse" href="#settingscoll" role="button" aria-expanded="false" aria-controls="settingscoll">
+                  
+                  <div>Settings</div>
+                  <div><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                </a>
+            
+              <div class="collapse" id="settingscoll">
+                <div class="card card-body">
+                  <div class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
+                    <div>Profile Visibility</div>
+                    <div><a class="btn btn-primary"href="{{route('website.user.publicToggle',['user_id'=>$user->id])}}">{{$user->public?"PUBLIC":"PRIVATE"}}</a></div>
+                  </div>              
+                  <div class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
+                    <div>Update Profile Image</div>
+                    {{-- @include('includes.imagecrop') --}}
+                    <div><a class="btn btn-primary"href="">Upload</a></div>
+                  </div>              
+                </div>
+              </div>
+
+                {{-- <div class="list-group-item list-group-item-action  d-flex align-items-center justify-content-between">
                   <div>Settings</div>
                   <div><i class="fa fa-pencil-square" aria-hidden="true"></i></div>
-                </div>
+                </div> --}}
               <a href="{{route('order.list')}}" class="list-group-item list-group-item-action  d-flex align-items-center justify-content-between">
                 
                 <div>Orders</div>
-                <div><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                <div><i class="fa fa-caret-right" aria-hidden="true"></i></div>
               </a>
               <a href="{{route('product.cart.list')}}" class="list-group-item list-group-item-action  d-flex align-items-center justify-content-between">
                 
                 <div>Cart</div>
-                <div><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                <div><i class="fa fa-caret-right" aria-hidden="true"></i></div>
               </a>
               <a href="{{route('submission.list')}}" class="list-group-item list-group-item-action  d-flex align-items-center justify-content-between">
                 
                 <div>submission({{$user->works->count()}})</div>
-                <div><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                <div><i class="fa fa-caret-right" aria-hidden="true"></i></div>
               </a>
               <a href="{{route('appointment.list')}}" class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
                 
@@ -79,15 +101,15 @@
                   Appointments({{$user->appointments->count()}})
                 </div>
                 <div>
-                  <i class="fa fa-caret-down" aria-hidden="true"></i>
+                  <i class="fa fa-caret-right" aria-hidden="true"></i>
                 </div>
               </a>
               {{-- <a href="{{route('draft.list')}}" class="list-group-item list-group-item-action">My Saves & Drafts</a> --}}
               
-              <div class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
+              {{-- <div class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
                 <div>Profile Visibility</div>
                 <div><a class="btn btn-primary"href="{{route('website.user.publicToggle',['user_id'=>$user->id])}}">{{$user->public?"PUBLIC":"PRIVATE"}}</a></div>
-              </div>
+              </div> --}}
            
                 <a class="list-group-item list-group-item-action  d-flex align-items-center justify-content-between" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                   
@@ -213,19 +235,6 @@
   } 
   copyStringToClipboard(copyText);
   alert("URL copied to clipboard");}
-  function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            $('#imagePreview').css('background-image', 'url('+e.target.result +')');
-            $('#imagePreview').hide();
-            $('#imagePreview').fadeIn(650);
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-$("#imageUpload").change(function() {
-    readURL(this);
-});
+
 </script>
 @endsection

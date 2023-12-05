@@ -82,7 +82,15 @@
     <script src="{{asset("layout/assets/js/scripts.js")}}"></script>
     
     @yield('script')
+    @include('includes.msg')
 
+<script>
+      $(document).ready(function () {
+        @if (session('msg'))
+            $('#msgModal').modal('show');
+        @endif
+    });
+</script>
 </body>
 
 </html>

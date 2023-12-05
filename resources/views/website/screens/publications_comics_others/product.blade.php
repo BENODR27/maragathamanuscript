@@ -45,7 +45,10 @@
                   </div>
                  <div class="row mt-2 mt-md-4">
                   <div class="col">
+                    <a @if($product->user->public) href="{{route('website.user.share',["shared_id"=>$product->user->id])}}" @else href="#"  @endif>
                       <div class="btn btn-outline-success"><img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" @if($product->user->profile_image_name==null) src="{{asset('img/undraw_profile.svg')}}" @else src="{{asset($product->user->profile_image_name)}}" @endif /> &nbsp {{ $product->user->name }}</div>
+
+                    </a>
                   </div>
                  </div>
 

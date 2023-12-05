@@ -41,7 +41,7 @@ class CartController extends Controller
       $cart->save();
       }
 
-      return redirect()->route('product.cart.list');
+      return redirect()->route('product.cart.list')->with(["msg"=>"Book Added to Cart"]);
    }
 
 
