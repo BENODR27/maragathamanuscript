@@ -45,7 +45,7 @@
                                         @endif
                                           
                                         </div>
-                                <p class="genre-text">{{ $product->genreName }}</p>
+                                <p class="genre-text">{{ $product->genre->name }}</p>
 
                                 {{-- <div class="d-flex justify-content-between pt-3">
                                     <h4 class="text-primary">{{$product->price}}  &#8377;</h4>

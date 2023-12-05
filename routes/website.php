@@ -12,7 +12,11 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\DraftController;
 use Illuminate\Support\Facades\Auth;
+
+use App\Livewire\DraftList;
+
 
 Route::get('/userlogin', function () {
     return view('website.auth.login');
@@ -69,16 +73,26 @@ Route::group(['middleware' => 'webwatchman'], function (){
         Route::get('add', [AppointmentController::class,'add'])->name('appointment.add');
         Route::post('save', [AppointmentController::class,'save'])->name('appointment.save');
     });
-    Route::get('user/about', [WebsiteController::class,'about'])->name('website.user.about');
-    Route::get('user/notifications', [WebsiteController::class,'notifications'])->name('website.user.notifications');
-    Route::get('user/publicToggle', [WebsiteController::class,'publicToggle'])->name('website.user.publicToggle');
-    Route::get('product/cart/list',[CartController::class,'cartList'] )->name('product.cart.list');
-    Route::get('product/cart/add',[CartController::class,'addToCart'] )->name('product.cart.add');
-    Route::get('product/cart/delete',[CartController::class,'delete'] )->name('cart.product.delete');
-    Route::get('product/placeorder', [CartController::class,'proceedCheckout'])->name('products.placeorder');
-    Route::post('confirmorder', [OrderController::class,'confirmorder'])->name('confirmorder');
-    Route::post('confirmsingleorder', [OrderController::class,'confirmsingleorder'])->name('confirmsingleorder');
+
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('about', [WebsiteController::class,'about'])->name('website.user.about');
+        Route::get('notifications', [WebsiteController::class,'notifications'])->name('website.user.notifications');
+        Route::get('publicToggle', [WebsiteController::class,'publicToggle'])->name('website.user.publicToggle');
+    });
+   
+    Route::group(['prefix' => 'product'], function () {
+        Route::group(['prefix' => 'cart'], function () {
+            Route::get('list',[CartController::class,'cartList'] )->name('product.cart.list');
+            Route::get('add',[CartController::class,'addToCart'] )->name('product.cart.add');
+            Route::get('delete',[CartController::class,'delete'] )->name('cart.product.delete');
+        });
+        Route::get('placeorder', [CartController::class,'proceedCheckout'])->name('products.placeorder');
+    });
+
+    Route::post('confirm/order', [OrderController::class,'confirmorder'])->name('confirmorder');
+    Route::post('confirm/singleorder', [OrderController::class,'confirmsingleorder'])->name('confirmsingleorder');
     Route::get('order/list', [OrderController::class,'orderlist'])->name('order.list');
+
     Route::get('subject/home', [SubjectController::class,'home'])->name('subject.home');
     Route::post('review/add', [RatingController::class,'add'])->name('review.add');
 });
@@ -87,3 +101,7 @@ Route::group(['middleware' => 'webwatchman'], function (){
 Route::get('list/subjects/filter/{isTamilSelected}/{isEnglishSelected}/{selectedDepartmentId}',[SubjectController::class,'subjectsFilter'])->name('subject.filter');
 Route::get('/genre/product/reviews/{product_id}', [RatingController::class,'reviewsList'])->name('review.list');
 Route::get('/cart/updateQuantity/{cart_id}/{quantity}', [CartController::class,'updateQuantity'])->name('cart.updateQuantity');
+
+
+Route::any('/draft/edit', [DraftController::class,'draftEdit'])->name('draft.edit');
+Route::get('/draft/list',DraftList::class)->name('draft.list');

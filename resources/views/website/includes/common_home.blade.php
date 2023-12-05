@@ -84,7 +84,7 @@
                       
                        <div class="row">
                         <div class="col product-genre">
-                           {{$product->genreName }}
+                           {{$product->genre->name }}
                         </div>
                        </div>
                      

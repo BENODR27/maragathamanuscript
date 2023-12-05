@@ -27,9 +27,11 @@
                             HOME
                            
                         </span></a></li>
-                        <li class="mb-3"><a href="#product-category"><span class="ms-1">SHOP</span></a></li>
-                        <li class="mb-3"><a href="#author-id"><span class="ms-1">ABOUT US</span></a></li>
-                        <li class="mb-3"><a href="#footer"><span class="ms-1">CONTACT</span></a></li>
+                        <li class="mb-3"><a href="#product-category"><span class="ms-1">GENRE</span></a></li>
+                        <li class="mb-3"><a href="#author-id"><span class="ms-1">SUBMISSION</span></a></li>
+                        <li class="mb-3"><a href="#footer"><span class="ms-1">APPOINTMENTS</span></a></li>
+                        <li class="mb-3"><a href="#footer"><span class="ms-1">NOTIFICATIONS</span></a></li>
+                        <li class="mb-3"><a href="#footer"><span class="ms-1">ABOUT</span></a></li>
                     </ul>
                 </div>
             </div>

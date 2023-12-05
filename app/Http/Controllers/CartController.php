@@ -8,11 +8,9 @@ use App\Models\Product;
 use Auth;
 class CartController extends Controller
 {
-    //add product to cart
     function cartList(){
         $carts=Cart::where('user_id',Auth::user()->id)->get()->reverse()->map(function($cart){
-            $product=Product::find($cart->product_id);
-            
+            $product=$cart->product;
             if($product->quantity<$cart->quantity){
                 $cart->quantity=$product->quantity;
                 $cart->save();
@@ -21,7 +19,6 @@ class CartController extends Controller
                 $cart->quantity=1;
                 $cart->save();
             }
-            $cart->product=$product;
             return $cart;
         });
         $totalPrice = $carts->sum(function ($cart) {
@@ -29,6 +26,8 @@ class CartController extends Controller
         });
         return view('website.screens.cart',['pageTitle'=>"CART",'carts'=>$carts,'totalPrice'=>$totalPrice]);
     }
+
+        //add product to cart from website
 
    function addToCart(Request $req){
       $checkCart=Cart::where('user_id',Auth::user()->id)->where('product_id',$req->product_id)->get();
@@ -46,12 +45,10 @@ class CartController extends Controller
    }
 
 
-  function delete(Request $req){
-   Cart::find($req->cart_id)->delete();
-   return redirect()->back();
-  }
-
-
+    function delete(Request $req){
+    Cart::find($req->cart_id)->delete();
+    return redirect()->back();
+    }
 
     function proceedCheckout(Request $req){
         if($req->placesingleorder==true){

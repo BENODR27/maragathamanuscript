@@ -116,7 +116,7 @@
           </div>
           @endforeach
           @else
-          <div class="accordion-item">
+          <div class="text-center">
             <h2 class="accordion-header">
              NO ORDERS FOUND
             </h2>
@@ -135,10 +135,10 @@
     .accordion-button:not(.collapsed) {
     background-color: transparent;
     }
-    .accordion-header {
+    /* .accordion-header {
      border: none ;
      outline: none;
-    }
+    } */
   
     .accordion-button {
         display:inherit;

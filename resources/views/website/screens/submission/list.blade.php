@@ -32,21 +32,6 @@
       <div class="row">
         @foreach ($works as $work)
         <div >
-            {{-- <div class="card text-center mt-3">
-                <div class="card-header">
-                {{$work->author_name}}
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">{{$work->genreName}}</h5>
-                    <p class="card-text">{{$work->published==1?"Published":"Pending"}}</p>
-                    <a href="#" class="btn btn-primary">{{$work->title}}</a>
-                </div>
-                <div class="card-footer text-muted">
-                    {{$work->created_at}}           
-                    </div>
-            </div>
-            
-        </div> --}}
         <div class="col-md-12">
             <div class="card text-center mt-2">
                 <div class="card-header">
@@ -76,7 +61,7 @@
                    
                 </div>
             </div>
-           </div>
+        </div>
         @endforeach
        
        

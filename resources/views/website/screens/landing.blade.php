@@ -24,30 +24,27 @@
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/">
-                                @if(app()->getLocale()=="en")
                                 HOME
-                                @else
-                                முகப்பு
-                                @endif
+                                
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#product-category">Shop</a>
+                            <a class="nav-link" href="#product-category">SHOP</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#author-id">About Us</a>
+                            <a class="nav-link" aria-current="page" href="#author-id">ABOUT US</a>
                         </li>
                        
                         <li class="nav-item">
-                            <a class="nav-link" href="#footer">Contact</a>
+                            <a class="nav-link" href="#footer">CONTACT</a>
                         </li>
                         
                     </ul>
-                    <select class="p-1 changeLang complementary-background rounded-pill text-white">
+                    {{-- <select class="p-1 changeLang complementary-background rounded-pill text-white">
                         <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>English</option>
                         <option value="ta" {{ session()->get('locale') == 'ta' ? 'selected' : '' }}>Tamil</option>
                         
-                    </select>
+                    </select> --}}
                 </div>
                 <!-- .collapse -->
                 <div class="header-seperator"></div>

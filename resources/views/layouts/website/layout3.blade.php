@@ -16,8 +16,8 @@
     <link href="{{asset("layout/assets/css/fontawesome/solid.css")}}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{asset("layout/assets/css/style.css")}}">
-
     <title>MM</title>
+    @livewireStyles
 </head>
 <script>
   window.addEventListener('load', function() {
@@ -37,6 +37,7 @@
     a{
   text-decoration: none;
 }
+
 </style>
 <!-- header end -->
 <div id="preloader">
@@ -82,7 +83,7 @@
     <script src="{{asset("layout/assets/js/scripts.js")}}"></script>
     
     @yield('script')
-
+    @livewireScripts
 </body>
 
 </html>
