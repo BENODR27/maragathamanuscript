@@ -43,12 +43,11 @@
                 Price:
                 <span class="badge badge-primary badge-pill p-2">{{$product->price}}</span>
               </li>
-              @if($product->published_at!=null)
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 Quantity:
                 <span class="badge badge-primary badge-pill p-2">{{$product->quantity}}</span>
               </li>
-              @endif
+             
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 Rating Average:
                 <span class="badge badge-primary badge-pill p-2">{{$product->rating_average}}</span>
