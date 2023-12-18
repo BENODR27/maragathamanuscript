@@ -88,8 +88,8 @@ img {
 			  </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn save hide " >crop</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save & close</button>
+          {{-- <button type="button" class="btn  hide " >crop</button> --}}
+          <button type="button" class="btn btn-primary save" data-bs-dismiss="modal">Save & close</button>
         </div>
       </div>
     </div>
