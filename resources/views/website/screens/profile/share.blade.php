@@ -21,7 +21,7 @@
                         <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
                     </div>
                     <div class="avatar-preview">
-                        <div id="imagePreview" style="background-image: url('http://i.pravatar.cc/500?img=7');">
+                        <div id="imagePreview" style="background-image: url('{{asset('storage/profile/'.$user->profile_image_name)}}');">
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     <div class = "product-content mt-4">
                                 <h5 >{{$user->name}}</h5>
                                 <p >{{$user->email}}</p>
-                                <p >4.6(56)</p>
+                                {{-- <p >4.6(56)</p> --}}
                     </div>
                 </div>
             </div>

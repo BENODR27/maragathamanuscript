@@ -12,7 +12,7 @@ use App\Models\Category;
 use App\Models\Work;
 use App\Models\Rating;
 use App\Models\Appointment;
-
+use App\Helpers\ImageHelper;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use Share;
@@ -118,5 +118,46 @@ class WebsiteController extends Controller
         }catch (\Exception $e) {
             $this->errorThrow();
         }
+    }
+    function editUser(Request $request){
+        $user=User::find($request->user_id);
+        if($user->address==null){
+            $user->address = json_decode(json_encode([
+                'door_no' => "",
+                'street_name' => "",
+                'locality_landmark' => "",
+                'district' => "",
+                'state' => "",
+                'country' => "",
+                'pincode' => "",
+            ]));
+        }else{
+            $user->address=json_decode($user->address);
+        }
+       
+        return view('website.screens.profile.edit',['user'=>$user,'address'=>$user->address]);
+    }
+    function updateUser(Request $req){
+        $user=User::find($req->user_id);
+        $user->name=$req->name;
+        $user->email=$req->email;
+        $user->mobile_number=$req->mobile_number;
+        $user->language=$req->language;
+        if($req->poster_image!=null){
+            
+            ImageHelper::deleteImage($user->profile_image_name,"profile/",true);
+            $user->profile_image_name= ImageHelper::storeImage($req->poster_image,"profile/"); 
+        }
+        $user->address = json_encode([
+            'door_no' => $req->door_no,
+            'street_name' => $req->street_name,
+            'locality_landmark' => $req->input('locality_landmark'),
+            'district' => $req->input('district'),
+            'state' => $req->input('state'),
+            'country' => $req->input('country'),
+            'pincode' => $req->input('pincode'),
+        ]);
+        $user->update();
+        return redirect()->route('website.user.about');
     }
 }

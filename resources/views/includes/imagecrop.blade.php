@@ -53,7 +53,7 @@ img {
 
     <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-	Upload poster / thumbnail image
+	Upload image
   </button>
   <!-- Modal -->
 <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -95,7 +95,7 @@ img {
     </div>
   </div>
   <div class="mb-3">
-	<label>Uploaded Poster/ Thumbnail Image:</label>
+	<label></label>
 
 	<img class="cropped img-fluid" src="" alt="">
 	<input type="text" name="poster_image" class="form-control hide" id="poster_image" aria-describedby="posterImageHelp">

@@ -84,6 +84,10 @@ Route::group(['middleware' => 'webwatchman'], function (){
         Route::get('publicToggle', [WebsiteController::class,'publicToggle'])->name('website.user.publicToggle');
     });
    
+    Route::get('/edit/user', [WebsiteController::class,'editUser'])->name('website.user.edit');
+    Route::put('/update/user', [WebsiteController::class,'updateUser'])->name('website.user.update');
+
+
     Route::group(['prefix' => 'product'], function () {
         Route::group(['prefix' => 'cart'], function () {
             Route::get('list',[CartController::class,'cartList'] )->name('product.cart.list');

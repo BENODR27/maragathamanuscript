@@ -38,7 +38,7 @@
                         {{-- <label for="imageUpload"></label> --}}
                     </div>
                     <div class="avatar-preview">
-                        <div id="imagePreview" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUQHvRu2YQwSej0i9xzdubvVi7i8FGCrEYye688jOh42InYdYk4cByUTJn81a4hm_EAB8&usqp=CAU');">
+                        <div id="imagePreview" style="background-image: url('{{asset('storage/profile/'.$user->profile_image_name)}}');">
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div class = "product-content mt-4">
                                 <h5 >{{$user->name}}</h5>
                                 <p >{{$user->email}}</p>
-                                <p >4.6(56)</p>
+                                {{-- <p >4.6(56)</p> --}}
                     </div>
                 </div>
             </div>
@@ -69,9 +69,9 @@
                     <div><a class="btn btn-primary"href="{{route('website.user.publicToggle',['user_id'=>$user->id])}}">{{$user->public?"PUBLIC":"PRIVATE"}}</a></div>
                   </div>              
                   <div class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
-                    <div>Update Profile Image</div>
+                    <div>Edit Profile</div>
                     {{-- @include('includes.imagecrop') --}}
-                    <div><a class="btn btn-primary"href="">Upload</a></div>
+                    <div><a class="btn btn-primary" href="{{route('website.user.edit',['user_id'=>$user->id])}}">Edit</a></div>
                   </div>              
                 </div>
               </div>
