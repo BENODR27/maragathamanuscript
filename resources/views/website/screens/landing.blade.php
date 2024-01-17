@@ -9,12 +9,10 @@
                 <!--site logo -->
                 
                 
-                <a class="navbar-brand" href="index.html">
-                    <h4>
-                        MM
-                    </h4>
-                    {{-- <img class="logo-dark" src="assets/images/logo.png" alt="Site Logo" width="200"> --}}
-                    {{-- <img class="logo-white" src="assets/images/index2/logo-main-1.png" alt="Site Logo" width="200"> --}}
+                <a class="navbar-brand" href="/">
+                   
+                    {{-- <img class="logo-dark" src="img/images/logo.png" alt="Site Logo" width="200"> --}}
+                    <img class="logo-white" src="img/mm/logo.png" alt="Site Logo" width="50">
                 </a>
                 <button class="navbar-toggler me-3 ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -31,9 +29,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#product-category">SHOP</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="#author-id">ABOUT US</a>
-                        </li>
+                        </li> --}}
                        
                         <li class="nav-item">
                             <a class="nav-link" href="#footer">CONTACT</a>
@@ -65,7 +63,7 @@
                     <p class="fs-6 fw-normal book-quote">'The more that you learn, the more places you\'ll go.” “Books are a uniquely portable magic.” “I kept always two books in my pocket, one to read, one to write in.” “The person who deserves most pity is a lonesome one on a rainy day who doesn\'t know how to read.”
                         </p>
                     <div class="d-flex align-items-center gap-4 mt-5">
-                        <a href="#author-id" class="btn btn-light rounded-pill"> More</a>
+                        {{-- <a href="#author-id" class="btn btn-light rounded-pill"> More</a> --}}
                         <a href="http://www.youtube.com/watch?v=0O2aH4XLbto" class="text-decoration-none play-2 video-play ">
                             <div class="d-flex gap-2 align-items-center">
                                 <i class="bi bi-play-fill fs-4"></i>
@@ -148,7 +146,7 @@
     <!-- End help section -->
 
     <!-- About section -->
-    <section class="about-section-2 py-5" id="author-id">
+    {{-- <section class="about-section-2 py-5" id="author-id">
         <div class="container">
             <div class="row d-flex align-items-center gx-8 gy-5 py-5">
                 <div class="col-md-6">
@@ -201,7 +199,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- End about-section -->
 
 

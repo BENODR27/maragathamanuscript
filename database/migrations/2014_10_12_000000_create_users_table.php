@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('role')->default('admin');
             $table->string('language')->default('english');
             $table->json('address')->nullable();
-            $table->string('profile_image_name')->nullable();
+            $table->string('profile_image_name')->default('undraw_profile.svg');
             $table->bigInteger('mobile_number')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

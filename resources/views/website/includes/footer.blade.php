@@ -5,17 +5,17 @@
             <div class="col">
                 <h4 class="mb-4 footerheader">Contact</h4>
                 <ul class="li-unstyled ps-0 footer-content footer-contact">
-                    <li class="mb-3"><a href="#"><i class="fa-solid fa-location-dot"></i>&nbsp 
-                        Maragathaa Manuscripts</a></li>
-                    <li class="mb-3"><a href="#"><i class="fa-solid"></i> 13/91 A2 ,J.A.S Illam</a></li>
-                    <li class="mb-3"><a href="#"><i class="fa-solid "></i> Pattatharavilai, Changai</a></li>
-                    <li class="mb-3"><a href="#"><i class="fa-solid "></i> Kanjiracode Post.
-                        </a>
+                    <li class="mb-3"><i class="fa-solid fa-location-dot"></i>&nbsp 
+                        Maragathaa Manuscripts</li>
+                    <li class="mb-3"><i class="fa-solid"></i> 13/91 A2 ,J.A.S Illam</li>
+                    <li class="mb-3"><i class="fa-solid "></i> Pattatharavilai, Changai</li>
+                    <li class="mb-3"><i class="fa-solid "></i> Kanjiracode Post.
+                       
                     </li>
-                    <li class="mb-3"><a href="#"><i class="fa-solid "></i>
-                        Kanyakumari District.</a>
+                    <li class="mb-3"><i class="fa-solid "></i>
+                        Kanyakumari District.
                     </li>
-                    <li class="mb-3"><a href="#"><i class="fa-solid "></i> PIN: 629155</a></li>
+                    <li class="mb-3"><i class="fa-solid "></i> PIN: 629155</li>
                 </ul>
             </div>
             <div class="col">
@@ -28,7 +28,7 @@
                            
                         </span></a></li>
                         <li class="mb-3"><a href="#product-category"><span class="ms-1">SHOP</span></a></li>
-                        <li class="mb-3"><a href="#author-id"><span class="ms-1">ABOUT US</span></a></li>
+                        {{-- <li class="mb-3"><a href="#author-id"><span class="ms-1">ABOUT US</span></a></li> --}}
                         <li class="mb-3"><a href="#footer"><span class="ms-1">CONTACT</span></a></li>
                     </ul>
                 </div>
@@ -62,7 +62,7 @@
         </div>
     </div>
     <div class="copyright mt-5">
-        <p class="py-4">&copy; 2023 futureinterstellar. All Rights Reserved</p>
+        <p class="py-4">&copy; 2024 futureinterstellar. All Rights Reserved</p>
     </div>
 
 

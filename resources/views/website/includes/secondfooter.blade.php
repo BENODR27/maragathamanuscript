@@ -18,7 +18,7 @@
                     <li class="mb-3"><a href="#"><i class="fa-solid "></i> PIN: 629155</a></li>
                 </ul>
             </div>
-            <div class="col">
+            {{-- <div class="col">
                 <div class="footer-links">
                     <h4 class="mb-4 footerheader">Navigation</h4>
                     <ul class="li-unstyled ps-0 footer-content hyphen-icon">
@@ -34,7 +34,7 @@
                         <li class="mb-3"><a href="#footer"><span class="ms-1">ABOUT</span></a></li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
             
             
             <div class="col">

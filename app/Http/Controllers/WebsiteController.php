@@ -20,6 +20,7 @@ use Share;
 class WebsiteController extends Controller
 {
     function userRegisterSave(Request $req){
+        
        $user=new User();
        $user->name=$req->name;
        $user->email=$req->email;
