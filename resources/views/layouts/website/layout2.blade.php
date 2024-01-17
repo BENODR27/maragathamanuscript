@@ -89,5 +89,31 @@
 });
 
 </script>
+<script>
+    /*
+@author Rafael Rinaldi (rafaelrinaldi.com)
+@date Sep 14, 2013
+*/
+(function($) {
+	
+	var bookcm = $('.bookcm'),
+      cover = bookcm.find('.bookcm--cover');
+
+	bookcm.hover(bookInHandler, bookOutHandler);
+
+	function bookInHandler( event ) {
+		event.preventDefault();
+		cover.addClass('is-open');
+		return false;
+	}
+
+	function bookOutHandler( event ) {
+		event.preventDefault();
+		cover.removeClass('is-open');
+		return false;
+	}
+
+})(jQuery);
+</script>
 
 </html>

@@ -57,40 +57,9 @@
         <div class="row">
             <div class="col-12 scrollable-container">
                @foreach ($segment->products as $product)
-               <div class="scrollable-row">
-                <div class="card  bg-white" style="width: 12rem;">
-                    <a href="{{route('category.publications_comics_others.product',['product_id'=>$product->id])}}" >
-                        <img src={{asset('storage/thumbnail/posterimages/'.$product->poster_image_name)}} class="card-img-top p-2" alt="Card Image"></a>
-                    <div class="card-body">
-                       <div class="row">
-                        <h6 class="card-text product-title">{{$product->title }}</h6>
-                       </div>
-                       <div class="row">
-                        <div class = "product-rating">
-                            @if($product->rating_average!=0)
-                              @for ($i = 1; $i <= $product->rating_average; $i++)
-                              <i style="color:green"class = "fa fa-star"></i>
-                              @endfor
-                              @for ($i = $product->rating_average+1; $i <= 5; $i++)
-                              <i class = "fa fa-star"></i>
-                              @endfor
-                              <span>({{$product->viewers}})</span>
-                            @else
-                              <p><span><small>No ratings yet!</small></span></p>
-                            @endif
-                              
-                            </div>
-                       </div>
-                      
-                       <div class="row">
-                        <div class="col product-genre">
-                           {{$product->genre->name }}
-                        </div>
-                       </div>
-                     
-                    </div>
-                </div>
-                </div> 
+                  
+               @include('website.includes.product_card_main')
+
                  @endforeach
             </div>
         </div>

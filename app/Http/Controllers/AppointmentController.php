@@ -32,7 +32,7 @@ class AppointmentController extends Controller
         $messagetone="success";
         $custommessage="";
 		Notification::send($user,new UserNotification($message,$messagetone,$custommessage));
-        return redirect()->route('appointment.list')->with(['msg'=>"successfully added"]);
+        return redirect()->route('appointment.list')->with(['msg'=>"successfully added",'status'=>'Success']);
     }
     function browse(Request $req){
         if($req->filter=="pending"){

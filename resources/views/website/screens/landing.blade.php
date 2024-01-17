@@ -120,15 +120,8 @@
                           
                             @foreach ($categories as $category)
                             @if($category->name!="OTHERS")
-                            <div class="col-md-4">
-                                <div class="help-content bg-white rounded-2 px-4 py-5">
-                                    <h3 class="help-content-title pb-3 pt-4">{{ $category->name}}</h3>
-                                    <p>{{ $category->description }}</p>
-                                    <h5 class="help-content-link pt-3 pb-3"><a href="{{route('category.segments',['category_id'=>$category->id])}}" class="text-decoration-none btn btn-primary">Explore Here</a><i class="bi bi-arrow-right ms-2"></i></h5>
-                                    <img src="{{asset($category->category_image_name)}}" alt="Help Icon" class="img-fluid">
-                                    
-                                </div>
-                            </div>
+                            
+                            @include('website.includes.category_card_main')
                           
                             @endif
                         @endforeach

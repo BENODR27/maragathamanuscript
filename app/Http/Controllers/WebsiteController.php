@@ -85,7 +85,7 @@ class WebsiteController extends Controller
            }
             
         } else {
-            return redirect()->route('website.auth.login')->with(['msg'=>'Please Enter Valid Credentials']);
+            return redirect()->route('website.auth.login')->with(['msg'=>'Please Enter Valid Credentials','status'=>'Failed']);
         }
     }
     function LandingCategoryList(){
@@ -97,7 +97,7 @@ class WebsiteController extends Controller
         $error->message = $e->getMessage();
         $error->stack_trace = $e->getTraceAsString();
         $error->save();
-        return redirect()->back()->with(['msg'=>"something went wrong"]);
+        return redirect()->back()->with(['msg'=>"something went wrong",'status'=>'Failed']);
     }
 
     function categorySegmentsList(Request $req){
@@ -141,7 +141,7 @@ class WebsiteController extends Controller
         if($user->public){
             return view('website.screens.profile.share',['user'=>$user]);
         }else{
-            return redirect('/')->with(["msg"=>"Not permitted please contact Author"]);
+            return redirect('/')->with(["msg"=>"Not permitted please contact Author",'status'=>'Failed']);
         }
     }
     function notifications(){
@@ -154,7 +154,7 @@ class WebsiteController extends Controller
       $user=User::find($req->user_id);
       $user->public=$user->public?false:true;
       $user->save();
-      return redirect()->back()->with(["msg"=>"Your Profile Mode Changed"]);;
+      return redirect()->back()->with(["msg"=>"Your Profile Mode Changed",'status'=>'Success']);;
     }
     function userProducts(Request $req){ 
         try {

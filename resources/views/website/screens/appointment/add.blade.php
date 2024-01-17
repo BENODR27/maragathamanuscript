@@ -24,7 +24,7 @@
             </div>
             <div class="col-md-12">
               <label for="inputTitle4" class="form-label">APPOINTMENT FOR</label>
-              <textarea required maxlength="20" minlength="10"  name="for" placeholder="" class="form-control" oninvalid="this.setCustomValidity('Enter Valid Reason For Appointment')" oninput="this.setCustomValidity('')"></textarea>
+              <textarea required maxlength="120" minlength="10"  name="for" placeholder="" class="form-control" oninvalid="this.setCustomValidity('Enter Valid Reason For Appointment')" oninput="this.setCustomValidity('')"></textarea>
             </div>
             <div class="col-12">
                 <label for="inputState" class="form-label">MODE</label>

@@ -25,7 +25,7 @@ class RatingController extends Controller
         $product->rating_average=round($rating_average/$product->viewers);
         $product->save();
     //    return redirect()->back();
-    return response()->json(["msg"=>"success"]);
+    return response()->json(["msg"=>"success",'status'=>'Success']);
     }
     function deleteRatingSelf(Request $req){
         Rating::find($req->rating_id)->delete();

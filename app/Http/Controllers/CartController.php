@@ -41,13 +41,13 @@ class CartController extends Controller
       $cart->save();
       }
 
-      return redirect()->route('product.cart.list')->with(["msg"=>"Book Added to Cart"]);
+      return redirect()->route('product.cart.list')->with(["msg"=>"Book Added to Cart",'status'=>'Success']);
    }
 
 
     function delete(Request $req){
     Cart::find($req->cart_id)->delete();
-    return redirect()->back()->with(['msg'=>'Book Deleted From Cart Successfully']);
+    return redirect()->back()->with(['msg'=>'Book Deleted From Cart Successfully','status'=>'Success']);
     }
 
     function proceedCheckout(Request $req){

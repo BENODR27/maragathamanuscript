@@ -67,7 +67,7 @@ class WorkController extends Controller
             'product_type' => 'required|in:book,ebook',
             'genre' => 'required|string', // Assuming it's a string.
             'language' => 'required|in:tamil,english', // Add other languages as needed.
-            'file' => 'required|mimes:pdf,epub', // Adjust the allowed file types as needed.
+            'file' => 'required|mimes:pdf', // Adjust the allowed file types as needed.
             'terms' => 'required|accepted', // A checkbox that needs to be checked.
         ],$customMessages,$customAttributes);
 
@@ -97,7 +97,7 @@ class WorkController extends Controller
 		Notification::send($user,new UserNotification($message,$messagetone,$custommessage));
 
 
-        return redirect()->route('submission.list')->with(['msg'=>"Work Submitted Successfully"]);
+        return redirect()->route('submission.list')->with(['msg'=>"Work Submitted Successfully",'status'=>'Success']);
     }
     function browse(Request $req){
         if($req->filter=="pending"){
