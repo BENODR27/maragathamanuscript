@@ -45,9 +45,10 @@
                   
               </select>
           </div>
-
+          <div class="mb-3">
+            <label for="product_type" class="form-label">Poster Image</label>
 @include('includes.imagecrop')
-
+</div>
             <div class="col-12 mb-3">
               <label for="inputState" class="form-label">Genre</label>
                 <select name="genre" required id="inputState" class="form-select" oninvalid="this.setCustomValidity('Please Select Valid Genre')" oninput="this.setCustomValidity('')">

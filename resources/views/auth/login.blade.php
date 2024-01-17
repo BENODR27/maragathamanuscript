@@ -7,6 +7,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="{{ asset('img/mm/logo.png') }}">
+
 </head>
 <body>
 	<img class="wave" src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/wave.png">
@@ -17,7 +19,7 @@
 		<div class="login-content">
 			<form action="{{route('login')}}" method="post">
 				@csrf
-				<img src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/avatar.svg">
+				<img src="{{asset('img/mm/logo.png')}}">
 				<h2 class="title">LOGIN</h2>
            		<div class="input-div one">
            		   <div class="i">
@@ -25,7 +27,7 @@
            		   </div>
            		   <div class="div">
            		   		<h5>Username</h5>
-           		   		<input type="text" required name="email" class="input" oninvalid="this.setCustomValidity('Please Enter UserName')" oninput="this.setCustomValidity('')">
+           		   		<input type="email" required name="email" class="input" oninvalid="this.setCustomValidity('Please Enter UserName')" oninput="this.setCustomValidity('')">
            		   </div>
            		</div>
            		<div class="input-div pass">

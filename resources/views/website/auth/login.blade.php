@@ -2,10 +2,13 @@
 <html>
 <head>
 	<title>Login</title>
-	
+	<link rel="stylesheet" href="{{asset("layout/assets/css/bootstrap.min.css")}}">
+
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="{{ asset('img/mm/logo.png') }}">
+
 </head>
 <body>
 	<img class="wave" src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/wave.png">
@@ -16,15 +19,15 @@
 		<div class="login-content">
 			<form action="{{route('website.auth.login')}}" method="post">
 				@csrf
-				<img src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/avatar.svg">
+				<img src="{{asset('img/mm/logo.png')}}">
 				<h2 class="title">LOGIN</h2>
            		<div class="input-div one">
            		   <div class="i">
            		   		<i class="fas fa-user"></i>
            		   </div>
            		   <div class="div">
-           		   		<h5>UserEmail</h5>
-           		   		<input type="text"  name="email" class="input">
+           		   		<h5>Username</h5>
+           		   		<input type="email" required name="email" class="input" oninvalid="this.setCustomValidity('Please Enter UserName')" oninput="this.setCustomValidity('')">
            		   </div>
            		</div>
            		<div class="input-div pass">
@@ -33,10 +36,22 @@
            		   </div>
            		   <div class="div">
            		    	<h5>Password</h5>
-           		    	<input type="password" name="password" class="input">
+           		    	<input type="password" required name="password" class="input" oninvalid="this.setCustomValidity('Please Enter Password')" oninput="this.setCustomValidity('')">
             	   </div>
             	</div>
+				
             	<a href="{{route('website.auth.register')}}">New User Register Here -></a>
+				@if ($errors->any())
+				<div class="mt-3 p-3">
+					<div class="alert alert-danger">
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				</div>
+			@endif
             	<input type="submit" class="btn" value="Login">
             </form>
         </div>
@@ -296,6 +311,5 @@ inputs.forEach(input => {
 	input.addEventListener("blur", remcl);
 });
 
-//Source :- https://github.com/sefyudem/Responsive-Login-Form/blob/master/img/avatar.svg  
 </script>
 </html>

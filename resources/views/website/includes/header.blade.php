@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg  py-3">
     
     <input type="checkbox" id="nav-toggle">
-    <div class="logo p-5">{{ config('app.name', 'MM') }}</div>
+    <div class="logo p-5"><img src="{{asset('img/mm/logo.png')}}" alt="" width="50"></div>
    <ul class="links">
        <li><a href="/">
         HOME

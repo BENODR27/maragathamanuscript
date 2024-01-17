@@ -2,10 +2,13 @@
 <html>
 <head>
 	<title>Register</title>
-	
+	<link rel="stylesheet" href="{{asset("layout/assets/css/bootstrap.min.css")}}">
+
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="{{ asset('img/mm/logo.png') }}">
+
 </head>
 <body>
 	<img class="wave" src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/wave.png">
@@ -16,7 +19,8 @@
 		<div class="login-content">
 			<form action="{{route('website.auth.register')}}" method="post">
 				@csrf
-				<img src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/avatar.svg">
+				
+				<img src="{{asset('img/mm/logo.png')}}">
 				<h2 class="title">REGISTER</h2>
            		<div class="input-div one">
            		   <div class="i">
@@ -24,7 +28,7 @@
            		   </div>
            		   <div class="div">
            		   		<h5>Name</h5>
-           		   		<input required type="text" name="name" class="input">
+           		   		<input required maxlength="30" minlength="3" type="text" name="name" class="input" oninvalid="this.setCustomValidity('Please Enter Valid Name')" oninput="this.setCustomValidity('')">
            		   </div>
            		</div>
            		<div class="input-div one">
@@ -33,7 +37,7 @@
            		   </div>
            		   <div class="div">
            		   		<h5>Email</h5>
-           		   		<input required type="text" name="email"  class="input">
+           		   		<input required maxlength="30"  type="email" name="email"  class="input" oninvalid="this.setCustomValidity('Please Enter Valid Email')" oninput="this.setCustomValidity('')">
            		   </div>
            		</div>
            		<div class="input-div pass">
@@ -42,7 +46,7 @@
            		   </div>
            		   <div class="div">
            		    	<h5>Password</h5>
-           		    	<input required type="password" name="password" class="input">
+           		    	<input required minlength="8" maxlength="30" type="password" name="password" class="input" oninvalid="this.setCustomValidity('Please Enter Password')" oninput="this.setCustomValidity('')">
             	   </div>
             	</div>
            		<div class="input-div pass">
@@ -51,11 +55,21 @@
            		   </div>
            		   <div class="div">
            		    	<h5>Confirm Password</h5>
-           		    	<input required type="confirmpassword" name="confirmpassword" class="input">
+           		    	<input required minlength="8"  maxlength="30" type="confirmpassword" name="password_confirmation" class="input" oninvalid="this.setCustomValidity('Please Enter Confirm Password')" oninput="this.setCustomValidity('')">
             	   </div>
             	</div>
                 <a href="{{route('website.auth.login')}}">Already Registered Login Here -></a>
-
+				@if ($errors->any())
+				<div class="mt-3 p-3">
+					<div class="alert alert-danger">
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				</div>
+			@endif
             	<input type="submit" class="btn" value="Register">
             </form>
         </div>

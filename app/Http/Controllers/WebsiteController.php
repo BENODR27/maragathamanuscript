@@ -16,11 +16,35 @@ use App\Helpers\ImageHelper;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use Share;
+use Illuminate\Support\Facades\Validator;
+
 
 class WebsiteController extends Controller
 {
     function userRegisterSave(Request $req){
-        
+         // Validation rules
+    $rules = [
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users|max:255',
+        'password' => 'required|string|min:6',
+    ];
+          // Custom error messages
+    $messages = [
+        'name.required' => 'The name field is required.',
+        'email.required' => 'The email field is required.',
+        'email.email' => 'Invalid email format.',
+        'email.unique' => 'Email is already taken.',
+        'password.required' => 'The password field is required.',
+        'password.min' => 'The password must be at least 6 characters.',
+    ];
+
+    // Validate the request data
+    $validator = Validator::make($req->all(), $rules, $messages);
+
+    // Check for validation failure
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
        $user=new User();
        $user->name=$req->name;
        $user->email=$req->email;
@@ -31,6 +55,26 @@ class WebsiteController extends Controller
         
     }
     function userLoginCheck(Request $req){
+         // Validation rules
+    $rules = [
+        'email' => 'required|email',
+        'password' => 'required',
+    ];
+
+    // Custom error messages
+    $messages = [
+        'email.required' => 'The email field is required.',
+        'email.email' => 'Invalid email format.',
+        'password.required' => 'The password field is required.',
+    ];
+
+    // Validate the request data
+    $validator = Validator::make($req->all(), $rules, $messages);
+
+    // Check for validation failure
+    if ($validator->fails()) {
+        return redirect()->route('website.auth.login')->withErrors($validator)->withInput();
+    }
 
         if (Auth::attempt(['email' => $req->email, 'password' => $req->password])){
             $lastRoute=session('last_route_name');
@@ -41,7 +85,7 @@ class WebsiteController extends Controller
            }
             
         } else {
-            return redirect()->route('website.auth.login');
+            return redirect()->route('website.auth.login')->with(['msg'=>'Please Enter Valid Credentials']);
         }
     }
     function LandingCategoryList(){

@@ -184,7 +184,9 @@ class ProductController extends Controller
         });
 
         return view('website.screens.publications_comics_others.product',['product'=>$publicationProduct,'pageTitle'=>$publicationProduct->title]);      }else{
-        // return redirect()->back();
-      }    
+      } 
+    return redirect()->back()->with(['msg'=>'Searched Book Not Found Sorry For Inconveniences']);
+
+
     }
 }

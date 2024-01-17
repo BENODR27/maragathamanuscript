@@ -47,7 +47,7 @@ class CartController extends Controller
 
     function delete(Request $req){
     Cart::find($req->cart_id)->delete();
-    return redirect()->back();
+    return redirect()->back()->with(['msg'=>'Book Deleted From Cart Successfully']);
     }
 
     function proceedCheckout(Request $req){
