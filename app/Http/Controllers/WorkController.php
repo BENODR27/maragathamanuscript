@@ -97,7 +97,7 @@ class WorkController extends Controller
 		Notification::send($user,new UserNotification($message,$messagetone,$custommessage));
 
 
-        return redirect()->route('submission.list')->with(['msg'=>"Work Submitted Successfully",'status'=>'Success']);
+        return redirect()->route('submission.list')->with(['msg'=>"Work Added Successfully Kindly Wait For Confirmation",'status'=>'Success']);
     }
     function browse(Request $req){
         if($req->filter=="pending"){

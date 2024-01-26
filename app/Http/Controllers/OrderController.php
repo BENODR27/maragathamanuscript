@@ -22,13 +22,13 @@ class OrderController extends Controller
     function browse(Request $req){
         
         if($req->filter=="new"){
-            $orders=Order::where('delivered',false)->get()->reverse();
+            $orders=Order::where('delivered',false)->select('id','payment_status','delivered','user_id')->get()->reverse();
         }
         if($req->filter=="completed"){
-            $orders=Order::where('delivered',true)->get()->reverse();
+            $orders=Order::where('delivered',true)->select('id','payment_status','delivered','user_id')->get()->reverse();
         }
         if($req->filter=="all"){
-            $orders=Order::all()->reverse();
+            $orders=Order::select('id','payment_status','delivered','user_id')->get()->reverse();
         }
         return view('admin.screens.order.browse',['orders'=>$orders]);
     }

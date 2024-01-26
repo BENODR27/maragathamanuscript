@@ -8,7 +8,7 @@
         </h5>
         <img >
         <div class=" bookcm ">
-            <img src="{{asset($category->category_image_name)}}" alt="Help Icon"  class=" bookcm--cover img-fluid" />
+            <img src="{{asset('storage/categoryimages/'.$category->category_image_name)}}" alt="{{$category->name}}"  class=" bookcm--cover img-fluid" />
           </div>
     </div>
 </div>

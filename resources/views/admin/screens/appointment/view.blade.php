@@ -37,7 +37,43 @@ DETAILS              </a>
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 STATUS
                 <span class="badge badge-primary badge-pill p-2">        
-                 <a class="btn text-white"href="{{route('appointment.toggleStatus',['appointment_id'=>$appointment->id])}}">{{$appointment->status?"ACCEPTED":"PENDING"}}</a>
+                 {{-- <a class="btn "href="{{route('appointment.toggleStatus',['appointment_id'=>$appointment->id])}}">{{$appointment->status?"ACCEPTED":"PENDING"}}</a> --}}
+                 <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal{{$appointment->id}}">
+                  {{$appointment->status?"ACCEPTED":"NOT ACCEPTED"}}
+                </button>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal{{$appointment->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title text-dark" id="exampleModalLabel">Appontment{{$appointment->id}} status</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                          
+                          <form method="post" action="{{route('appointment.toggleStatus',['appointment_id'=>$appointment->id])}}">
+                              @csrf
+                          
+                              <div class="form-group">
+                                  <select name="status" required class="form-control" aria-label="Default select example">
+                                      <option selected value="">Change status</option>
+                                      <option value="Accept">Accept</option>
+                                      <option value="Reject">Reject</option>
+                                    </select>
+                              </div>
+                          
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 </span>
               </li>
            

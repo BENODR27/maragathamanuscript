@@ -16,7 +16,9 @@
     <link href="{{asset("layout/assets/css/fontawesome/solid.css")}}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{asset("layout/assets/css/style.css")}}">
-    <title>MM</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/mm/logo.png') }}">
+
+    <title>MARAGATHAA MANUSCRIPTS</title>
     @livewireStyles
 </head>
 <script>

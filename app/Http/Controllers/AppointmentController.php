@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Appointment;
 use Auth;
+use App\Models\User;
 use Illuminate\Support\Facades\Notification;
 
 use App\Notifications\UserNotification;
@@ -32,7 +33,7 @@ class AppointmentController extends Controller
         $messagetone="success";
         $custommessage="";
 		Notification::send($user,new UserNotification($message,$messagetone,$custommessage));
-        return redirect()->route('appointment.list')->with(['msg'=>"successfully added",'status'=>'Success']);
+        return redirect()->route('appointment.list')->with(['msg'=>"Appointment requested successfully kindly wait for confirmation",'status'=>'Success']);
     }
     function browse(Request $req){
         if($req->filter=="pending"){
@@ -52,11 +53,16 @@ class AppointmentController extends Controller
     }
     function toggleStatus(Request $req){
         $appointment=Appointment::find($req->appointment_id);
-        $appointment->status=($appointment->status)?false:true;
+        if($req->status=="Accept"){
+            $appointment->status=true;
+        }else{
+            $appointment->status=false;
+        }
         $appointment->update();
-        $user=Auth::user();		
-        $message= "Your Appointment Scheduled For ".$appointment->dateandtime." Got ".($appointment->status?" Accepted":"Rejected") ;
-        $messagetone=($appointment->status?"success":"error");
+        
+        $user=User::find($appointment->user_id);		
+        $message= "Your Appointment Scheduled For ".$appointment->dateandtime." Got ".($req->status?" Accepted":"Rejected") ;
+        $messagetone=($req->status=="Accept"?"success":"error");
         $custommessage="";
 		Notification::send($user,new UserNotification($message,$messagetone,$custommessage));
         return redirect()->back();

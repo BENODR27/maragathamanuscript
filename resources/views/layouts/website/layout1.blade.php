@@ -16,8 +16,9 @@
     <link href="{{asset("layout/assets/css/fontawesome/solid.css")}}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{asset("layout/assets/css/style.css")}}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/mm/logo.png') }}">
 
-    <title>MM</title>
+    <title>MARAGATHAA MANUSCRIPTS</title>
 </head>
 <script>
   window.addEventListener('load', function() {

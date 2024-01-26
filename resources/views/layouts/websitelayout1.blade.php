@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>JAS</title>
+    <title>MARAGATHAA MANUSCRIPTS</title>
     <link href="{{ asset('bootstrap-5.3.2/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/mm/logo.png') }}">
+
 
 </head>
 <body>

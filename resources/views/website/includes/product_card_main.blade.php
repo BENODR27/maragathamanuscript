@@ -90,11 +90,11 @@ a {
 .btn {
 	display: inline-block;
 	text-transform: uppercase;
-	border: 2px solid #2c3e50;
-	margin-top: 100px; 
+	margin:25px;
 	font-size: 0.9em;
 	font-weight: 700;
-	padding: 0.1em 0.4em;
+	color: #16a085;
+	
 	text-align: center;
 	-webkit-transition: color 0.3s, border-color 0.3s;
 	-moz-transition: color 0.3s, border-color 0.3s;
@@ -147,16 +147,32 @@ Table of Contents
 	1. container
 */
 
+/* Common styles for all devices */
 .book {
-	position: relative;
-	width: 160px; 
-	height: 220px;
-	-webkit-perspective: 1000px;
-	-moz-perspective: 1000px;
-	perspective: 1000px;
-	-webkit-transform-style: preserve-3d;
-	-moz-transform-style: preserve-3d;
-	transform-style: preserve-3d;
+  position: relative;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  perspective: 1000px;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+/* Styles for small screens (phones) */
+@media only screen and (max-width: 767px) {
+  .book {
+    width: 140px;
+    height: 145px;
+  }
+}
+
+
+/* Styles for large screens (laptops and desktops) */
+@media only screen and (min-width: 768px) {
+  .book {
+    width: 170px;
+    height: 175px;
+  }
 }
 
 /*

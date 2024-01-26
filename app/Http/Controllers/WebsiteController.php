@@ -26,9 +26,9 @@ class WebsiteController extends Controller
     $rules = [
         'name' => 'required|string|max:255',
         'email' => 'required|email|unique:users|max:255',
-        'password' => 'required|string|min:6',
+        'password' => 'required|string|min:6|confirmed',
     ];
-          // Custom error messages
+          // Custom error messages  
     $messages = [
         'name.required' => 'The name field is required.',
         'email.required' => 'The email field is required.',
@@ -43,7 +43,7 @@ class WebsiteController extends Controller
 
     // Check for validation failure
     if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
+        return redirect()->back()->withErrors($validator)->withInput()->with(['msg'=>'Please Enter Valid Credentials','status'=>'Failed']);;
     }
        $user=new User();
        $user->name=$req->name;
@@ -76,7 +76,7 @@ class WebsiteController extends Controller
         return redirect()->route('website.auth.login')->withErrors($validator)->withInput();
     }
 
-        if (Auth::attempt(['email' => $req->email, 'password' => $req->password])){
+        if (Auth::attempt(['email' => $req->email, 'password' => $req->password]) && Auth::user()->account_status){
             $lastRoute=session('last_route_name');
            if($lastRoute!=null){
             return redirect()->route($lastRoute);
@@ -84,8 +84,12 @@ class WebsiteController extends Controller
             return redirect()->route('category.segments',['category_id'=>session('category_id')]);
            }
             
-        } else {
+        } else if(Auth::user() && !Auth::user()->account_status){
+            Auth::logout();
+            return redirect()->route('website.auth.login')->with(['msg'=>'Not allowed to login please contact admin','status'=>'Failed']);
+        }else{
             return redirect()->route('website.auth.login')->with(['msg'=>'Please Enter Valid Credentials','status'=>'Failed']);
+
         }
     }
     function LandingCategoryList(){

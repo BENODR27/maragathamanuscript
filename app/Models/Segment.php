@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Segment extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'category_id',
+    ];
 
     public function category(): BelongsTo
     {

@@ -59,12 +59,12 @@
             <div class="row gx-5 d-flex justify-content-center align-items-center">
                 <div class="col-md-6">
                     <p class="fs-5 fw-normal text-white"></p>
-                    <h2 class="my-3 book-verse"><span class="complementary-color ps-0">MARAGATHA MANUSCRIPT</span>BOOK VERSE</h2>
+                    <h2 class="my-3 book-verse"><span class="complementary-color ps-0">MARAGATHAA MANUSCRIPTS</span>BOOK VERSE</h2>
                     <p class="fs-6 fw-normal book-quote">'The more that you learn, the more places you\'ll go.” “Books are a uniquely portable magic.” “I kept always two books in my pocket, one to read, one to write in.” “The person who deserves most pity is a lonesome one on a rainy day who doesn\'t know how to read.”
                         </p>
                     <div class="d-flex align-items-center gap-4 mt-5">
-                        {{-- <a href="#author-id" class="btn btn-light rounded-pill"> More</a> --}}
-                        <a href="http://www.youtube.com/watch?v=0O2aH4XLbto" class="text-decoration-none play-2 video-play ">
+                        <a href="#author-id" class="btn btn-light rounded-pill"> Portfolio</a>
+                        <a target="_blank" href="https://youtu.be/K0qNSvsuC0A?si=pB7tBlVsGqQo6MoZ" class="text-decoration-none play-2 video-play ">
                             <div class="d-flex gap-2 align-items-center">
                                 <i class="bi bi-play-fill fs-4"></i>
                                 <div class="ms-1">

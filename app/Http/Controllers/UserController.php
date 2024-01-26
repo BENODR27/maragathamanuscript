@@ -8,7 +8,7 @@ use App\Models\User;
 class UserController extends Controller
 {
     function browse(){
-        $users=User::all()->reverse();
+        $users=User::where('role','user')->select('id', 'name','email','account_status')->get()->reverse();
         return view('admin.screens.user.browse',['users'=>$users]);
     }
     function edit(Request $req){

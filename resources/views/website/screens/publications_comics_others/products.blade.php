@@ -6,7 +6,7 @@
             <div class="overlay-out">
                 <h1 class="banner-title">{{ $pageTitle }}</h1>
                 <p class="text-white"><a href="/" class="text-decoration-none text-white">Home</a> /
-                    <span  onclick="history.back()" class="text-decoration-none text-white">Segments</span>
+                    <span  onclick="history.back()" class="text-decoration-none text-white">Back</span>
                 </p>
             </div>
             <img src="{{asset("layout/assets/images/banner-image.png")}}" class="img-fluid" alt="Books">
@@ -23,39 +23,8 @@
                 <div class="col-md-12">
                     <div class="row row-cols-2 row-cols-md-4 gx-4 gy-4">
                         @foreach ($products as $product)
-                        <!-- product  -->
-                        
-                        <div class="col segment-product">
-                            <div class="bg-white p-2 bordered-shadow">
-                                <a href="{{route('category.publications_comics_others.product',['product_id'=>$product->id])}}" >
-                                <img src={{asset('storage/posterimages/'.$product->poster_image_name)}} alt="Product Image" class="img-fluid">
-                                
-                                    <h5 class="mt-2">{{ $product->title }}</h5>
-                                    <div class = "product-rating">
-                                        @if($product->rating_average!=0)
-                                          @for ($i = 1; $i <= $product->rating_average; $i++)
-                                          <i style="color:green"class = "fa fa-star"></i>
-                                          @endfor
-                                          @for ($i = $product->rating_average+1; $i <= 5; $i++)
-                                          <i class = "fa fa-star"></i>
-                                          @endfor
-                                          <span>({{$product->viewers}})</span>
-                                        @else
-                                        <p><span><small>No ratings yet!</small></span></p>
-                                        @endif
-                                          
-                                        </div>
-                                <p class="genre-text">{{ $product->genre->name }}</p>
+                        @include('website.includes.product_card_sub')
 
-                                {{-- <div class="d-flex justify-content-between pt-3">
-                                    <h4 class="text-primary">{{$product->price}}  &#8377;</h4>
-                                    <h5 class="text-decoration-line-through">{{$product->price+100}}  &#8377;</h5>
-                                </div> --}}
-                            </a>
-                            </div>
-                        </div>
-                    
-                        <!-- product  end-->
 
                         @endforeach
                     </div>
