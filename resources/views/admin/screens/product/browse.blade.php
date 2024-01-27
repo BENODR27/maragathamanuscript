@@ -8,7 +8,12 @@
  <div class="card shadow mb-4">
      <div class="card-header py-3 d-flex justify-content-between">
          <h6 class="font-weight-bold text-primary">PRODUCT</h6> 
+         <div class="d-flex justify-content-between">
+            {{-- <a class="btn btn-primary mr-2" onclick="history.back()">Back</a> --}}
+
          <a class="btn btn-primary"href="{{route('product.add',['category_id'=>$category_id])}}">ADD</a>
+         </div>
+         
      </div>
      <div class="card-body">
          <div class="table-responsive">

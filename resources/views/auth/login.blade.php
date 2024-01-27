@@ -7,7 +7,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/x-icon" href="{{ asset('img/mm/logo.png') }}">
+	<link rel="icon" type="image/x-icon" href="{{ asset('img/mm/logo_main.png') }}">
 
 </head>
 <body>
@@ -19,7 +19,7 @@
 		<div class="login-content">
 			<form action="{{route('login')}}" method="post">
 				@csrf
-				<img src="{{asset('img/mm/logo.png')}}">
+				<img src="{{asset('img/mm/logo_main.png')}}">
 				<h2 class="title">LOGIN</h2>
            		<div class="input-div one">
            		   <div class="i">

@@ -65,8 +65,8 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="home">
                         <h5 class="card-title">ON : <span>{{$appointment->dateandtime}}</span> </h5>
-                        <p class="card-text"> <b>FOR</b> : <span> {{$appointment->for}}</span></p>
-                        <a href="#" class="btn btn-primary m-2">MODE : {{$appointment->mode=="online"?"ONLINE":"OFFLINE"}}</a>
+                        {{-- <p class="card-text"> <b>FOR</b> : <span> {{$appointment->for}}</span></p> --}}
+                        <a href="#" class="btn btn-primary m-2">{{$appointment->status?"ACCEPTED":"REQUESTED"}}</a>
                     </div>
                    
                 </div>

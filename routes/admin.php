@@ -39,7 +39,7 @@ Route::group(['prefix' => 'order'], function () {
     Route::put('update', [OrderController::class,'update'])->name('order.update');
     Route::get('delete', [OrderController::class,'delete'])->name('order.delete');
     Route::get('view', [OrderController::class,'view'])->name('order.view');
-    Route::get('complete', [OrderController::class,'completeorder'])->name('order.complete');
+    Route::post('complete', [OrderController::class,'completeorder'])->name('order.complete');
 });
 Route::group(['prefix' => 'genre'], function () {
     

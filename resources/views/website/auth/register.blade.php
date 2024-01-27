@@ -4,7 +4,7 @@
 	<form action="{{route('website.auth.register')}}" method="post">
 		@csrf
 		
-		<img src="{{asset('img/mm/logo.png')}}">
+		<img src="{{asset('img/mm/logo_main.png')}}">
 		<h2 class="title">REGISTER</h2>
 		   <div class="input-div one">
 			  <div class="i">

@@ -8,7 +8,9 @@
  <div class="card shadow mb-4">
      <div class="card-header py-3 d-flex justify-content-between">
          <h6 class="font-weight-bold text-primary">CATEGORIES</h6> 
+         @if(Auth::user()->role=="superadmin")
          <a class="btn btn-primary"href="{{route('category.add')}}">ADD</a>
+         @endif
      </div>
      <div class="card-body">
          <div class="table-responsive">
@@ -41,7 +43,10 @@
                         </td>
                         <td>
                             <a class="btn btn-success"href="{{route('category.edit',['category_id'=>$category->id])}}">EDIT</a>
+                            @if(Auth::user()->role=="superadmin")
+
                             <a class="btn btn-danger"href="{{route('category.delete',['category_id'=>$category->id])}}">DELETE</a>
+                            @endif
                         </td>
                       
                     </tr>

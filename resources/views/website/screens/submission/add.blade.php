@@ -6,7 +6,7 @@
       <div class="overlay-out">
           <h1 class="banner-title">{{$pageTitle}}</h1>
           <p class="text-white"><a href="/" class="text-decoration-none text-white">Home</a> /
-              <span  onclick="history.back()" class="text-decoration-none text-white">Submissions</span>
+              <span  onclick="history.back()" class="text-decoration-none text-white">Back</span>
           </p>
       </div>
       <img src="{{asset("layout/assets/images/banner-image.png")}}" class="img-fluid" alt="Books">
@@ -30,7 +30,7 @@
       @endif
             <div class="col-md-12 mb-3">
               <label for="inputAuthor4" class="form-label">AUTHOR NAME</label>
-              <input type="text" required class="form-control" name="author_name" id="inputAuthor4" oninvalid="this.setCustomValidity('Please Enter Author Name')" oninput="this.setCustomValidity('')">
+              <input type="text" required value="{{Auth::user()->name}}" readonly class="form-control" name="author_name" id="inputAuthor4" oninvalid="this.setCustomValidity('Please Enter Author Name')" oninput="this.setCustomValidity('')">
             </div>
             <div class="col-md-12 mb-3">
               <label for="inputTitle4" class="form-label">TITLE OF WORK</label>
@@ -78,8 +78,10 @@
             </div>
             <div class="col-12">
                 <div class="mb-3">
-                    <label for="formFileMultiple" class="form-label">SUBMIT THE WORK (E-book)</label>
-                    <input required class="form-control @error('file') is-invalid @enderror" name="file" type="file" id="formFileMultiple" oninvalid="this.setCustomValidity('Please Upload Valid E-Book')" oninput="this.setCustomValidity('')">
+                  <div class="file-input-container">
+                    <input  accept="application/pdf" class="form-control @error('file') is-invalid @enderror" name="file" type="file" id="formFileMultiple" oninvalid="this.setCustomValidity('Please Upload Valid E-Book')" oninput="this.setCustomValidity('')">
+                    <label for="formFileMultiple" class="file-input-button">Upload Copy Of Book (Pdf)</label>
+                </div>
                   </div>
             </div>
          
@@ -87,8 +89,8 @@
             <div class="col-12 mb-3">
               <div class="form-check">
                 <input class="form-check-input" required name="terms" type="checkbox" id="gridCheck" {{ old('terms') ? 'checked' : '' }} oninvalid="this.setCustomValidity('Please Accept Terms & Conditions To Continue')" oninput="this.setCustomValidity('')">
-                <label class="form-check-label" for="gridCheck">
-                  Terms and Conditions
+                <label class="form-check-label" for="gridCheck" >
+                  Terms and Conditions <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#termsconditionsmodal">(T&C)</a>
                 </label>
               </div>
             </div>
@@ -100,4 +102,12 @@
     </div>
 </section>
 
+<style>
+  .submissions-add{
+    background-color: #c6d8c6;
+  }
+  a{
+    text-decoration: none;
+  }
+</style>
 @endsection

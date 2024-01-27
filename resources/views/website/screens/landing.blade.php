@@ -11,8 +11,8 @@
                 
                 <a class="navbar-brand" href="/">
                    
-                    {{-- <img class="logo-dark" src="img/images/logo.png" alt="Site Logo" width="200"> --}}
-                    <img class="logo-white" src="img/mm/logo.png" alt="Site Logo" width="50">
+                    {{-- <img class="logo-dark" src="img/images/logo_main.png" alt="Site Logo" width="200"> --}}
+                    <img class="logo-white" src="{{asset('img/mm/logo_main.png')}}" alt="Site Logo" width="50">
                 </a>
                 <button class="navbar-toggler me-3 ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -51,16 +51,40 @@
         </div>
     </header>
     <!-- header end -->
+<style>
+/* GLOBAL STYLES */
 
+
+/* DEMO-SPECIFIC STYLES */
+.typewriter {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  animation: 
+    typing 3.5s steps(30, end),
+    blink-caret .5s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange }
+}
+
+</style>
 
     <!-- hero section -->
     <section id="section-hero" class="hero-section-2 py-120">
         <div class="container">
             <div class="row gx-5 d-flex justify-content-center align-items-center">
-                <div class="col-md-6">
+                <div class="col-md-6 bqc">
                     <p class="fs-5 fw-normal text-white"></p>
-                    <h2 class="my-3 book-verse"><span class="complementary-color ps-0">MARAGATHAA MANUSCRIPTS</span>BOOK VERSE</h2>
-                    <p class="fs-6 fw-normal book-quote">'The more that you learn, the more places you\'ll go.” “Books are a uniquely portable magic.” “I kept always two books in my pocket, one to read, one to write in.” “The person who deserves most pity is a lonesome one on a rainy day who doesn\'t know how to read.”
+                    <h2 class="my-3 book-verse "><span class="complementary-color ps-0 typewriter">MARAGATHAA MANUSCRIPTS</span></h2><h2 class="text-success typewriter">BOOK VERSE</h2>
+                    <p class="fs-6 fw-normal book-quote typewriter">Maragathaa Manuscripts is a Start-up publication company. With the blessings of Lord Shiva, Maragathaa Manuscripts, is started on 2023. We are on a mission to empower voices, ignite imaginations, and connect communities through the power of words and stories. Founded with a passion for storytelling and a commitment to quality, we have embarked on a journey to redefine the world of publications.
                         </p>
                     <div class="d-flex align-items-center gap-4 mt-5">
                         <a href="#author-id" class="btn btn-light rounded-pill"> Portfolio</a>

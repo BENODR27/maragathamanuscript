@@ -33,7 +33,9 @@
                         <td>
                             <a class="btn btn-success"href="{{route('user.edit',['user_id'=>$user->id])}}">EDIT</a>
                             <a class="btn btn-warning"href="{{route('user.view',['user_id'=>$user->id])}}">VIEW</a>
+                            @if(Auth::user()->role=="superadmin")
                             <a onclick="return confirm('Are you sure you want to delete this user?');" class="btn btn-danger"href="{{route('user.delete',['user_id'=>$user->id])}}">DELETE</a>
+                            @endif
                         </td>
                       
                     </tr>

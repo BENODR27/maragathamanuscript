@@ -3,7 +3,7 @@
       <div class="modal-content">
         <div class="modal-header">
           
-          <h5 class="modal-title text-warning" id="msgModalLabel">{{ session('status') }}</h5>
+          <h5 class="modal-title text-dark" id="msgModalLabel"><b>{{ session('status') }}</b></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-danger">
@@ -17,3 +17,8 @@
     </div>
   </div>
   
+  <style>
+    .modal-content{
+      background-color: #c6d8c6;
+    }
+  </style>

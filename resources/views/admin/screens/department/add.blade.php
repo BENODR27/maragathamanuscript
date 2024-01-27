@@ -11,14 +11,15 @@
          <a class="btn btn-primary"href="{{route('department.browse')}}">Back</a>
      </div>
      <div class="card-body">
-        <form action="{{route('department.save')}}" method="post">
+        <form  method="post">
             @csrf
             <div class="mb-3">
               <label for="exampleInputName1" class="form-label">NAME</label>
               <input type="text" name="name" class="form-control" id="exampleInputName1" aria-describedby="nameHelp">
             </div>
             
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" formaction="{{route('department.save',['task'=>'save'])}}">Save</button>
+            <button type="submit" class="btn btn-warning" formaction="{{route('department.save',['task'=>'addnew'])}}">Save & Add New One</button>
           </form>
      </div>
  </div>

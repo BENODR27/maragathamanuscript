@@ -4,7 +4,7 @@
   <div class="card shadow mb-4">
       <div class="card-header py-3 d-flex justify-content-between">
           <h6 class="font-weight-bold text-primary">ADD NEW PRODUCT</h6>
-          <a class="btn btn-primary" href="{{ route('product.browse') }}">Back</a>
+          {{-- <a class="btn btn-primary" onclick="history.back()">Back</a> --}}
       </div>
       <div class="card-body">
           <form action="{{ route('product.save') }}" method="post" enctype="multipart/form-data">

@@ -21,7 +21,11 @@ class GenreController extends Controller
         $genre->name=$req->name;
         $genre->category_id=$req->category;
         $genre->save();
-        return redirect()->route('genre.browse',['category_id'=>$req->category]);
+        if($req->task=="addnew"){
+            return redirect()->back();
+        }else{
+            return redirect()->route('genre.browse',['category_id'=>$req->category]);
+        }
     }
     function edit(Request $req){
         $genre=Genre::find($req->genre_id);

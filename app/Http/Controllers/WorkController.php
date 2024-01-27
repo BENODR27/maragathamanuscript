@@ -47,7 +47,7 @@ class WorkController extends Controller
         // dd($req->all());
         $customAttributes = [
             'product_type' => 'Book Type', 
-            'file'=>'Work ',
+            'file'=>'Copy Of Book ',
             'author_name'=>'Author Name ',
             'title'=>'Title',
             'language'=>'Language',
@@ -55,7 +55,7 @@ class WorkController extends Controller
             'terms'=>'Terms & Conditions',
         ];
         $customMessages = [
-            'required' => 'The :attribute field is required.',
+            'required' => 'The :attribute is required.',
             'max' => 'The :attribute field cannot be more than :max characters.',
             'in' => 'Invalid value selected for the :attribute field.',
             'mimes' => 'The :attribute must be a file of type: :values.',
@@ -97,7 +97,7 @@ class WorkController extends Controller
 		Notification::send($user,new UserNotification($message,$messagetone,$custommessage));
 
 
-        return redirect()->route('submission.list')->with(['msg'=>"Work Added Successfully Kindly Wait For Confirmation",'status'=>'Success']);
+        return redirect()->route('submission.list')->with(['msg'=>"Book Submitted Successfully Kindly Wait For Confirmation",'status'=>'Success']);
     }
     function browse(Request $req){
         if($req->filter=="pending"){

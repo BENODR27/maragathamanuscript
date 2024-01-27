@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>MARAGATHAA MANUSCRIPTS</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('img/mm/logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/mm/logo_favicon.png') }}">
 
 
     <!-- Custom fonts for this template-->
@@ -21,6 +21,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset("layout/assets/css/bootstrap.min.css")}}">
 
 </head>
 
@@ -79,6 +80,7 @@
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset("layout/assets/js/bootstrap.bundle.min.js")}}"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>

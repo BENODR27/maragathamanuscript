@@ -8,7 +8,7 @@
  <div class="card shadow mb-4">
      <div class="card-header py-3 d-flex justify-content-between">
          <h6 class="font-weight-bold text-primary">EDIT DEPARTMENT</h6> 
-         <a class="btn btn-primary"href="{{route('department.browse')}}">Back</a>
+         {{-- <a class="btn btn-primary"href="{{route('department.browse')}}">Back</a> --}}
      </div>
      <div class="card-body">
         <form action="{{route('department.update',['department_id'=>$department->id])}}" method="post">

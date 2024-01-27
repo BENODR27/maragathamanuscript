@@ -34,7 +34,9 @@
                         </td>
                         <td>
                             <a class="btn btn-success"href="{{route('genre.edit',['genre_id'=>$genre->id])}}">EDIT</a>
+                            @if(Auth::user()->role=="superadmin")
                             <a class="btn btn-danger"href="{{route('genre.delete',['genre_id'=>$genre->id])}}">DELETE</a>
+                            @endif
                         </td>
                       
                     </tr>

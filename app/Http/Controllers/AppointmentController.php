@@ -20,8 +20,17 @@ class AppointmentController extends Controller
         return view('website.screens.appointment.add',['pageTitle'=>"NEW APPOINTMENT"]);
     }
     function save(Request $req){
+        $req->validate([
+            'for' => 'required|string|max:255',
+            'mode' => 'required|string|max:255',
+            'dateandtime' => 'required|date',
+            'terms' => 'required|accepted', // Assuming 'terms' is a checkbox field
+        ], [
+            'terms.accepted' => 'Please accept the terms and conditions.',
+        ]);
+
         $appointment=new Appointment();
-        $appointment->author_name=$req->author_name;
+        $appointment->author_name=Auth::user()->name;
         $appointment->for=$req->for;
         $appointment->mode=$req->mode;
         $appointment->dateandtime=$req->dateandtime;
@@ -52,6 +61,9 @@ class AppointmentController extends Controller
         return view('admin.screens.appointment.view',['appointment'=>$appointment]);
     }
     function toggleStatus(Request $req){
+        $req->validate([
+            'status' => 'required|string|max:10',
+        ]);
         $appointment=Appointment::find($req->appointment_id);
         if($req->status=="Accept"){
             $appointment->status=true;

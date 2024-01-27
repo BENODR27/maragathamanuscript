@@ -16,7 +16,7 @@
     <link href="{{asset("layout/assets/css/fontawesome/solid.css")}}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{asset("layout/assets/css/style.css")}}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('img/mm/logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/mm/logo_favicon.png') }}">
 
     <title>MARAGATHAA MANUSCRIPTS</title>
 </head>
@@ -79,6 +79,8 @@
   
 </script>
 @include('includes.msg')
+@include('includes.terms&conditions')
+
 <script>
     $(document).ready(function () {
         @if (session('msg'))

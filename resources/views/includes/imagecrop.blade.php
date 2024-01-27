@@ -66,8 +66,11 @@ img {
         <div class="modal-body container">
            
               <div class="">
-				<input type="file" id="file-input"/>
-
+				
+        <div class="file-input-container">
+          <input  id="file-input" accept="image/*" class="form-control"   type="file" id="formFileMultiple" >
+          <label for="formFileMultiple" class="file-input-button">Upload</label>
+      </div>
 			<div class="row">
 			
 				<div class="col-md-6">

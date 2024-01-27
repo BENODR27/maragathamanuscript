@@ -39,7 +39,7 @@
                 <div class="footer-links">
                     <h4 class="mb-4 footerheader">Others</h4>
                     <ul class="li-unstyled ps-0 footer-content hyphen-icon">
-                        <li class="mb-3"><a href="/"><span class="ms-1">Terms & Conditions</span></a></li>
+                        <li class="mb-3"><a href="#" data-bs-toggle="modal" data-bs-target="#termsconditionsmodal"><span class="ms-1">Terms & Conditions</span></a></li>
                       
                     </ul>
                 </div>
@@ -66,14 +66,14 @@
            
         </div>
     </div>
-    <div class="copyright mt-5">
-        <p class="py-4">&copy; 2024 Maragathaa Manuscripts. All Rights Reserved</p>
-        <p class="py-4">Crafted By  <a class="text-white" target="_blank" href="https://futureinterstellar.com/">futureinterstellar</a></p>
+    <div class=" mt-5 d-flex justify-content-between ml-5 mr-5 p-3">
+        <p class="">&copy; 2024 Maragathaa Manuscripts</p>
+        <p class="">Powered By <a class="text-white" target="_blank" href="https://futureinterstellar.com">AB-Techminds</a></p>
     </div>
 
 
     <!-- Scroll Back to Top -->
-    <a href="#section-hero" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></a>
+    <a href="#section-hero" class="back-to-top mb-5"><i class="fa-solid fa-arrow-up"></i></a>
     <!-- End Scroll Back to Top -->
   <style>
     .footerheader{

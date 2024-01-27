@@ -16,7 +16,7 @@
     <link href="{{asset("layout/assets/css/fontawesome/solid.css")}}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{asset("layout/assets/css/style.css")}}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('img/mm/logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/mm/logo_favicon.png') }}">
 
     <title>MARAGATHAA MANUSCRIPTS</title>
 </head>
@@ -44,6 +44,39 @@
   <div class="spinner"></div>
 </div>
 <style>
+  /* Style the container div */
+  .file-input-container {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+  }
+
+  /* Style the hidden file input */
+  .file-input-container input[type="file"] {
+      position: absolute;
+      font-size: 100px;
+      right: 0;
+      top: 0;
+      opacity: 0;
+  }
+
+  /* Style the visible part of the file input */
+  .file-input-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+
+  /* Style the error message */
+  .is-invalid {
+      border-color: #dc3545 !important;
+      background-color: #f8d7da !important;
+  }
+
   #preloader {
     position: fixed;
     top: 50%;
@@ -84,6 +117,7 @@
     
     @yield('script')
     @include('includes.msg')
+    @include('includes.terms&conditions')
 
 <script>
       $(document).ready(function () {

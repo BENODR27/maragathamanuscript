@@ -29,7 +29,9 @@
                         <td>{{$department->name}}</td>
                         <td>
                             <a class="btn btn-success"href="{{route('department.edit',['department_id'=>$department->id])}}">EDIT</a>
+                            @if(Auth::user()->role=="superadmin")
                             <a class="btn btn-danger"href="{{route('department.delete',['department_id'=>$department->id])}}">DELETE</a>
+                            @endif
                         </td>
                       
                     </tr>

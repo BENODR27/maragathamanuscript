@@ -72,7 +72,7 @@
 }
   
 .alert:after {
-  content: '\f00d';
+  content: '';
   font-family: 'FontAwesome';
   float: right;
   padding: 3px;

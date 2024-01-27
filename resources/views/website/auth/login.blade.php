@@ -3,7 +3,7 @@
 <div class="login-content">
 	<form action="{{route('website.auth.login')}}" method="post">
 		@csrf
-		<img src="{{asset('img/mm/logo.png')}}">
+		<img src="{{asset('img/mm/logo_main.png')}}">
 		<h2 class="title">LOGIN</h2>
 		   <div class="input-div one">
 			  <div class="i">

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MARAGATHAA MANUSCRIPTS</title>
     <link href="{{ asset('bootstrap-5.3.2/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="{{ asset('img/mm/logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/mm/logo_favicon.png') }}">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>

@@ -110,18 +110,18 @@
                 <div>Profile Visibility</div>
                 <div><a class="btn btn-primary"href="{{route('website.user.publicToggle',['user_id'=>$user->id])}}">{{$user->public?"PUBLIC":"PRIVATE"}}</a></div>
               </div> --}}
-           
+{{--            
                 <a class="list-group-item list-group-item-action  d-flex align-items-center justify-content-between" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                   
                   <div>About Company</div>
                   <div><i class="fa fa-caret-down" aria-hidden="true"></i></div>
                 </a>
-            
-              <div class="collapse" id="collapseExample">
+             --}}
+              {{-- <div class="collapse" id="collapseExample">
                 <div class="card card-body">
                   Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
                 </div>
-              </div>
+              </div> --}}
               <a onclick="return confirm('Are you sure you want to logout?');" href="{{route('website.logout')}}" class="list-group-item list-group-item-action  d-flex align-items-center justify-content-between">
               <div>
                 Logout

@@ -8,8 +8,10 @@
  <div class="card shadow mb-4">
      <div class="card-header py-3 d-flex justify-content-between">
          <h6 class="font-weight-bold text-primary">SEGMENTS</h6> 
+         @if(Auth::user()->role=="superadmin")
          <a class="btn btn-primary"href="{{route('segment.add',['category_id'=>$category_id])}}">ADD</a>
-     </div>
+         @endif
+        </div>
      <div class="card-body">
          <div class="table-responsive">
              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -34,7 +36,9 @@
                         </td>
                         <td>
                             <a class="btn btn-success"href="{{route('segment.edit',['segment_id'=>$segment->id])}}">EDIT</a>
+                            @if(Auth::user()->role=="superadmin")
                             <a class="btn btn-danger"href="{{route('segment.delete',['segment_id'=>$segment->id])}}">DELETE</a>
+                            @endif
                         </td>
                       
                     </tr>

@@ -9,9 +9,11 @@
      <div class="card-header py-3 d-flex justify-content-between">
          <h6 class="font-weight-bold text-primary">VIEW USER</h6> 
          <div>
+          <a target="_blank" class="btn btn-primary" href="tel:{{$user->mobile_number}}">Call</a>
+                <a class="btn btn-primary" target="_blank" href="https://wa.me/{{$user->mobile_number}}">WhatsApp</a>
           <a class="btn btn-success" href="mailto:{{$user->email}}">COMPOSE EMAIL</a>
           <a onclick="return confirm('Are you sure you want to change status?');" class="btn btn-{{($user->account_status==1)?"success":"danger"}}"href="{{route('user.status.toggle',['user_id'=>$user->id])}}">{{($user->account_status==1)?"ACTIVE":"INACTIVE"}}</a>
-          <a class="btn btn-primary" href="{{route('user.browse')}}">Back</a>
+          {{-- <a class="btn btn-primary" href="{{route('user.browse')}}">Back</a> --}}
          </div>
          
      </div>

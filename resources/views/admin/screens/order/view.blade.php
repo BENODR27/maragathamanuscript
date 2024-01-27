@@ -9,8 +9,64 @@
      <div class="card-header py-3 d-flex justify-content-between">
          <h6 class="font-weight-bold text-primary">ORDER-NO-{{$order->id}}</h6> 
 
-         <a class="btn btn-primary"href="{{route('order.complete',['order_id'=>$order->id])}}">{{$order->delivered?"ORDER COMPLETED":"ORDER NOT COMPLETED"}}</a>
-     </div>
+         {{-- <a class="btn btn-primary"href="{{route('order.complete',['order_id'=>$order->id])}}">{{$order->delivered?"ORDER COMPLETED":"ORDER NOT COMPLETED"}}</a> --}}
+    <!-- Button trigger modal -->
+    @if(!$order->delivered)
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+ ORDER NOT COMPLETED
+</button>
+@else
+<button type="button" class="btn btn-primary" >
+  ORDER COMPLETED
+</button>
+@endif
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ORDER-NO-{{$order->id}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="{{route('order.complete',['order_id'=>$order->id])}}">
+          @csrf
+          <div class="form-group mb-3">
+            <label for="exampleInputamount" class="form-label">Amount</label>
+            <input type="number" readonly value="{{$order->total_amount}}" required name="paidamount" class="form-control" id="exampleInputamount" >
+            <div id="amounthelp" class="form-text text-danger">*Check amount and confirm after paid</div>
+
+          </div>
+          <div class="form-group mb-3">
+            <label for="exampleInputamount" class="form-label">Payment status</label>
+
+              <select name="status" required class="form-control" aria-label="Default select example">
+                  <option hidden  value="">Select payment status</option>
+                  <option value="Paid">Paid</option>
+                  {{-- <option value="Unpaid">Unpaid</option> --}}
+                </select>
+          </div>
+          {{-- <div class="form-group mb-3">
+            <label for="exampleInputamount" class="form-label">Payment Mode</label>
+
+            <select name="status" required class="form-control" aria-label="Default select example">
+                <option hidden  value="">Payment Mode</option>
+                <option value="Cash">Cash</option>
+                <option value="Online">Online</option>
+              </select>
+        </div> --}}
+      
+          <button type="submit" class="btn btn-primary">Confirm</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
      <div class="card-body">
         <ul class="list-group">
             
@@ -64,7 +120,9 @@
                 <span class="badge badge-primary badge-pill p-2">{{$user->name}}</span>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
-                MobileNumber
+                MobileNumber<a target="_blank" class="btn btn-primary" href="tel:{{$user->mobile_number}}">Call</a>
+                <a class="btn btn-primary" target="_blank" href="https://wa.me/{{$user->mobile_number}}">WhatsApp</a>
+
                 <span class="badge badge-primary badge-pill p-2">{{$user->mobile_number}}</span>
               </li>
             

@@ -21,16 +21,19 @@ class OrderController extends Controller
     }
     function browse(Request $req){
         
-        if($req->filter=="new"){
-            $orders=Order::where('delivered',false)->select('id','payment_status','delivered','user_id')->get()->reverse();
+        $perPage = 10; // You can adjust the number of items per page as needed
+
+        $ordersQuery = Order::select('id', 'payment_status', 'delivered', 'user_id');
+    
+        if ($req->filter == "new") {
+            $ordersQuery->where('delivered', false);
+        } elseif ($req->filter == "completed") {
+            $ordersQuery->where('delivered', true);
         }
-        if($req->filter=="completed"){
-            $orders=Order::where('delivered',true)->select('id','payment_status','delivered','user_id')->get()->reverse();
-        }
-        if($req->filter=="all"){
-            $orders=Order::select('id','payment_status','delivered','user_id')->get()->reverse();
-        }
-        return view('admin.screens.order.browse',['orders'=>$orders]);
+    
+        $orders = $ordersQuery->latest()->paginate($perPage);
+    
+        return view('admin.screens.order.browse', ['orders' => $orders]);
     }
     function confirmorder(Request $request){
        
@@ -68,6 +71,7 @@ class OrderController extends Controller
                 $product=Product::find($cart->product_id);
 
                     $product->quantity=($product->quantity)-($cart->quantity);
+                    $product->viewers=($product->viewers)+($cart->quantity);
                     $product->save();
                 if($product->quantity==0){
                     $this->sendStockNotification($product->id);
@@ -95,6 +99,7 @@ class OrderController extends Controller
             $productData=Product::find($cart->product_id);
 
             $productData->quantity=($productData->quantity)-($cart->quantity);
+            $productData->viewers=($productData->viewers)+($cart->quantity);
             $productData->save();
             if($productData->quantity==0){
                 $this->sendStockNotification($productData->id);
@@ -147,7 +152,7 @@ class OrderController extends Controller
     }
     function completeorder(Request $req){
         $order=Order::find($req->order_id);
-        if(!$order->delivered){
+        if($req->status=="Paid" && !$order->delivered){
             $order->delivered=true;
             $order->payment_status="paid";
         }

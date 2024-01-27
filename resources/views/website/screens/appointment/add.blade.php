@@ -18,9 +18,18 @@
     <div class="container">
         <form class="row g-3" action="{{route('appointment.save')}}" method="post">
           @csrf
+          @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
             <div class="col-md-12">
               <label for="inputAuthor4" class="form-label">AUTHOR NAME</label>
-              <input required type="text" name="author_name" class="form-control" id="inputAuthor4" oninvalid="this.setCustomValidity('Enter Valid Author Name ')" oninput="this.setCustomValidity('')">
+              <input required type="text" value="{{Auth::user()->name}}" readonly name="author_name" class="form-control" id="inputAuthor4" oninvalid="this.setCustomValidity('Enter Valid Author Name ')" oninput="this.setCustomValidity('')">
             </div>
             <div class="col-md-12">
               <label for="inputTitle4" class="form-label">APPOINTMENT FOR</label>
@@ -42,9 +51,10 @@
             <div class="col-12">
               <div class="form-check">
                 <input required class="form-check-input" name="terms"type="checkbox" id="gridCheck" oninvalid="this.setCustomValidity('Please Accept Terms & Conditions To Continue')" oninput="this.setCustomValidity('')">
-                <label class="form-check-label" for="gridCheck">
-                  Terms and Conditions
+                <label class="form-check-label" for="gridCheck" >
+                  Terms and Conditions <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#termsconditionsmodal">(T&C)</a>
                 </label>
+                
               </div>
             </div>
             <div class="col-12">
@@ -53,5 +63,6 @@
           </form>
     </div>
 </section>
+
 
 @endsection

@@ -51,7 +51,7 @@ class WebsiteController extends Controller
        $user->role="user";
        $user->password=Hash::make($req->password);
        $user->save();
-       return redirect()->route('website.auth.login');
+       return redirect()->route('website.auth.login')->with(['msg'=>'Registered Successfully','status'=>'Success']);;
         
     }
     function userLoginCheck(Request $req){
@@ -77,11 +77,17 @@ class WebsiteController extends Controller
     }
 
         if (Auth::attempt(['email' => $req->email, 'password' => $req->password]) && Auth::user()->account_status){
+
             $lastRoute=session('last_route_name');
            if($lastRoute!=null){
-            return redirect()->route($lastRoute);
+            if(count(auth()->user()->unreadNotifications)>0){
+                return redirect()->route($lastRoute)->with(['msg'=>'Logined Successfully You Have Some Unread Notifications','status'=>'Success']);
+            }else{
+                return redirect()->route($lastRoute)->with(['msg'=>'Logined Successfully','status'=>'Success']);
+            }
+            
            }else{
-            return redirect()->route('category.segments',['category_id'=>session('category_id')]);
+            return redirect()->route('category.segments',['category_id'=>session('category_id')])->with(['msg'=>'Logined Successfully','status'=>'Success']);
            }
             
         } else if(Auth::user() && !Auth::user()->account_status){

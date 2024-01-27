@@ -41,7 +41,7 @@
                 <div class="footer-links">
                     <h4 class="mb-4 footerheader">Others</h4>
                     <ul class="li-unstyled ps-0 footer-content hyphen-icon">
-                        <li class="mb-3"><a href="/"><span class="ms-1">Terms & Conditions</span></a></li>
+                        <li class="mb-3"><a href="#" data-bs-toggle="modal" data-bs-target="#termsconditionsmodal"><span class="ms-1">Terms & Conditions</span></a></li>
                       
                     </ul>
                 </div>
@@ -52,11 +52,15 @@
                     
                 </p>
                 <ul class="d-flex gap-3 ps-0 pt-5 social-icons">
-                    <li><a href="#" target="_blank" class="blue-bg"><i class="fa-brands fa-facebook-f"></i></a></li>
-                    <li><a href="#" target="_blank" class="bg-primary"><i class="fa-brands fa-twitter"></i></a></li>
-                    <li><a href="#" target="_blank" class="dark-blue-bg"><i class="fa-brands fa-vimeo-v"></i></a>
+                    <li><a href="https://www.facebook.com/siva.janardhanan?sfnsn=wiwspwa&mibextid=9R9pXO" target="_blank" class="blue-bg"><i class="fa-brands fa-facebook-f"></i></a></li>
+                    <li><a href="https://twitter.com/JasCreator" target="_blank" class="bg-primary"><i class="fa-brands fa-twitter"></i></a></li>
+                    <li><a href="https://www.instagram.com/maragathaa_manuscripts?utm_source=qr&igsh=YnZ3NW5nemsyc3V2" target="_blank" class="dark-blue-bg"><i class="fa-brands fa-instagram"></i></a>
                     </li>
-                    <li><a href="#" target="_blank" class="orange-bg"><i class="fa-brands fa-pinterest"></i></a>
+                    <li><a href="https://www.linkedin.com/company/maragathaa-manuscripts/?viewAsMember=true" target="_blank" class="dark-blue-bg"><i class="fa-brands fa-linkedin"></i></a>
+                    </li>
+                    <li><a href="https://pin.it/5yy5wzhUO" target="_blank" class="orange-bg"><i class="fa-brands fa-pinterest"></i></a>
+                    </li>
+                    <li><a href="https://youtube.com/@simplecreator-jasstudios8659?si=C3PmwCVb9duLyNG2" target="_blank" class="orange-bg"><i class="fa-brands fa-youtube"></i></a>
                     </li>
                 </ul>
             </div>

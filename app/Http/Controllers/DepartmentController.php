@@ -17,7 +17,12 @@ class DepartmentController extends Controller
         $department=new Department();
         $department->name=$req->name;
         $department->save();
-        return redirect()->route('department.browse');
+
+        if($req->task=="addnew"){
+            return redirect()->back();
+        }else{
+            return redirect()->route('department.browse');
+        }
     }
     function edit(Request $req){
         $department=Department::find($req->department_id);
