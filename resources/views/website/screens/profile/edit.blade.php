@@ -33,7 +33,7 @@
         <div class="mb-3">
           <label for="profileImage" class="form-label">CURRENT PROFILE IMAGE</label>
         
-          <img src="{{asset('storage/profile/'.$user->profile_image_name)}}" width="50" class="img-fluid" alt="Books">
+          <img src="{{ Storage::disk('s3')->url('profile/thumbnail/'.Auth::user()->profile_image_name) }}" width="50" class="img-fluid" alt="Books">
         </div>
         
      

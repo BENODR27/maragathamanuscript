@@ -35,7 +35,7 @@
                         <td>{{$product->id}}</td>
                         <td>{{$product->title}}</td>
                         <td>
-                            <img src="{{asset('storage/thumbnail/posterimages/'.$product->poster_image_name)}}" style="height:50px;width:50px;object-fit:contain"class="img-fluid" alt="{{$product->poster_image_name}}">
+                            <img src="{{ Storage::disk('s3')->url('posterimages/thumbnail/'.$product->poster_image_name) }}" style="height:50px;width:50px;object-fit:contain"class="img-fluid" alt="{{$product->poster_image_name}}">
                         </td>
                         <td>{{$product->is_active?"Active":"Inactive"}}</td>
                         <td>

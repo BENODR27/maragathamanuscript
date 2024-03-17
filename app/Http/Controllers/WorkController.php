@@ -71,7 +71,7 @@ class WorkController extends Controller
             'terms' => 'required|accepted', // A checkbox that needs to be checked.
         ],$customMessages,$customAttributes);
 
-        $imageName = ImageHelper::storeImage($req->poster_image); 
+        $imageName = ImageHelper::storeImage($req->poster_image,'work/posterimage/'); 
 
         $work=new Work();
         $work->author_name=$req->author_name;

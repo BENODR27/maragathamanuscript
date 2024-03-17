@@ -7,7 +7,7 @@
 
                     <ul class="hardcover_front">
                         <li>
-                            <img src={{asset('storage/thumbnail/posterimages/'.$product->poster_image_name)}} class="card-img-top p-2" alt="Card Image">                        </li>
+                            <img src="{{ Storage::disk('s3')->url('posterimages/thumbnail/'.$product->poster_image_name) }}" class="card-img-top p-2" alt="Card Image">                        </li>
                         
                             <li></li>
                     </ul>

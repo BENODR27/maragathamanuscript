@@ -70,7 +70,7 @@
                                 <div class="card-body">
                                   <div class="row">
                                     <div class="col-md-2">
-                                      <img src="{{asset('storage/thumbnail/posterimages/'.$product->poster_image_name)}}"
+                                      <img src="{{ Storage::disk('s3')->url('posterimages/thumbnail/'.$product->poster_image_name) }}"
                                         class="img-fluid" alt="Phone">
                                     </div>
                                     <div class="col-md-2 text-center d-flex justify-content-center align-items-center">

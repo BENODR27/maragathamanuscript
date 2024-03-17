@@ -8,7 +8,7 @@
         </h5>
         <img >
         <div class=" bookcm ">
-            <img src="{{asset('storage/categoryimages/'.$category->category_image_name)}}" alt="{{$category->name}}"  class=" bookcm--cover img-fluid" />
+            <img src="{{ Storage::disk('s3')->url('categoryimages/'.$category->category_image_name) }}" alt="{{$category->name}}"  class=" bookcm--cover img-fluid" />
           </div>
     </div>
 </div>

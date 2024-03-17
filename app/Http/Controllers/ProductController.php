@@ -153,7 +153,8 @@ class ProductController extends Controller
     }
     function delete(Request $req){
         $product=Product::find($req->product_id);
-        ImageHelper::deleteImage($product->poster_image_name,"posterimages/",true);
+        ImageHelper::deleteImage($product->poster_image_name,"posterimages/main/",true);
+        
         if ($product->e_book_file_name!=null) {
             ImageHelper::deletePDF($product->e_book_file_name,"work/");
         }

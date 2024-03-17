@@ -28,7 +28,7 @@
                       <option value="audio_video">Audio & Video</option> --}}
               </select>
           </div>
-          @if($category->name!="OTHERS")
+          {{-- @if($category->name!="OTHERS")
             <div class="mb-3">
               <label for="category_image" class="form-label">CATEGORY IMAGE</label>
               <input  type="file" name="category_image" class="form-control" id="category_image" aria-describedby="posterImageHelp" oninvalid="this.setCustomValidity('Please Select Valid Category Image')" oninput="this.setCustomValidity('')">
@@ -36,9 +36,9 @@
 
           <div class="mb-3" id="uploaded_image_div" >
               <label>Uploaded Category Image:</label>
-              <img id="uploaded_image" src="{{asset('storage/categoryimages/'.$category->category_image_name)}}" alt="Uploaded Image" style="max-width: 100px;">
+              <img id="uploaded_image" src="{{ Storage::disk('s3')->url('categoryimages/'.$category->category_image_name) }}" alt="Uploaded Image" style="max-width: 100px;">
           </div>
-          @endif
+          @endif --}}
             <div class="mb-3">
               <label for="exampleInputName1" class="form-label">NAME</label>
               <input type="text" value="{{$category->name}}" name="name" class="form-control" id="exampleInputName1" aria-describedby="nameHelp">

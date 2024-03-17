@@ -18,7 +18,7 @@
     <div class="container p-3">
       <div class="row" >
           <div class="col-md-6 mt-3">
-              <img class="img-fluid" style="height:100%;width:100%;"src = "{{asset('storage/posterimages/'.$product->poster_image_name)}}" alt = "image">
+              <img class="img-fluid" style="height:100%;width:100%;"src = "{{ Storage::disk('s3')->url('posterimages/thumbnail/'.$product->poster_image_name) }}" alt = "image">
           </div>
           <div class="col-md-6" >
               <div class = "product-content mt-5">
@@ -46,7 +46,7 @@
                  <div class="row mt-2 mt-md-4">
                   <div class="col">
                     <a @if($product->user->public) href="{{route('website.user.share',["shared_id"=>$product->user->id])}}" @else href="#"  @endif>
-                      <div class="btn btn-outline-success"><img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" @if($product->user->profile_image_name==null) src="{{asset('img/undraw_profile.svg')}}" @else src="{{asset('storage/profile/'.$product->user->profile_image_name)}}" @endif /> &nbsp {{ $product->user->name }}</div>
+                      <div class="btn btn-outline-success"><img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" @if($product->user->profile_image_name==null) src="{{asset('img/undraw_profile.svg')}}" @else src="{{ Storage::disk('s3')->url('profile/thumbnail/'.Auth::user()->profile_image_name) }}" @endif /> &nbsp {{ $product->user->name }}</div>
 
                     </a>
                   </div>
@@ -69,7 +69,7 @@
                       DOWNLOAD E-BOOK <i class="fa fa-download" aria-hidden="true"></i>
 
                    </a> --}}
-                   <a class="btn btn-primary" href="{{asset("storage/work/".$product->e_book_file_name)}}" download="{{$product->title}}.pdf">DOWNLOAD E-BOOK</a>
+                   <a class="btn btn-primary" href="{{asset("work/".$product->e_book_file_name)}}" download="{{$product->title}}.pdf">DOWNLOAD E-BOOK</a>
 
                   </div>
                   @elseif($product->product_type=="audiobook")
@@ -116,7 +116,7 @@
      <div class="col-md-12 col-sm-12 mb-3" >
          <div class="card mb-3" >
              <div class="card-body">
-               <h5 class="card-title"><img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" @if(Auth::user()->profile_image_name==null) src="{{asset('img/undraw_profile.svg')}}" @else src="{{asset('storage/profile/'.Auth::user()->profile_image_name)}}" @endif /> &nbsp {{ Auth::user()->name }}</h5>
+               <h5 class="card-title"><img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" @if(Auth::user()->profile_image_name==null) src="{{asset('img/undraw_profile.svg')}}" @else src="{{ Storage::disk('s3')->url('profile/thumbnail/'.Auth::user()->profile_image_name) }}" @endif /> &nbsp {{ Auth::user()->name }}</h5>
                  <div class="row">
                      <div class="col">
                          <textarea oninvalid="this.setCustomValidity('Please Enter Comments')" oninput="this.setCustomValidity('')" required  name="comment" placeholder="Add Comments here" class="form-control" ></textarea>

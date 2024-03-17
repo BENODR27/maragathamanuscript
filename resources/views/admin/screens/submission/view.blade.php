@@ -48,14 +48,14 @@
           </div> --}}
           <div class="mb-3" id="uploaded_image_div" >
               <label>Uploaded Poster/ Thumbnail Image:</label>
-              <img id="uploaded_image" src="{{asset('storage/thumbnail/posterimages/'.$work->poster_image_name)}}" alt="Uploaded Image" style="max-width: 100px;">
+              <img id="uploaded_image" src="{{ Storage::disk('s3')->url('posterimages/thumbnail/'.$product->poster_image_name) }}" alt="Uploaded Image" style="max-width: 100px;">
           </div>
           <div  id="ebookDiv">
             <h6 class="font-weight-bold text-primary p-4">E-BOOK SECTION</h6>
 
             <div class="mb-3">
               <label for="e_book_file" class="form-label">Uploaded E-Book </label>
-              <a class="btn btn-primary" href="{{asset("storage/work/".$work->file_name)}}" download>DOWNLOAD</a>
+              <a class="btn btn-primary" href="{{asset("work/".$work->file_name)}}" download>DOWNLOAD</a>
           </div>
           </div>
 

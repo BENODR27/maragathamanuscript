@@ -20,7 +20,7 @@
                                     <h5 class="card-title d-flex justify-content-between">
                                         <div>
                                             <img style="height:30px;width:30px;" class="rounded-circle" alt="avatar1"
-                                            src="{{asset('storage/profile/${rating.user.profile_image_name}')}}" /> &nbsp;
+                                            src="{{ Storage::disk('s3')->url('profile/thumbnail/${rating.user.profile_image_name') }}" /> &nbsp;
                                             ${rating.user.name }
                                         </div>
                     

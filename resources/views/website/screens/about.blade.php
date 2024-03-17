@@ -38,7 +38,7 @@
                         {{-- <label for="imageUpload"></label> --}}
                     </div>
                     <div class="avatar-preview">
-                        <div id="imagePreview" style="background-image: url('{{asset('storage/profile/'.$user->profile_image_name)}}');">
+                        <div id="imagePreview" style="background-image: url('{{ Storage::disk('s3')->url('profile/thumbnail/'.Auth::user()->profile_image_name) }}');">
                         </div>
                     </div>
                 </div>
