@@ -18,7 +18,7 @@
     <div class="container p-3">
       <div class="row" >
           <div class="col-md-6 mt-3">
-              <img class="img-fluid" style="height:100%;width:100%;"src = "{{ Storage::disk('s3')->url('posterimages/thumbnail/'.$product->poster_image_name) }}" alt = "image">
+              <img class="img-fluid" style="height:100%;width:100%;"src = "{{ Storage::disk('s3')->url('posterimages/main/'.$product->poster_image_name) }}" alt = "image">
           </div>
           <div class="col-md-6" >
               <div class = "product-content mt-5">
@@ -46,7 +46,7 @@
                  <div class="row mt-2 mt-md-4">
                   <div class="col">
                     <a @if($product->user->public) href="{{route('website.user.share',["shared_id"=>$product->user->id])}}" @else href="#"  @endif>
-                      <div class="btn btn-outline-success"><img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" @if($product->user->profile_image_name==null) src="{{asset('img/undraw_profile.svg')}}" @else src="{{ Storage::disk('s3')->url('profile/thumbnail/'.Auth::user()->profile_image_name) }}" @endif /> &nbsp {{ $product->user->name }}</div>
+                      <div class="btn btn-outline-success"><img style="height:30px;width:30px;"class="rounded-circle" alt="avatar1" src="{{ Storage::disk('s3')->url('profile/thumbnail/'.$product->user->profile_image_name) }}" /> &nbsp {{ $product->user->name }}</div>
 
                     </a>
                   </div>

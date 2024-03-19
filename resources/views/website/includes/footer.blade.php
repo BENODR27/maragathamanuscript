@@ -3,10 +3,10 @@
     <div class="container">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 gx-5 gy-4">
             <div class="col">
-                <h4 class="mb-4 footerheader">Contact</h4>
+                <h4 class="mb-4 footerheader">{{__('contact')}}</h4>
                 <ul class="li-unstyled ps-0 footer-content footer-contact">
                     <li class="mb-3"><i class="fa-solid fa-location-dot"></i>&nbsp 
-                        Maragathaa Manuscripts</li>
+                        {{__('mm')}}</li>
                     <li class="mb-3"><i class="fa-solid"></i> 13/91 A2 ,J.A.S Illam</li>
                     <li class="mb-3"><i class="fa-solid "></i> Pattatharavilai, Changai</li>
                     <li class="mb-3"><i class="fa-solid "></i> Kanjiracode Post.
@@ -24,12 +24,12 @@
                     <ul class="li-unstyled ps-0 footer-content hyphen-icon">
                         <li class="mb-3"><a href="/"><span class="ms-1">
                             
-                            HOME
+                            {{__('NAVIGATION')}}
                            
                         </span></a></li>
-                        <li class="mb-3"><a href="#product-category"><span class="ms-1">SHOP</span></a></li>
+                        <li class="mb-3"><a href="#product-category"><span class="ms-1">{{__('shop')}}</span></a></li>
                         {{-- <li class="mb-3"><a href="#author-id"><span class="ms-1">ABOUT US</span></a></li> --}}
-                        <li class="mb-3"><a href="#footer"><span class="ms-1">CONTACT</span></a></li>
+                        <li class="mb-3"><a href="#footer"><span class="ms-1">{{__('contact')}}</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -37,9 +37,9 @@
             
             <div class="col">
                 <div class="footer-links">
-                    <h4 class="mb-4 footerheader">Others</h4>
+                    <h4 class="mb-4 footerheader">{{__('OTHERS')}}</h4>
                     <ul class="li-unstyled ps-0 footer-content hyphen-icon">
-                        <li class="mb-3"><a href="#" data-bs-toggle="modal" data-bs-target="#termsconditionsmodal"><span class="ms-1">Terms & Conditions</span></a></li>
+                        <li class="mb-3"><a href="#" data-bs-toggle="modal" data-bs-target="#termsconditionsmodal"><span class="ms-1">{{__('Terms & Conditions')}}</span></a></li>
                       
                     </ul>
                 </div>
@@ -68,7 +68,7 @@
     </div>
     <div class=" mt-5 d-flex justify-content-between ml-5 mr-5 p-3">
         <p class="">&copy; 2024 Maragathaa Manuscripts</p>
-        <p class="">Powered By <a class="text-white" target="_blank" href="https://futureinterstellar.com">AB-Techminds</a></p>
+        <p class="">Powered By <a class="text-white" target="_blank" href="https://futureinterstellar.com">ABTechminds</a></p>
     </div>
 
 

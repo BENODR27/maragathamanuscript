@@ -22,19 +22,19 @@
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/">
-                                HOME
-                                
+                                {{__('home')}}
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#product-category">SHOP</a>
+                            <a class="nav-link" href="#product-category">{{__('shop')}}
+                            </a>
                         </li>
                         {{-- <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="#author-id">ABOUT US</a>
                         </li> --}}
                        
                         <li class="nav-item">
-                            <a class="nav-link" href="#footer">CONTACT</a>
+                            <a class="nav-link" href="#footer">{{__('contact')}}</a>
                         </li>
                         
                     </ul>
@@ -51,7 +51,7 @@
         </div>
     </header>
     <!-- header end -->
-<style>
+{{-- <style>
 /* GLOBAL STYLES */
 
 
@@ -75,7 +75,7 @@
   50% { border-color: orange }
 }
 
-</style>
+</style> --}}
 
     <!-- hero section -->
     <section id="section-hero" class="hero-section-2 py-120">
@@ -83,16 +83,16 @@
             <div class="row gx-5 d-flex justify-content-center align-items-center">
                 <div class="col-md-6 bqc">
                     <p class="fs-5 fw-normal text-white"></p>
-                    <h2 class="my-3 book-verse "><span class="complementary-color ps-0 typewriter">MARAGATHAA MANUSCRIPTS</span></h2><h2 class="text-success typewriter">BOOK VERSE</h2>
-                    <p class="fs-6 fw-normal book-quote typewriter">Maragathaa Manuscripts is a Start-up publication company. With the blessings of Lord Shiva, Maragathaa Manuscripts, is started on 2023. We are on a mission to empower voices, ignite imaginations, and connect communities through the power of words and stories. Founded with a passion for storytelling and a commitment to quality, we have embarked on a journey to redefine the world of publications.
+                    <h2 class="my-3 book-verse "><span class="complementary-color ps-0 typewriter">{{__('mm')}}</span></h2><h2 class="text-success typewriter">BOOK VERSE</h2>
+                    <p class="fs-6 fw-normal book-quote typewriter">{{__('mm_description')}}
                         </p>
                     <div class="d-flex align-items-center gap-4 mt-5">
-                        <a href="#author-id" class="btn btn-light rounded-pill"> Portfolio</a>
+                        {{-- <a href="#author-id" class="btn btn-light rounded-pill"> Portfolio</a> --}}
                         <a target="_blank" href="https://youtu.be/K0qNSvsuC0A?si=pB7tBlVsGqQo6MoZ" class="text-decoration-none play-2 video-play ">
                             <div class="d-flex gap-2 align-items-center">
                                 <i class="bi bi-play-fill fs-4"></i>
                                 <div class="ms-1">
-                                    <p class="play-text-md text-decoration-none">Watch Video</p>
+                                    <p class="play-text-md text-decoration-none">{{__('watch_video')}}</p>
                                     <p class=" play-text-sm text-decoration-underline">Duration 3:00 min</p>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
 
 
     <div class="hero-section-2-feature p-3 d-flex justify-content-center align-items-center">
-        <h3 class="text-white">publish your work with us, <a href="#product-category" class="text-white">here to go</a><i class="bi bi-arrow-right ms-2"></i>
+        <h3 class="text-white">{{__('publish_your_work_with_us')}}, <a href="#product-category" class="text-white">{{__('here_to_go')}}</a><i class="bi bi-arrow-right ms-2"></i>
         </h3>
     </div>
 
@@ -119,11 +119,11 @@
         <div class="container">
             <div class="text-center pb-5">
                 @if(count($categories)==0)
-                <h2 class="display-4 fw-bold text-white">COMING SOON</h2>
+                <h2 class="display-4 fw-bold text-white">{{__('comming_soon')}}</h2>
                 @else 
-                <h3 class="hr-lines-white">select your category</h3>
+                <h3 class="hr-lines-white">{{__('select_your_category')}}</h3>
 
-                <h2 class="display-4 fw-bold text-white">OUR RELEASES</h2>
+                <h2 class="display-4 fw-bold text-white">{{__('our_releases')}}</h2>
                 @endif
             </div>
 
@@ -132,7 +132,7 @@
                     @foreach ($categories as $category)
                     @if($category->name=="OTHERS")
                     <div class="d-grid gap-2 col-10 mx-auto">
-                        <a href="{{route('category.segments',['category_id'=>$category->id])}}" class="btn btn-primary ">OTHERS</a>
+                        <a href="{{route('category.segments',['category_id'=>$category->id])}}" class="btn btn-primary ">{{__('OTHERS')}}</a>
                     </div>
                     @endif
                     @endforeach

@@ -39,7 +39,7 @@
                 </figure>
         <div class="card-body">
            <div class="row">
-            <h6 class="card-text product-title">{{$product->title }}</h6>
+            <h6 class="card-text product-title" style="text-wrap:wrap">{{$product->title }}</h6>
            </div>
            <div class="row">
             <div class = "product-rating">

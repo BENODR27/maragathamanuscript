@@ -3,7 +3,7 @@
                         <div class="col segment-product">
                             <div class="bg-white p-2 bordered-shadow">
                                 <a href="{{route('category.publications_comics_others.product',['product_id'=>$product->id])}}" >
-                                <img src="{{ Storage::disk('s3')->url('posterimages/main/'.$product->poster_image_name) }}" alt="Product Image" class="img-fluid">
+                                <img src="{{ Storage::disk('s3')->url('posterimages/thumbnail/'.$product->poster_image_name) }}" alt="Product Image" class="img-fluid">
                                 
                                     <h5 class="mt-2">{{ $product->title }}</h5>
                                     <div class = "product-rating">

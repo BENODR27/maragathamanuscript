@@ -74,7 +74,7 @@
   /* Style the error message */
   .is-invalid {
       border-color: #dc3545 !important;
-      background-color: #f8d7da !important;
+      background-color: #c70011 !important;
   }
 
   #preloader {
@@ -85,8 +85,8 @@
 }
 
 .spinner {
-    width: 50px;
-    height: 50px;
+    width: 20%;
+    height: 20%;
     margin: 0 auto;
     border: 10px solid #f3f3f3;
     border-radius: 50%;

@@ -68,7 +68,7 @@
         </div>
     </div>
     <div class="copyright mt-5">
-        <p class="py-4">&copy; 2023 futureinterstellar. All Rights Reserved</p>
+        <p class="py-4">&copy; 2024 ABTechminds</p>
     </div>
 
 
